@@ -25,7 +25,7 @@
 
 
 ### :man_technologist: About Me :
-- 🔭 I’m currently studying at SUPSI for a bachelor's degree in Computer Engineering.
+- 🔭 I’m currently studying at SUPSI for a master's degree in Computer Engineering.
 - 📫 How to reach me: [![Linkedin Badge](https://img.shields.io/badge/-ManueleNolli-blue?style=flat&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/manuele-nolli/)
 
 
