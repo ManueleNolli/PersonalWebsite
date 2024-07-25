@@ -1,18 +1,19 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import {Providers} from "@/app/providers";
+import type { Metadata } from 'next'
+// import { Inter } from "next/font/google";
+import { Providers } from '@/app/providers'
+import React from 'react'
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Manuele Nolli",
+  title: 'Manuele Nolli',
   description: "Manuele Nolli's portofolio",
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
@@ -20,5 +21,5 @@ export default function RootLayout({
         <Providers>{children}</Providers>
       </body>
     </html>
-  );
+  )
 }
