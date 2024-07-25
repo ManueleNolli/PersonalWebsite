@@ -1,9 +1,13 @@
 import type { Metadata } from 'next'
-// import { Inter } from "next/font/google";
-import { Providers } from '@/app/providers'
 import React from 'react'
+import { Button } from 'primereact/button'
 
-// const inter = Inter({ subsets: ["latin"] });
+// STYLE
+import './global.css'
+import 'primereact/resources/themes/lara-light-cyan/theme.css'
+/*import "primereact/resources/themes/lara-light-cyan/theme.css";*/
+/*import "primereact/resources/themes/lara-dark-cyan/theme.css";*/
+/*import "primereact/resources/themes/lara-dark-teal/theme.css"*/
 
 export const metadata: Metadata = {
   title: 'Manuele Nolli',
@@ -18,7 +22,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Providers>{children}</Providers>
+        <h1 className="text-3xl font-bold underline">Hello, PrimeReact from RootLayout!</h1>
+        <Button label="Click" className="mt-10" />
+        {children}
       </body>
     </html>
   )
