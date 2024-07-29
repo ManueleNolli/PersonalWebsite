@@ -5,6 +5,7 @@ import { Button } from 'primereact/button'
 // STYLE
 import './global.css'
 import 'primereact/resources/themes/lara-light-cyan/theme.css'
+import Header from '@/app/components/header/header'
 /*import "primereact/resources/themes/lara-light-cyan/theme.css";*/
 /*import "primereact/resources/themes/lara-dark-cyan/theme.css";*/
 /*import "primereact/resources/themes/lara-dark-teal/theme.css"*/
@@ -22,9 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <h1 className="text-3xl font-bold underline">Hello, PrimeReact from RootLayout!</h1>
-        <Button label="Click" className="mt-10" />
-        {children}
+        <Header />
+        <main>{children}</main>
       </body>
     </html>
   )
