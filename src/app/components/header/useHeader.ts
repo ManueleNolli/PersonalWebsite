@@ -10,6 +10,8 @@ export type MenuLabel = {
 
 export default function useHeader() {
   const [menuList, setMenuList] = useState<MenuLabel[]>([])
+  const [prevoiusScrollPosition, setPrevoiusScrollPosition] = useState(0)
+  const [headerDiv, setHeaderDiv] = useState<HTMLElement | null>()
 
   useEffect(() => {
     // helper to find header items
@@ -44,7 +46,7 @@ export default function useHeader() {
         if (!element) return
 
         const elementTop = element.getBoundingClientRect().top + window.scrollY
-        const headerHeight = 80 // h-20 is 20rem = 80px
+        const headerHeight = document.querySelector('header')?.clientHeight || 0
 
         const distance = Math.abs(currentScroll - (elementTop - headerHeight))
         if (distance < closestDistance) {
@@ -69,12 +71,39 @@ export default function useHeader() {
     // calculate current menu
     updateCurrentMenu()
 
+    // set header div
+    setHeaderDiv(document.querySelector('header') as HTMLElement)
+
     // add event listener to update current menu
     window.addEventListener('scroll', updateCurrentMenu)
+
     return () => {
       window.removeEventListener('scroll', updateCurrentMenu)
     }
   }, [])
+
+  useEffect(() => {
+    // handle header position
+    const handleScrollHeaderPosition = () => {
+      if (!headerDiv) return
+
+      const currentScrollPosition = window.scrollY
+      const headerBottom = headerDiv.getBoundingClientRect().bottom
+
+      if (prevoiusScrollPosition > currentScrollPosition || currentScrollPosition < headerBottom) {
+        headerDiv.style.top = '0'
+      } else {
+        const headerHeight = document.querySelector('header')?.clientHeight || 0
+        headerDiv.style.top = `-${headerHeight}px`
+      }
+
+      setPrevoiusScrollPosition(currentScrollPosition)
+    }
+    window.addEventListener('scroll', handleScrollHeaderPosition)
+    return () => {
+      window.removeEventListener('scroll', handleScrollHeaderPosition)
+    }
+  }, [headerDiv, prevoiusScrollPosition])
 
   return {
     menuList,
