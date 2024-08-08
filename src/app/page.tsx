@@ -1,5 +1,6 @@
 import { Image } from 'primereact/image'
 import Link from 'next/link'
+import ParticlesBackground from '@/app/components/particles/particlesBackground'
 
 export default function Home() {
   return (
@@ -30,6 +31,11 @@ export default function Home() {
       <a href="https://www.flaticon.com/free-icons/south-arrow" title="south-arrow icons">
         South-arrow icons created by Mohamed Mbarki - Flaticon
       </a>
+      <div className="h-96">
+        <ParticlesBackground>
+          <h1>Particles</h1>
+        </ParticlesBackground>
+      </div>
     </div>
   )
 }
