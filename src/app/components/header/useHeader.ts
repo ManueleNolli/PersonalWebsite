@@ -25,7 +25,7 @@ export default function useHeader() {
 
       const newMenuList: MenuLabel[] = []
       headerItems.forEach((item: Element) => {
-        const label = item.textContent
+        const label = item.getAttribute('header-label') || ''
         const url = `#${item.id}`
         newMenuList.push({ label, url, isCurrent: false })
       })

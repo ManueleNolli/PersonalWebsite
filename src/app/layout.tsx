@@ -6,8 +6,8 @@ import './global.css'
 import 'primereact/resources/themes/lara-light-cyan/theme.css'
 import Header from '@/app/components/header/header'
 /*import "primereact/resources/themes/lara-light-cyan/theme.css";*/
-/*import "primereact/resources/themes/lara-dark-cyan/theme.css";*/
-/*import "primereact/resources/themes/lara-dark-teal/theme.css"*/
+// import 'primereact/resources/themes/lara-dark-cyan/theme.css'
+// import 'primereact/resources/themes/lara-dark-teal/theme.css'
 
 export const metadata: Metadata = {
   title: 'Manuele Nolli',
