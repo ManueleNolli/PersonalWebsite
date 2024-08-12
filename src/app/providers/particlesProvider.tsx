@@ -1,10 +1,17 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { ParticlesContext } from '@/app/context/particlesContext'
+import { loadFull } from 'tsparticles'
 import { initParticlesEngine } from '@tsparticles/react'
 import { loadSlim } from '@tsparticles/slim'
+import { loadPolygonMaskPlugin } from '@tsparticles/plugin-polygon-mask'
 
-export default function useParticlesBackground() {
+type ParticlesProviderProps = {
+  children: React.ReactNode
+}
+
+export default function ParticlesProvider({ children }: ParticlesProviderProps) {
   const [particlesInit, setParticlesInit] = useState(false)
 
   useEffect(() => {
@@ -13,17 +20,14 @@ export default function useParticlesBackground() {
       // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
       // starting from v2 you can add only the features you need reducing the bundle size
       //await loadAll(engine);
-      //await loadFull(engine);
+      // await loadFull(engine)
       await loadSlim(engine)
+      await loadPolygonMaskPlugin(engine)
       //await loadBasic(engine);
     }).then(() => {
       setParticlesInit(true)
     })
   }, [])
 
-  const particlesLoaded = useCallback(async (container) => {
-    await console.log(container)
-  }, [])
-
-  return { particlesInit, particlesLoaded }
+  return <ParticlesContext.Provider value={{ init: particlesInit }}>{children}</ParticlesContext.Provider>
 }

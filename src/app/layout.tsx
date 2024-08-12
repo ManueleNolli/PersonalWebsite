@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 // STYLE
 import './global.css'
 import 'primereact/resources/themes/lara-light-cyan/theme.css'
 import Header from '@/app/components/header/header'
+import { PrimeReactProvider } from 'primereact/api'
+import ParticlesProvider from '@/app/providers/particlesProvider'
 /*import "primereact/resources/themes/lara-light-cyan/theme.css";*/
 // import 'primereact/resources/themes/lara-dark-cyan/theme.css'
 // import 'primereact/resources/themes/lara-dark-teal/theme.css'
@@ -20,11 +22,15 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body>
-        <Header />
-        <main>{children}</main>
-      </body>
-    </html>
+    <PrimeReactProvider>
+      <ParticlesProvider>
+        <html lang="en" className="scroll-smooth">
+          <body>
+            <Header />
+            <main>{children}</main>
+          </body>
+        </html>
+      </ParticlesProvider>
+    </PrimeReactProvider>
   )
 }
