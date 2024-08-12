@@ -7,112 +7,10 @@ import { InputText } from 'primereact/inputtext'
 import { InputTextarea } from 'primereact/inputtextarea'
 import { polygonMaskParticles } from '@/app/constants/polygonMaskParticles'
 import { parallaxParticles } from '@/app/constants/parallaxParticles'
-import React, { useMemo } from 'react'
+import React from 'react'
 import Particles from '@/app/components/particles/particles'
 
 export default function Home() {
-  const options = useMemo(
-    () => ({
-      background: {
-        color: {
-          value: 'transparent',
-        },
-      },
-
-      fpsLimit: 60,
-      interactivity: {
-        events: {
-          onHover: {
-            enable: true,
-            mode: 'bubble',
-          },
-        },
-        modes: {
-          bubble: {
-            distance: 40,
-            duration: 2,
-            opacity: 8,
-            size: 6,
-            speed: 3,
-          },
-        },
-      },
-      particles: {
-        color: {
-          value: '#ff0000',
-          animation: {
-            enable: true,
-            speed: 20,
-            sync: true,
-          },
-        },
-        links: {
-          blink: false,
-          color: 'random',
-          consent: false,
-          distance: 30,
-          enable: true,
-          opacity: 0.3,
-          width: 0.5,
-        },
-        move: {
-          enable: true,
-          outModes: 'bounce',
-          speed: { min: 0.5, max: 1 },
-        },
-        number: {
-          value: 200,
-        },
-        opacity: {
-          animation: {
-            enable: true,
-            speed: 2,
-            sync: false,
-          },
-          random: false,
-          value: { min: 0.05, max: 1 },
-        },
-        shape: {
-          type: 'circle',
-        },
-        size: {
-          animation: {
-            enable: false,
-            speed: 40,
-            sync: false,
-          },
-          random: true,
-          value: { min: 0.1, max: 1 },
-        },
-      },
-      polygon: {
-        draw: {
-          enable: true,
-          stroke: {
-            color: '#fff',
-            width: 0.3,
-            opacity: 0.2,
-          },
-        },
-
-        move: {
-          radius: 10,
-        },
-        inline: {
-          arrangement: 'equidistant',
-        },
-
-        scale: 1,
-
-        type: 'inline',
-        url: 'https://particles.js.org/images/smalldeer.svg',
-      },
-
-      detectRetina: true,
-    }),
-    []
-  )
-
   const renderHome = () => {
     return (
       <div id="Home" className="header-item" header-label="Home">
@@ -131,7 +29,7 @@ export default function Home() {
   const renderAboutMe = () => {
     return (
       <div
-        className="header-item bg-surface-900 scroll-mt-[8%] text-primary-50 flex flex-row md:flex-col min-h-[80vh]"
+        className="header-item bg-surface-900 scroll-mt-[8%] text-primary-50 flex flex-row md:flex-col min-h-[80vh] bg-red-500"
         id="aboutme"
         header-label="About Me"
       >
@@ -144,8 +42,8 @@ export default function Home() {
             molestie arcu nec pellentesque.
           </p>
         </div>
-        <div className="md:w-full flex items-center justify-center md:my-8 bg-red-50">
-          <Particles options={options} id="particlesAboutMe" />
+        <div className="w-1/2 md:w-full">
+          <Particles options={polygonMaskParticles} id="particlesAboutMe" />
         </div>
       </div>
     )

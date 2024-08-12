@@ -1,30 +1,27 @@
 export const polygonMaskParticles = {
-  autoPlay: true,
-  background: {
-    color: {
-      value: '#000000',
-    },
-  },
-  backgroundMask: {
-    composite: 'destination-out',
-    cover: {
-      color: {
-        value: '#fff',
-      },
-      opacity: 1,
-    },
+  // background: {
+  //   color: {
+  //     value: 'transparent',
+  //   },
+  // },
+  fullScreen: {
     enable: false,
   },
+  fpsLimit: 120,
+  // backgroundMask: {
+  //   composite: 'destination-out',
+  //   cover: {
+  //     color: {
+  //       value: '#fff',
+  //     },
+  //     opacity: 1,
+  //   },
+  //   enable: false,
+  // },
   clear: true,
   defaultThemes: {},
   delay: 0,
-  fullScreen: {
-    enable: true,
-    zIndex: 0,
-  },
-  detectRetina: true,
   duration: 0,
-  fpsLimit: 120,
   interactivity: {
     detectsOn: 'window',
     events: {
@@ -33,9 +30,9 @@ export const polygonMaskParticles = {
         mode: 'push',
       },
       onDiv: {
-        selectors: {},
+        selectors: [],
         enable: false,
-        mode: {},
+        mode: [],
         type: 'circle',
       },
       onHover: {
@@ -79,7 +76,7 @@ export const polygonMaskParticles = {
           distance: 200,
           duration: 0.4,
           mix: false,
-          selectors: {},
+          selectors: [],
         },
       },
       connect: {
@@ -119,7 +116,7 @@ export const polygonMaskParticles = {
           speed: 1,
           maxSpeed: 50,
           easing: 'ease-out-quad',
-          selectors: {},
+          selectors: [],
         },
       },
       slow: {
@@ -213,7 +210,7 @@ export const polygonMaskParticles = {
       close: true,
       fill: true,
       options: {},
-      type: {},
+      type: [],
     },
     groups: {},
     move: {
@@ -497,29 +494,25 @@ export const polygonMaskParticles = {
   },
   polygon: {
     draw: {
-      enable: false,
+      enable: true,
       stroke: {
-        color: {
-          value: '#fff',
-        },
-        width: 1,
+        color: '#fff',
+        width: 0.3,
         opacity: 0.2,
       },
     },
-    enable: false,
+
+    // move: {
+    // radius: 10,
+    // },
     inline: {
       arrangement: 'equidistant',
     },
-    move: {
-      radius: 10,
-      type: 'path',
-    },
-    scale: 0.1,
+
+    scale: 0.5,
+
     type: 'inline',
-    url: 'https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg',
-    position: {
-      x: 50,
-      y: 50,
-    },
+    url: 'provaImmagine.svg',
   },
+  detectRetina: true,
 }
