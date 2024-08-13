@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react'
 import { ParticlesContext } from '@/app/context/particlesContext'
-import { loadFull } from 'tsparticles'
 import { initParticlesEngine } from '@tsparticles/react'
 import { loadSlim } from '@tsparticles/slim'
 import { loadPolygonMaskPlugin } from '@tsparticles/plugin-polygon-mask'

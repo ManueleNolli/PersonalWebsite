@@ -8,16 +8,16 @@ export const polygonMaskParticles = {
     enable: false,
   },
   fpsLimit: 120,
-  // backgroundMask: {
-  //   composite: 'destination-out',
-  //   cover: {
-  //     color: {
-  //       value: '#fff',
-  //     },
-  //     opacity: 1,
-  //   },
-  //   enable: false,
-  // },
+  backgroundMask: {
+    composite: 'destination-out',
+    cover: {
+      color: {
+        value: '#fff',
+      },
+      opacity: 1,
+    },
+    enable: false,
+  },
   clear: true,
   defaultThemes: {},
   delay: 0,
@@ -501,18 +501,18 @@ export const polygonMaskParticles = {
         opacity: 0.2,
       },
     },
-
-    // move: {
-    // radius: 10,
-    // },
+    move: {
+      radius: 10,
+    },
     inline: {
       arrangement: 'equidistant',
     },
 
-    scale: 0.5,
+    scale: 1,
 
     type: 'inline',
-    url: 'provaImmagine.svg',
+    url: 'coding.svg',
+    // url: 'https://particles.js.org/images/smalldeer.svg',
   },
   detectRetina: true,
 }

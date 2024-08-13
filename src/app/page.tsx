@@ -16,8 +16,8 @@ export default function Home() {
       <div id="Home" className="header-item" header-label="Home">
         <Image src="/home.jpg" alt="Myself" imageClassName="h-svh w-screen object-cover object-[25%]" />
         <div className="absolute top-[40%] left-[60%] md:top-[60%] md:left-0 md:right-0 text-center">
-          <h1 className="text-black text-8xl font-bold leading-relaxed md:text-6xl font-mono text-primary-900">Manuele Nolli</h1>
-          <h2 className="text-black text-6xl md:text-4xl font-mono text-primary-900">Software Engineer</h2>
+          <h1 className="text-6xl font-bold leading-relaxed md:text-6xl font-mono text-primary-900">Manuele Nolli</h1>
+          <h2 className="text-4xl md:text-4xl font-mono text-primary-900">Software Engineer</h2>
         </div>
         <Link href={'#aboutme'}>
           <Image src="/arrow.png" alt="Scroll down" imageClassName="w-16 absolute animate-bounce bottom-10 mr-auto ml-auto left-0 right-0" />

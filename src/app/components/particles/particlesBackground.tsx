@@ -1,7 +1,7 @@
 'use client'
 import React, { useContext } from 'react'
 import Particles from '@tsparticles/react'
-import './particlesBackground.css'
+import './style.css'
 import { ParticlesContext } from '@/app/context/particlesContext'
 
 export type ParticlesBackgroundProps = {
