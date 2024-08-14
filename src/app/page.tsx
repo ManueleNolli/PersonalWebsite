@@ -5,10 +5,11 @@ import { Button } from 'primereact/button'
 import { FloatLabel } from 'primereact/floatlabel'
 import { InputText } from 'primereact/inputtext'
 import { InputTextarea } from 'primereact/inputtextarea'
-import { polygonMaskParticles } from '@/app/constants/polygonMaskParticles'
 import { parallaxParticles } from '@/app/constants/parallaxParticles'
 import React from 'react'
-import Particles from '@/app/components/particles/particles'
+import PolygonMaskParticles from '@/app/components/particles/polygonMaskParticles'
+import AnimatedOnScroll from '@/app/components/animatedOnScroll/animatedOnScroll'
+import AnimatedText from '@/app/components/animatedText/animatedText'
 
 export default function Home() {
   const renderHome = () => {
@@ -16,11 +17,11 @@ export default function Home() {
       <div id="Home" className="header-item" header-label="Home">
         <Image src="/home.jpg" alt="Myself" imageClassName="h-svh w-screen object-cover object-[25%]" />
         <div className="absolute top-[40%] left-[60%] md:top-[60%] md:left-0 md:right-0 text-center">
-          <h1 className="text-6xl font-bold leading-relaxed md:text-6xl font-mono text-primary-900">Manuele Nolli</h1>
-          <h2 className="text-4xl md:text-4xl font-mono text-primary-900">Software Engineer</h2>
+          <AnimatedText className="text-6xl font-bold leading-relaxed md:text-4xl font-mono text-primary-900">Manuele Nolli</AnimatedText>
+          <AnimatedText className="text-4xl md:text-2xl font-mono text-primary-900">Software Engineer</AnimatedText>
         </div>
         <Link href={'#aboutme'}>
-          <Image src="/arrow.png" alt="Scroll down" imageClassName="w-16 absolute animate-bounce bottom-10 mr-auto ml-auto left-0 right-0" />
+          <Image src="/arrow.png" alt="Scroll down" imageClassName="w-16 md:w-8 absolute animate-bounce bottom-10 mr-auto ml-auto left-0 right-0" />
         </Link>
       </div>
     )
@@ -29,21 +30,31 @@ export default function Home() {
   const renderAboutMe = () => {
     return (
       <div
-        className="header-item bg-surface-900 scroll-mt-[8%] text-primary-50 flex flex-row md:flex-col min-h-[80vh] bg-red-500"
+        className="header-item bg-surface-900 scroll-mt-[8%] text-primary-50 flex flex-row md:flex-col min-h-svh"
         id="aboutme"
         header-label="About Me"
       >
         <div className="w-1/2 flex items-center justify-center flex-col md:w-full md:mt-8">
-          <h1 className="text-5xl mb-6 font-bold">About Me</h1>
-          <p className="text-2xl w-3/4 text-justify leading-relaxed">
+          <AnimatedOnScroll className="text-5xl mb-6 font-bold md:text-3xl aos-init aos-animate">About Me</AnimatedOnScroll>
+          <AnimatedOnScroll className="text-2xl w-3/4 text-justify leading-relaxed md:text-lg aos-init aos-animate">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel porttitor mauris. Donec mollis massa a libero mattis consequat.
             Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce et massa quis nibh venenatis porta.
             Curabitur vulputate urna ac ex maximus, vel placerat tortor rhoncus. Phasellus tincidunt nulla nec fringilla lacinia. Aliquam scelerisque
             molestie arcu nec pellentesque.
-          </p>
+          </AnimatedOnScroll>
         </div>
-        <div className="w-1/2 md:w-full">
-          <Particles options={polygonMaskParticles} id="particlesAboutMe" />
+        <div className="w-1/2 md:w-full md:h-[50vh] md:px-8">
+          <PolygonMaskParticles url={'coding.svg'} id="particlesAboutMe" />
+        </div>
+      </div>
+    )
+  }
+
+  const renderExperience = () => {
+    return (
+      <div className="header-item bg-surface-800 scroll-mt-[8%] text-primary-50 h-svh" id="experience" header-label="Experience">
+        <div className="w-100 p-16 flex justify-center">
+          <AnimatedOnScroll className="text-5xl mb-6 font-bold aos-init aos-animate">Experience</AnimatedOnScroll>
         </div>
       </div>
     )
@@ -54,11 +65,11 @@ export default function Home() {
       <div className="header-item" header-label="Contact Me" id="contactme">
         <ParticlesBackground options={parallaxParticles} id="particlesContactMe">
           <div className="py-24 opacity-90">
-            <div className="grid grid-cols-2 md:grid-cols-1 p-8 mx-auto max-w-[50%] md:max-w-[80%] bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
+            <div className="grid grid-cols-2 md:grid-cols-1 p-8 mx-auto max-w-[50%] md:max-w-[90%] bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
               <div className={'flex flex-col justify-between '}>
                 <div>
-                  <h1 className="text-gray-800 text-6xl font-extrabold">Contact me!</h1>
-                  <p className="text-gray-500 mt-4 text-xl">
+                  <h1 className="text-gray-800 text-6xl md:text-4xl md:text-center font-extrabold">Contact me!</h1>
+                  <p className="text-gray-500 mt-4 text-xl md:text-justify">
                     Would you like to ask me something or just say hello? Feel free to send me a message, I will be happy to answer you.
                   </p>
                 </div>
@@ -158,18 +169,11 @@ export default function Home() {
       {renderAboutMe()}
 
       {/* EXPERIENCE */}
-      <h1 className="bg-green-200 h-96 text-center header-item scroll-mt-[8%]" id="second" style={{ height: 250 }} header-label="LSecond">
-        Second
-      </h1>
+      {renderExperience()}
 
       {/* PROJECTS */}
       <h1 className="bg-blue-200 h-96 text-center header-item scroll-mt-[8%]" id="third" style={{ height: 100 }} header-label="LThird">
-        Third
-      </h1>
-
-      {/* CONTACT ME */}
-      <h1 className="bg-yellow-200 h-96 text-center header-item scroll-mt-[8%]" id="fourth" style={{ height: 900 }} header-label="LFourth">
-        Fourth
+        Projects
       </h1>
 
       <a href="https://www.flaticon.com/free-icons/south-arrow" title="south-arrow icons">

@@ -7,6 +7,7 @@ import 'primereact/resources/themes/lara-light-cyan/theme.css'
 import Header from '@/app/components/header/header'
 import { PrimeReactProvider } from 'primereact/api'
 import ParticlesProvider from '@/app/providers/particlesProvider'
+import AOSProvider from '@/app/providers/aosProvider'
 /*import "primereact/resources/themes/lara-light-cyan/theme.css";*/
 // import 'primereact/resources/themes/lara-dark-cyan/theme.css'
 // import 'primereact/resources/themes/lara-dark-teal/theme.css'
@@ -24,12 +25,14 @@ export default function RootLayout({
   return (
     <PrimeReactProvider>
       <ParticlesProvider>
-        <html lang="en" className="scroll-smooth">
-          <body>
-            <Header />
-            <main>{children}</main>
-          </body>
-        </html>
+        <AOSProvider>
+          <html lang="en" className="scroll-smooth">
+            <body>
+              <Header />
+              <main>{children}</main>
+            </body>
+          </html>
+        </AOSProvider>
       </ParticlesProvider>
     </PrimeReactProvider>
   )
