@@ -15,7 +15,7 @@ export default function Header() {
             label={menu.label}
             onClick={() => (window.location.href = menu.url)}
             text
-            className={`hover:text-primary-800 text-lg no-outline ${menu.isCurrent ? 'text-primary-900 font-bold' : 'text-primary-700'}`}
+            className={`hover:text-primary-750 text-lg no-outline hover:bg-transparent ${menu.isCurrent ? 'text-primary-850 font-bold' : 'text-primary-600'}`}
           />
         ))}
       </div>
