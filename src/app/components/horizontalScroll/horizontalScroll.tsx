@@ -12,13 +12,14 @@ export default function HorizontalScroll({ children }: HorizontalScrollProps) {
   const { slider } = useHorizontalScroll()
 
   return (
-    <div className="slider-container" ref={slider}>
+    <div className="slider-container bg-surface-300" ref={slider}>
       {/*ADD className `slider-panel to each children`*/}
       {React.Children.map(children, (child) => {
         return React.cloneElement(child as any, {
           className: `${(child as any).props.className} slider-panel`,
         })
       })}
+      <div className="slider-progressbar bg-surface-900" />
     </div>
   )
 }

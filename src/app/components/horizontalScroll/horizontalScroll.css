@@ -9,3 +9,12 @@
   width: 100vw;
   height: 100vh;
 }
+
+.slider-progressbar {
+  width: 100vw;
+  height: 10px;
+  position:fixed;
+  top: 50%;
+  transform: translateY(-5px);
+  /*background: rgba(0, 0, 0, 0.5);*/
+}

@@ -54,11 +54,15 @@ export default function Home() {
   const renderExperience = () => {
     return (
       <HorizontalScroll>
-        <div className="bg-red-500 p-16 flex justify-center">
+        <div className=" p-16 flex justify-center">
           <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
         </div>
-        <div className="bg-blue-500" />
-        <div className="bg-yellow-500" />
+        <div>
+          <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
+        </div>
+        <div>
+          <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
+        </div>
       </HorizontalScroll>
     )
   }
@@ -164,7 +168,7 @@ export default function Home() {
   }
 
   return (
-    <div>
+    <div className="max-w-max	overflow-hidden">
       {/* HOME */}
       {renderHome()}
 
