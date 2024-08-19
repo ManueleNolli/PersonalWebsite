@@ -3,15 +3,22 @@
 import useHorizontalScroll from '@/app/components/horizontalScroll/useHorizontalScroll'
 import React from 'react'
 
+import './horizontalScroll.css'
+
 type HorizontalScrollProps = {
   children: React.ReactNode
 }
 export default function HorizontalScroll({ children }: HorizontalScrollProps) {
-  useHorizontalScroll()
+  const { slider } = useHorizontalScroll()
 
   return (
-    <div className="horizontal-scroll h-lvh w-lvw">
-      <div className="horizontal-container flex flex-nowrap h-full">{children}</div>
+    <div className="slider-container" ref={slider}>
+      {/*ADD className `slider-panel to each children`*/}
+      {React.Children.map(children, (child) => {
+        return React.cloneElement(child as any, {
+          className: `${(child as any).props.className} slider-panel`,
+        })
+      })}
     </div>
   )
 }
