@@ -13,7 +13,10 @@ type AOSProviderProps = {
  */
 export default function AOSProvider({ children }: AOSProviderProps) {
   useEffect(() => {
-    AOS.init()
+    AOS.init({
+      once: true,
+    })
+    console.log('AOSProvider: AOS.init()')
   }, [])
 
   return children

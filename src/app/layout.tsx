@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import React, { Suspense } from 'react'
+import React from 'react'
 
 // STYLE
 import './global.css'

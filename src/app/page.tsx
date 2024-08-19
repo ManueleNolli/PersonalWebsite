@@ -36,8 +36,8 @@ export default function Home() {
         header-label="About Me"
       >
         <div className="w-1/2 flex items-center justify-center flex-col md:w-full md:mt-8">
-          <AnimatedOnScroll className="text-5xl mb-6 font-bold md:text-3xl aos-init aos-animate">About Me</AnimatedOnScroll>
-          <AnimatedOnScroll className="text-2xl w-3/4 text-justify leading-relaxed md:text-lg aos-init aos-animate">
+          <AnimatedOnScroll className="text-5xl mb-6 font-bold md:text-3xl">About Me</AnimatedOnScroll>
+          <AnimatedOnScroll className="text-2xl w-3/4 text-justify leading-relaxed md:text-lg">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel porttitor mauris. Donec mollis massa a libero mattis consequat.
             Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce et massa quis nibh venenatis porta.
             Curabitur vulputate urna ac ex maximus, vel placerat tortor rhoncus. Phasellus tincidunt nulla nec fringilla lacinia. Aliquam scelerisque
@@ -55,7 +55,7 @@ export default function Home() {
     return (
       <HorizontalScroll>
         <div className="bg-red-500 p-16 flex justify-center">
-          <AnimatedOnScroll className="text-5xl mb-6 font-bold aos-init aos-animate">Experience</AnimatedOnScroll>
+          <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
         </div>
         <div className="bg-blue-500" />
         <div className="bg-yellow-500" />
