@@ -10,6 +10,7 @@ import React from 'react'
 import PolygonMaskParticles from '@/app/components/particles/polygonMaskParticles'
 import AnimatedOnScroll from '@/app/components/animatedOnScroll/animatedOnScroll'
 import AnimatedText from '@/app/components/animatedText/animatedText'
+import HorizontalScroll from '@/app/components/horizontalScroll/horizontalScroll'
 
 export default function Home() {
   const renderHome = () => {
@@ -52,9 +53,14 @@ export default function Home() {
 
   const renderExperience = () => {
     return (
-      <div className="header-item bg-surface-800 scroll-mt-[8%] text-primary-50 h-svh" id="experience" header-label="Experience">
+      <div className="header-item bg-surface-800 scroll-mt-[8%] text-primary-50 min-h-svh" id="experience" header-label="Experience">
         <div className="w-100 p-16 flex justify-center">
-          <AnimatedOnScroll className="text-5xl mb-6 font-bold aos-init aos-animate">Experience</AnimatedOnScroll>
+          {/*<AnimatedOnScroll className="text-5xl mb-6 font-bold aos-init aos-animate">Experience</AnimatedOnScroll>*/}
+          <HorizontalScroll>
+            <div className="h-[700px] w-[1000px] bg-red-500" />
+            <div className="h-[700px] w-[1000px] bg-blue-500" />
+            <div className="h-[700px] w-[1000px] bg-yellow-500" />
+          </HorizontalScroll>
         </div>
       </div>
     )

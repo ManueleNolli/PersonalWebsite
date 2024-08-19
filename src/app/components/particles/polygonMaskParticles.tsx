@@ -12,11 +12,11 @@ export type ParticlesProps = {
 
 export default function PolygonMaskParticles({ url, id }: ParticlesProps) {
   const { init } = useContext(ParticlesContext)
-  const [options, setOptions] = useState(polygonMaskParticles(1, url))
+  const [options, setOptions] = useState(polygonMaskParticles(1, 200, url))
 
   useEffect(() => {
     if (window.innerWidth <= 768) {
-      setOptions(polygonMaskParticles(0.5, url))
+      setOptions(polygonMaskParticles(0.5, 100, url))
     }
   }, [url])
 

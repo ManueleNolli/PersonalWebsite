@@ -1,4 +1,4 @@
-export const polygonMaskParticles = (scale: number, url: string) => {
+export const polygonMaskParticles = (scale: number, density: number, url: string) => {
   return {
     // background: {
     //   color: {
@@ -285,7 +285,7 @@ export const polygonMaskParticles = (scale: number, url: string) => {
           mode: 'delete',
           value: 0,
         },
-        value: 200,
+        value: density,
       },
       opacity: {
         value: {
@@ -499,7 +499,7 @@ export const polygonMaskParticles = (scale: number, url: string) => {
         stroke: {
           color: '#fff',
           width: 0.3,
-          opacity: 0.2,
+          opacity: 0.3,
         },
       },
       move: {
