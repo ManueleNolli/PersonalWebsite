@@ -11,6 +11,7 @@ import PolygonMaskParticles from '@/app/components/particles/polygonMaskParticle
 import AnimatedOnScroll from '@/app/components/animatedOnScroll/animatedOnScroll'
 import AnimatedText from '@/app/components/animatedText/animatedText'
 import HorizontalScroll from '@/app/components/horizontalScroll/horizontalScroll'
+import { Divider } from 'primereact/divider'
 
 export default function Home() {
   const renderHome = () => {
@@ -53,17 +54,19 @@ export default function Home() {
 
   const renderExperience = () => {
     return (
-      <HorizontalScroll>
-        <div className=" p-16 flex justify-center text-primary-50">
-          <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
-        </div>
-        <div>
-          <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
-        </div>
-        <div>
-          <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
-        </div>
-      </HorizontalScroll>
+      <div className="header-item" header-label="Experience" id="experience">
+        <HorizontalScroll>
+          <div className=" p-16 flex justify-center text-primary-50 ">
+            <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
+          </div>
+          <div>
+            <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
+          </div>
+          <div>
+            <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
+          </div>
+        </HorizontalScroll>
+      </div>
     )
   }
 
@@ -167,25 +170,35 @@ export default function Home() {
     )
   }
 
+  const renderDivider = () => {
+    return <div className="w-48 h-1 mx-auto my-4 border-0 rounded md:my-10 dark:bg-primary-100" />
+  }
+
   return (
     <div className="max-w-max	overflow-hidden">
-      {/* HOME */}
-      {renderHome()}
+      <div className="bg-primary-800">
+        {/* HOME */}
+        {renderHome()}
 
-      {/* ABOUT ME */}
-      {renderAboutMe()}
+        {/* ABOUT ME */}
+        {renderAboutMe()}
 
-      {/* EXPERIENCE */}
-      {renderExperience()}
+        {renderDivider()}
 
-      {/* PROJECTS */}
-      <h1 className="bg-blue-200 h-96 text-center header-item scroll-mt-[8%]" id="third" style={{ height: 100 }} header-label="LThird">
-        Projects
-      </h1>
+        {/* EXPERIENCE */}
+        {renderExperience()}
 
-      <a href="https://www.flaticon.com/free-icons/south-arrow" title="south-arrow icons">
-        South-arrow icons created by Mohamed Mbarki - Flaticon
-      </a>
+        {renderDivider()}
+
+        {/* PROJECTS */}
+        <h1 className="h-[50vh] text-center header-item scroll-mt-[8%]" id="third" style={{ height: 100 }} header-label="LThird">
+          Projects
+        </h1>
+
+        <a href="https://www.flaticon.com/free-icons/south-arrow" title="south-arrow icons">
+          South-arrow icons created by Mohamed Mbarki - Flaticon
+        </a>
+      </div>
 
       {/*CONTACT ME*/}
       {renderContactMe()}
