@@ -28,7 +28,6 @@ export default function useHorizontalScroll() {
 
       // SLIDER BACKGROUND
       const progressbar = document.querySelector('.slider-progressbar')
-      console.log('slider.current.clientWidth', slider.current.clientWidth)
       gsap.from(progressbar, {
         scrollTrigger: {
           trigger: slider.current,

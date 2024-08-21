@@ -16,7 +16,6 @@ export default function AOSProvider({ children }: AOSProviderProps) {
     AOS.init({
       once: true,
     })
-    console.log('AOSProvider: AOS.init()')
   }, [])
 
   return children

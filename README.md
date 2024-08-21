@@ -24,3 +24,6 @@ src/ # All source code
                 header.tsx
 public/ # static assets
 ```
+
+
+https://docs.github.com/en/graphql/reference/interfaces#repositoryinfo

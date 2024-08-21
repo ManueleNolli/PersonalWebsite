@@ -11,7 +11,8 @@ import PolygonMaskParticles from '@/app/components/particles/polygonMaskParticle
 import AnimatedOnScroll from '@/app/components/animatedOnScroll/animatedOnScroll'
 import AnimatedText from '@/app/components/animatedText/animatedText'
 import HorizontalScroll from '@/app/components/horizontalScroll/horizontalScroll'
-import { Divider } from 'primereact/divider'
+import { getAPIKey } from '@/app/services/github'
+import GithubRepositories from '@/app/components/githubRepositories/githubRepositories'
 
 export default function Home() {
   const renderHome = () => {
@@ -170,6 +171,20 @@ export default function Home() {
     )
   }
 
+  const renderProjects = () => {
+    return (
+      <div className="header-item" header-label="Projects" id="projects">
+        <h1 className="h-[50vh] text-center scroll-mt-[8%]">Projects</h1>
+
+        <GithubRepositories />
+
+        <a href="https://www.flaticon.com/free-icons/south-arrow" title="south-arrow icons">
+          South-arrow icons created by Mohamed Mbarki - Flaticon
+        </a>
+      </div>
+    )
+  }
+
   const renderDivider = () => {
     return <div className="w-48 h-1 mx-auto my-4 border-0 rounded md:my-10 dark:bg-primary-100" />
   }
@@ -191,13 +206,7 @@ export default function Home() {
         {renderDivider()}
 
         {/* PROJECTS */}
-        <h1 className="h-[50vh] text-center header-item scroll-mt-[8%]" id="third" style={{ height: 100 }} header-label="LThird">
-          Projects
-        </h1>
-
-        <a href="https://www.flaticon.com/free-icons/south-arrow" title="south-arrow icons">
-          South-arrow icons created by Mohamed Mbarki - Flaticon
-        </a>
+        {renderProjects()}
       </div>
 
       {/*CONTACT ME*/}
