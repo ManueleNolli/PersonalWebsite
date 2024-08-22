@@ -6,5 +6,5 @@ export const config = {
     'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce et massa quis nibh venenatis porta.\n' +
     'Curabitur vulputate urna ac ex maximus, vel placerat tortor rhoncus. Phasellus tincidunt nulla nec fringilla lacinia. Aliquam scelerisque\n' +
     'molestie arcu nec pellentesque.\n',
-  projects_repositories_length: 20,
+  projects_repositories_length: 4,
 }

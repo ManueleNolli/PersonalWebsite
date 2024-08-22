@@ -5,13 +5,16 @@ export type Repository = {
   name: string
   url: string
   description: string
+  owned: boolean // If I own the repository
   isFork: string
   updatedAt: Date
-  owner: string
+  ownerName: string
+  ownerUrl: string
 }
 
 type fetchRepositoriesResult = {
   repos: Repository[]
+  afterCursor: string | null
   ok: boolean
 }
 
@@ -23,14 +26,14 @@ const getAPIKey = (): string => {
   return api_key
 }
 
-export const getRepositories = async (): Promise<fetchRepositoriesResult> => {
+export const getRepositories = async (afterCursor: string | null): Promise<fetchRepositoriesResult> => {
   let api_key
   try {
     api_key = getAPIKey()
   } catch (e) {
-    console.log('CATCHED APIKey error')
     return {
       ok: false,
+      afterCursor: null,
       repos: [],
     }
   }
@@ -39,13 +42,22 @@ export const getRepositories = async (): Promise<fetchRepositoriesResult> => {
 
   const octokit = new Octokit({ auth: api_key })
 
+  // get logged in user
+  const {
+    viewer: { login },
+  } = await octokit.graphql(`{
+    viewer {
+      login
+    }
+  }`)
+
   const {
     viewer: {
-      repositories: { nodes },
+      repositories: { pageInfo, nodes },
     },
   } = await octokit.graphql(`{
   viewer {
-    repositories(first: ${projects_repositories_length}, orderBy: {field: UPDATED_AT, direction: DESC}) {
+    repositories(first: ${projects_repositories_length}, ${afterCursor ? `after:"${afterCursor}"` : ''} orderBy: {field: UPDATED_AT, direction: DESC}) {
       pageInfo {hasNextPage, endCursor}
       nodes {
         name
@@ -56,27 +68,32 @@ export const getRepositories = async (): Promise<fetchRepositoriesResult> => {
         updatedAt
         owner {
           login
+          url
         }
       }
     }
   }
 }`)
 
+  console.log(nodes)
+  console.log('login', login)
   // FILTER ARCHIVED
-  console.log('nodes', nodes)
   const repos: Repository[] = nodes
     .filter((repo: any) => !repo.isArchived)
     .map((repo: any) => ({
       name: repo.name,
       url: repo.url,
       description: repo.description,
+      owned: repo.owner.login === login,
       isFork: repo.isFork,
       updatedAt: new Date(repo.updatedAt),
-      owner: repo.owner.login,
+      ownerName: repo.owner.login,
+      ownerUrl: repo.owner.url,
     }))
 
   return {
     repos,
+    afterCursor: pageInfo.hasNextPage ? pageInfo.endCursor : null,
     ok: true,
   }
 }

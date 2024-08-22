@@ -11,7 +11,6 @@ import PolygonMaskParticles from '@/app/components/particles/polygonMaskParticle
 import AnimatedOnScroll from '@/app/components/animatedOnScroll/animatedOnScroll'
 import AnimatedText from '@/app/components/animatedText/animatedText'
 import HorizontalScroll from '@/app/components/horizontalScroll/horizontalScroll'
-import { getAPIKey } from '@/app/services/github'
 import GithubRepositories from '@/app/components/githubRepositories/githubRepositories'
 
 export default function Home() {
@@ -32,11 +31,7 @@ export default function Home() {
 
   const renderAboutMe = () => {
     return (
-      <div
-        className="header-item bg-primary-800 scroll-mt-[8%] text-primary-50 flex flex-row md:flex-col min-h-svh"
-        id="aboutme"
-        header-label="About Me"
-      >
+      <div className="header-item scroll-mt-[8%] text-primary-50 flex flex-row md:flex-col min-h-svh" id="aboutme" header-label="About Me">
         <div className="w-1/2 flex items-center justify-center flex-col md:w-full md:mt-8">
           <AnimatedOnScroll className="text-5xl mb-6 font-bold md:text-3xl">About Me</AnimatedOnScroll>
           <AnimatedOnScroll className="text-2xl w-3/4 text-justify leading-relaxed md:text-lg">
@@ -55,7 +50,7 @@ export default function Home() {
 
   const renderExperience = () => {
     return (
-      <div className="header-item" header-label="Experience" id="experience">
+      <div className="header-item scroll-mt-[8%]" header-label="Experience" id="experience">
         <HorizontalScroll>
           <div className=" p-16 flex justify-center text-primary-50 ">
             <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
@@ -73,7 +68,7 @@ export default function Home() {
 
   const renderContactMe = () => {
     return (
-      <div className="header-item" header-label="Contact Me" id="contactme">
+      <div className="header-item scroll-mt-[8%]" header-label="Contact Me" id="contactme">
         <ParticlesBackground options={parallaxParticles} id="particlesContactMe">
           <div className="py-24 opacity-90">
             <div className="grid grid-cols-2 md:grid-cols-1 p-8 mx-auto max-w-[50%] md:max-w-[90%] bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
@@ -173,14 +168,11 @@ export default function Home() {
 
   const renderProjects = () => {
     return (
-      <div className="header-item" header-label="Projects" id="projects">
-        <h1 className="h-[50vh] text-center scroll-mt-[8%]">Projects</h1>
-
+      <div className="header-item scroll-mt-[8%]" header-label="Projects" id="projects">
+        <div className=" p-16 flex justify-center text-primary-50 ">
+          <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
+        </div>
         <GithubRepositories />
-
-        <a href="https://www.flaticon.com/free-icons/south-arrow" title="south-arrow icons">
-          South-arrow icons created by Mohamed Mbarki - Flaticon
-        </a>
       </div>
     )
   }
@@ -211,6 +203,16 @@ export default function Home() {
 
       {/*CONTACT ME*/}
       {renderContactMe()}
+
+      <a href="https://www.flaticon.com/free-icons/south-arrow" title="south-arrow icons">
+        South-arrow icons created by Mohamed Mbarki - Flaticon
+      </a>
+      <a href="https://www.flaticon.com/free-icons/food-and-restaurant" title="food and restaurant icons">
+        Food and restaurant icons created by agus raharjo - Flaticon
+      </a>
+      <a href="https://www.flaticon.com/free-icons/collaboration" title="collaboration icons">
+        Collaboration icons created by Freepik - Flaticon
+      </a>
     </div>
   )
 }

@@ -5,28 +5,41 @@ import { getRepositories, Repository } from '@/app/services/github'
 
 export default function useGithubRepositories() {
   const [repos, setRepos] = useState<Repository[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
+  const [nextFetchCursor, setNextFetchCursor] = useState<string | null>(null)
+  const [loadingStart, setLoadingStart] = useState<boolean>(true)
+  const [loadingNext, setLoadingNext] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
 
-  useEffect(() => {
-    const fetchGithubRepositories = async () => {
-      const repositoriesResponse = await getRepositories()
-      if (!repositoriesResponse.ok) {
-        setError(true)
-        return
-      }
-
-      setRepos(repositoriesResponse.repos)
+  const fetchGithubRepositories = async () => {
+    const repositoriesResponse = await getRepositories(nextFetchCursor)
+    if (!repositoriesResponse.ok) {
+      setError(true)
+      return
     }
 
+    setRepos((repos) => [...repos, ...repositoriesResponse.repos])
+    setNextFetchCursor(repositoriesResponse.afterCursor)
+  }
+
+  const fetchNextRepositories = async () => {
+    setLoadingNext(true)
     fetchGithubRepositories().then(() => {
-      setLoading(false)
+      setLoadingNext(false)
+    })
+  }
+
+  useEffect(() => {
+    fetchGithubRepositories().then(() => {
+      setLoadingStart(false)
     })
   }, [])
 
   return {
     repos,
-    loading,
+    loadingStart,
+    loadingNext,
+    nextFetchCursor,
     error,
+    fetchNextRepositories,
   }
 }
