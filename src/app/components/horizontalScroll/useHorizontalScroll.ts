@@ -34,7 +34,7 @@ export default function useHorizontalScroll() {
           start: 'left top',
           end: () => '+=' + slider.current.clientWidth,
           scrub: true,
-          markers: true,
+          // markers: true,
         },
         scaleX: 0,
         transformOrigin: 'left top',

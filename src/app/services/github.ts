@@ -75,8 +75,6 @@ export const getRepositories = async (afterCursor: string | null): Promise<fetch
   }
 }`)
 
-  console.log(nodes)
-  console.log('login', login)
   // FILTER ARCHIVED
   const repos: Repository[] = nodes
     .filter((repo: any) => !repo.isArchived)

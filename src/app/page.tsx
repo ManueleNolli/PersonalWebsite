@@ -155,7 +155,10 @@ export default function Home() {
                   <label htmlFor="message">Message</label>
                 </FloatLabel>
 
-                <Button className="text-white bg-primary-600 hover:bg-primary-800 rounded-md text-lg px-4 py-3 w-full !mt-6" size="large">
+                <Button
+                  className="text-white bg-primary-600 hover:bg-transparent hover:text-black rounded-md text-lg px-4 py-3 w-full !mt-6"
+                  size="large"
+                >
                   <div className="flex items-center justify-center w-full">Send</div>
                 </Button>
               </form>
@@ -170,9 +173,11 @@ export default function Home() {
     return (
       <div className="header-item scroll-mt-[8%]" header-label="Projects" id="projects">
         <div className=" p-16 flex justify-center text-primary-50 ">
-          <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
+          <AnimatedOnScroll className="text-5xl mb-6 font-bold">Projects</AnimatedOnScroll>
         </div>
-        <GithubRepositories />
+        <div className={'pb-16'}>
+          <GithubRepositories />
+        </div>
       </div>
     )
   }
@@ -212,6 +217,9 @@ export default function Home() {
       </a>
       <a href="https://www.flaticon.com/free-icons/collaboration" title="collaboration icons">
         Collaboration icons created by Freepik - Flaticon
+      </a>
+      <a href="https://www.flaticon.com/free-icons/error" title="error icons">
+        Error icons created by Freepik - Flaticon
       </a>
     </div>
   )
