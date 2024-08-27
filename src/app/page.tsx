@@ -19,12 +19,12 @@ export default function Home() {
       // <div id="Home" className="header-item" header-label="Home">
       <div>
         <Image src="/home.jpg" alt="Myself" imageClassName="h-svh w-screen object-cover object-[25%]" />
-        <div className="absolute top-[40%] left-[60%] md:top-[60%] md:left-0 md:right-0 text-center">
-          <AnimatedText className="text-6xl font-bold leading-relaxed md:text-4xl font-mono text-primary-650">Manuele Nolli</AnimatedText>
-          <AnimatedText className="text-4xl md:text-2xl font-mono text-primary-600">Software Engineer</AnimatedText>
+        <div className="absolute md:top-[40%] md:left-[60%] top-[60%] left-0 right-0 md:text-center">
+          <AnimatedText className=" font-bold leading-relaxed md:text-6xl text-4xl font-mono text-primary-650">Manuele Nolli</AnimatedText>
+          <AnimatedText className="md:text-4xl text-2xl font-mono text-primary-600">Software Engineer</AnimatedText>
         </div>
         <Link href={'#aboutme'}>
-          <Image src="/arrow.png" alt="Scroll down" imageClassName="w-16 md:w-8 absolute animate-bounce bottom-10 mr-auto ml-auto left-0 right-0" />
+          <Image src="/arrow.png" alt="Scroll down" imageClassName="md:w-16 w-8 absolute animate-bounce bottom-10 mr-auto ml-auto left-0 right-0" />
         </Link>
       </div>
     )
@@ -32,17 +32,17 @@ export default function Home() {
 
   const renderAboutMe = () => {
     return (
-      <div className="header-item scroll-mt-[8%] text-primary-50 flex flex-row md:flex-col min-h-svh" id="aboutme" header-label="About Me">
-        <div className="w-1/2 flex items-center justify-center flex-col md:w-full md:mt-8">
-          <AnimatedOnScroll className="text-5xl mb-6 font-bold md:text-3xl">About Me</AnimatedOnScroll>
-          <AnimatedOnScroll className="text-2xl w-3/4 text-justify leading-relaxed md:text-lg">
+      <div className="header-item scroll-mt-[8%] text-primary-50 flex md:flex-row flex-col min-h-svh" id="aboutme" header-label="About Me">
+        <div className="flex items-center justify-center flex-col w-full md:w-1/2 mt-8 md:mt-0">
+          <AnimatedOnScroll className=" mb-6 font-bold text-3xl md:text-5xl">About Me</AnimatedOnScroll>
+          <AnimatedOnScroll className=" w-3/4 text-justify leading-relaxed text-lg md:text-2xl">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel porttitor mauris. Donec mollis massa a libero mattis consequat.
             Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce et massa quis nibh venenatis porta.
             Curabitur vulputate urna ac ex maximus, vel placerat tortor rhoncus. Phasellus tincidunt nulla nec fringilla lacinia. Aliquam scelerisque
             molestie arcu nec pellentesque.
           </AnimatedOnScroll>
         </div>
-        <div className="w-1/2 md:w-full md:h-[50vh] md:px-8">
+        <div className="md:w-1/2 w-full h-[50vh] md:h-screen px-8 md:px-0">
           <PolygonMaskParticles url={'coding.svg'} id="particlesAboutMe" />
         </div>
       </div>
@@ -72,11 +72,11 @@ export default function Home() {
       <div className="header-item scroll-mt-[8%]" header-label="Contact Me" id="contactme">
         <ParticlesBackground options={parallaxParticles} id="particlesContactMe">
           <div className="py-24 opacity-90">
-            <div className="grid grid-cols-2 md:grid-cols-1 p-8 mx-auto max-w-[50%] md:max-w-[90%] bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
+            <div className="grid md:grid-cols-2 grid-cols-1 p-8 mx-auto md:max-w-[50%] max-w-[90%] bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
               <div className={'flex flex-col justify-between '}>
                 <div>
-                  <h1 className="text-primary-800 text-6xl md:text-4xl md:text-center font-extrabold">Contact me!</h1>
-                  <p className="text-gray-500 mt-4 text-xl md:text-justify">
+                  <h1 className="text-primary-800 md:text-6xl text-4xl text-center md:text-left font-extrabold">Contact me!</h1>
+                  <p className="text-gray-500 mt-4 text-xl text-justify md:text-left">
                     Would you like to ask me something or just say hello? Feel free to send me a message, I will be happy to answer you.
                   </p>
                 </div>
@@ -84,7 +84,7 @@ export default function Home() {
                 <div className="mt-12">
                   <h2 className="text-primary-800 text-xl font-bold">Email</h2>
                   <ul className="mt-4">
-                    <li className="flex items-center md:flex-col md:space-y-4">
+                    <li className="flex items-center flex-col md:flex-row space-y-4 md:space-y-0">
                       <div className="bg-primary-50 h-16 w-16 rounded-full flex items-center justify-center shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="var(--primary-800)" viewBox="0 0 479.058 479.058">
                           <path
@@ -184,7 +184,7 @@ export default function Home() {
   }
 
   const renderDivider = () => {
-    return <div className="w-48 h-1 mx-auto my-4 border-0 rounded md:my-10 dark:bg-primary-100" />
+    return <div className="w-48 h-1 mx-auto md:my-4 border-0 rounded my-10 dark:bg-primary-100" />
   }
 
   return (

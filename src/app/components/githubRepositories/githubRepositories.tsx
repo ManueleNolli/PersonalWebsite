@@ -34,7 +34,7 @@ export default function GithubRepositories() {
     return (
       <div
         key={repo.name}
-        className="w-96 md:max-w-[90%] bg-white/95 hover:bg-white cursor-pointer flex flex-col h-full p-4 rounded"
+        className="w-96 max-w-[90%] md:w-full bg-white/95 hover:bg-white cursor-pointer flex flex-col h-full p-4 rounded"
         onClick={() => window.open(repo.url, '_blank')}
       >
         {/*HEADER*/}
@@ -64,9 +64,16 @@ export default function GithubRepositories() {
 
   const renderSkeletonCard = () => {
     return (
-      <div className="grid grid-cols-4 gap-x-4 gap-y-16 2xl:grid-cols-3 2xl:gap-x-4 2xl:gap-y-4 xl:grid-cols-2 xl:gap-2 md:grid-cols-1 md:gap-y-4 justify-items-center mx-[5%] py-4 ">
+      <div
+        className="grid
+            grid-cols-1 gap-y-4
+            md:grid-cols-2 md:gap-x-2 md:gap-y-6
+            xl:grid-cols-3 xl:gap-x-4 xl:gap-y-8
+            2xl:grid-cols-4 2xl:gap-x-4 2xl:gap-y-8
+       justify-items-center mx-[5%] py-4 "
+      >
         {Array.from({ length: projects_repositories_length }).map((_, index) => (
-          <Skeleton key={index} className="max-w-96 md:max-w-[90%] max-h-96 min-h-80 bg-white/95 flex flex-col p-4 rounded animate-pulse">
+          <Skeleton key={index} className="md:max-w-96 max-w-[90%] max-h-96 min-h-80 bg-white/95 flex flex-col p-4 rounded animate-pulse">
             <div className={'p-0 m-2 bg-gray-200 min-h-10 w-[80%] rounded '} />
             <div className={'p-0 m-2 bg-gray-200 min-h-8 w-1/2 rounded'} />
             <div className={'p-0 m-2 bg-gray-200 min-h-32 w-[90%] rounded'} />
@@ -88,7 +95,15 @@ export default function GithubRepositories() {
   return (
     <AnimatedOnScroll animationStart="top-bottom">
       <>
-        <div className="grid grid-cols-4 gap-x-4 gap-y-16 2xl:grid-cols-3 2xl:gap-x-4 2xl:gap-y-4 xl:grid-cols-2 xl:gap-2 md:grid-cols-1 md:gap-y-4 justify-items-center mx-[5%]">
+        <div
+          className="grid
+            grid-cols-1 gap-y-4
+            md:grid-cols-2 md:gap-x-2 md:gap-y-6
+            xl:grid-cols-3 xl:gap-x-4 xl:gap-y-8
+            2xl:grid-cols-4 2xl:gap-x-4 2xl:gap-y-8
+
+            justify-items-center mx-[5%]"
+        >
           {repos.map((repo) => renderCard(repo))}
         </div>
         {loadingNext && renderSkeletonCard()}
