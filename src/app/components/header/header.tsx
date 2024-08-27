@@ -42,10 +42,8 @@ export default function Header() {
         </div>
       </header>
       {/*Screen*/}
-      <header
-        className={`md:hidden flex w-full fixed top-0 left-0 right-0 z-10 backdrop-blur-md bg-primary-50/50 duration-75 ${isMobileOpen ? 'h-screen flex-col justify-between ' : ' h-[8%] flex-row '}`}
-      >
-        <div className={`flex flex-row w-full ${isMobileOpen ? 'h-[8%]' : ''}`}>
+      <header className="md:hidden flex w-full fixed top-0 left-0 right-0 z-10 h-[8%] flex-row">
+        <div className="flex flex-row w-full backdrop-blur-md bg-primary-50/50">
           <div id="Home" className="header-title flex flex-grow justify-between">
             <div
               className={`w-full text-primary-650 hover:text-primary-750 text-2xl font-bold leading-relaxed font-mono text-center content-center cursor-pointer`}
@@ -59,8 +57,17 @@ export default function Header() {
             <Hamburger toggled={isMobileOpen} toggle={() => setIsMobileOpen(!isMobileOpen)} color={'#026685'} />
           </div>
         </div>
-        {isMobileOpen && (
-          <div className="flex flex-col w-full h-[92%] justify-evenly">
+
+        {/* Mobile Navigation */}
+        <div
+          className={
+            isMobileOpen
+              ? 'fixed left-0 right-0 top-[8vh] h-screen w-screen ease-in-out duration-500 backdrop-blur-md bg-primary-50/50'
+              : 'ease-in-out duration-500 fixed h-screen left-0 right-0 top-[108vh] '
+          }
+        >
+          <div className="flex flex-col justify-evenly h-[80%]  ">
+            {/* Mobile Navigation Items */}
             {menuList.map((menu: MenuLabel) => (
               <Button
                 key={menu.url}
@@ -70,11 +77,11 @@ export default function Header() {
                   window.location.href = menu.url
                 }}
                 text
-                className={`hover:text-primary-750 text-lg no-outline hover:bg-transparent font-mono ${menu.isCurrent ? 'text-primary-850 font-bold' : 'text-primary-600'}`}
+                className={`hover:text-primary-750  text-lg no-outline hover:bg-transparent font-mono ${menu.isCurrent ? 'text-primary-850 font-bold' : 'text-primary-600'}`}
               />
             ))}
           </div>
-        )}
+        </div>
       </header>
     </>
   )
