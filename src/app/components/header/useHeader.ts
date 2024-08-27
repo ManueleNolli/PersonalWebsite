@@ -12,6 +12,8 @@ export default function useHeader() {
   const [menuList, setMenuList] = useState<MenuLabel[]>([])
   const [prevoiusScrollPosition, setPrevoiusScrollPosition] = useState(0)
   const [headerDiv, setHeaderDiv] = useState<HTMLElement | null>()
+  const [isMobile, setIsMobile] = useState(false)
+  const [isMobileOpen, setIsMobileOpen] = useState(false)
 
   useEffect(() => {
     // helper to find header items
@@ -105,7 +107,27 @@ export default function useHeader() {
     }
   }, [headerDiv, prevoiusScrollPosition])
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 768) {
+        setIsMobile(true)
+      } else {
+        setIsMobile(false)
+        setIsMobileOpen(false)
+      }
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   return {
     menuList,
+    isMobileOpen,
+    setIsMobileOpen,
+    isMobile,
   }
 }

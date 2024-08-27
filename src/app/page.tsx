@@ -16,7 +16,8 @@ import GithubRepositories from '@/app/components/githubRepositories/githubReposi
 export default function Home() {
   const renderHome = () => {
     return (
-      <div id="Home" className="header-item" header-label="Home">
+      // <div id="Home" className="header-item" header-label="Home">
+      <div>
         <Image src="/home.jpg" alt="Myself" imageClassName="h-svh w-screen object-cover object-[25%]" />
         <div className="absolute top-[40%] left-[60%] md:top-[60%] md:left-0 md:right-0 text-center">
           <AnimatedText className="text-6xl font-bold leading-relaxed md:text-4xl font-mono text-primary-650">Manuele Nolli</AnimatedText>
