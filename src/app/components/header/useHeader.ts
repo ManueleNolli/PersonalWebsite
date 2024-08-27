@@ -73,9 +73,6 @@ export default function useHeader() {
     // calculate current menu
     updateCurrentMenu()
 
-    // set header div
-    setHeaderDiv(document.querySelector('header') as HTMLElement)
-
     // add event listener to update current menu
     window.addEventListener('scroll', updateCurrentMenu)
 
@@ -95,17 +92,24 @@ export default function useHeader() {
       if (prevoiusScrollPosition > currentScrollPosition || currentScrollPosition < headerBottom) {
         headerDiv.style.top = '0'
       } else {
-        const headerHeight = document.querySelector('header')?.clientHeight || 0
+        const headerHeight = headerDiv.clientHeight || 0
         headerDiv.style.top = `-${headerHeight}px`
       }
 
       setPrevoiusScrollPosition(currentScrollPosition)
     }
+
+    // set header div
+    const header = document.querySelector('header')
+    const headerChild = header?.firstElementChild.clientHeight ? header?.firstElementChild : header?.lastElementChild
+    setHeaderDiv(headerChild as HTMLElement)
+
+    if (isMobileOpen) return
     window.addEventListener('scroll', handleScrollHeaderPosition)
     return () => {
       window.removeEventListener('scroll', handleScrollHeaderPosition)
     }
-  }, [headerDiv, prevoiusScrollPosition])
+  }, [headerDiv, isMobileOpen, prevoiusScrollPosition])
 
   useEffect(() => {
     const handleResize = () => {
