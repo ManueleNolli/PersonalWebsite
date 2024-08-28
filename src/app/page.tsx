@@ -19,7 +19,7 @@ export default function Home() {
       // <div id="Home" className="header-item" header-label="Home">
       <div>
         <Image src="/home.jpg" alt="Myself" imageClassName="h-svh w-screen object-cover object-[25%]" />
-        <div className="absolute md:top-[40%] md:left-[60%] top-[60%] left-0 right-0 md:text-center">
+        <div className="absolute md:top-[40%] md:left-[60%] top-[60%] left-0 right-0 text-center">
           <AnimatedText className=" font-bold leading-relaxed md:text-6xl text-4xl font-mono text-primary-650">Manuele Nolli</AnimatedText>
           <AnimatedText className="md:text-4xl text-2xl font-mono text-primary-600">Software Engineer</AnimatedText>
         </div>

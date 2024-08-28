@@ -43,7 +43,10 @@ export default function Header() {
       </div>
       {/*Mobile*/}
       <div className={isMobileOpen ? 'fixed top-0 left-0 right-0 z-10 h-screen bg-primary-50/50 backdrop-blur-md' : 'hidden'} />
-      <div className={`md:hidden flex h-[8%] fixed top-0 left-0 right-0 z-10 flex-row `} style={{ transition: 'top 0.5s ease-in-out' }}>
+      <div
+        className={`md:hidden flex h-[8%] fixed top-0 left-0 right-0 z-10 flex-row ${isMobileOpen ? '' : 'bg-primary-50/50 backdrop-blur-md'}`}
+        style={{ transition: 'top 0.5s ease-in-out' }}
+      >
         <div className="flex flex-row w-full ">
           <div id="Home" className="header-title flex flex-grow justify-between">
             <div
