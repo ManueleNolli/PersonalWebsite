@@ -39,7 +39,7 @@ export default function Home() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel porttitor mauris. Donec mollis massa a libero mattis consequat.
             Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce et massa quis nibh venenatis porta.
             Curabitur vulputate urna ac ex maximus, vel placerat tortor rhoncus. Phasellus tincidunt nulla nec fringilla lacinia. Aliquam scelerisque
-            molestie arcu nec pellentesque.
+            molestie arcu nec pellentesque. 🎯 💼 📍
           </AnimatedOnScroll>
         </div>
         <div className="md:w-1/2 w-full h-[50vh] md:h-screen px-8 md:px-0">
