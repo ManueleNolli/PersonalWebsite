@@ -4,21 +4,19 @@ import useHorizontalScroll from '@/app/components/horizontalScroll/useHorizontal
 import React from 'react'
 
 import './horizontalScroll.css'
+import AnimatedOnScroll from '@/app/components/animatedOnScroll/animatedOnScroll'
 
 type HorizontalScrollProps = {
   children: React.ReactNode
 }
+
 export default function HorizontalScroll({ children }: HorizontalScrollProps) {
   const { slider } = useHorizontalScroll()
 
   return (
     <div className="slider-container" ref={slider}>
-      {/*ADD className `slider-panel to each children`*/}
-      {React.Children.map(children, (child) => {
-        return React.cloneElement(child as any, {
-          className: `${(child as any).props.className} slider-panel`,
-        })
-      })}
+      {/* children must have className 'slider-panel' to be included in the scroll animation`*/}
+      {children}
       <div className="slider-progressbar bg-primary-100" />
     </div>
   )

@@ -10,6 +10,10 @@ export default function useHorizontalScroll() {
   const slider = React.useRef<HTMLInputElement>(null)
 
   useLayoutEffect(() => {
+    const screenWidth = window.innerWidth
+    console.log("screenWidth", screenWidth)
+    console.log("slider.current", slider.current.clientWidth)
+
     let ctx = gsap.context(() => {
       //SLIDER
       const panels = document.querySelectorAll('.slider-panel')

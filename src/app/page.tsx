@@ -12,6 +12,8 @@ import AnimatedOnScroll from '@/app/components/animatedOnScroll/animatedOnScroll
 import AnimatedText from '@/app/components/animatedText/animatedText'
 import HorizontalScroll from '@/app/components/horizontalScroll/horizontalScroll'
 import GithubRepositories from '@/app/components/githubRepositories/githubRepositories'
+import { config, Journey } from '@/app/constants/config'
+import { jsxParseElement } from 'sucrase/dist/types/parser/plugins/jsx'
 
 export default function Home() {
   const renderHome = () => {
@@ -39,7 +41,7 @@ export default function Home() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel porttitor mauris. Donec mollis massa a libero mattis consequat.
             Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce et massa quis nibh venenatis porta.
             Curabitur vulputate urna ac ex maximus, vel placerat tortor rhoncus. Phasellus tincidunt nulla nec fringilla lacinia. Aliquam scelerisque
-            molestie arcu nec pellentesque. 🎯 💼 📍
+            molestie arcu nec pellentesque.
           </AnimatedOnScroll>
         </div>
         <div className="md:w-1/2 w-full h-[50vh] md:h-screen px-8 md:px-0">
@@ -50,18 +52,44 @@ export default function Home() {
   }
 
   const renderExperience = () => {
+
+    const renderJourneyItem = (journey: Journey) => {
+      return (
+          <div>
+            <p>{journey.title}</p>
+            {journey.location.map((location) =>
+              <div key={location.name}>
+                📍 <a href={location.url}>{location.name}</a>
+              </div>
+            )}
+            {journey.goal &&
+                journey.goal.map((goal) =>
+                  <div key={goal.name}>
+                    🎯 <a href={goal.url}>{goal.name}</a>
+                  </div>
+                )
+            }
+
+            {journey.work &&
+              <div>
+                💼 <a href={journey.work.url}>{journey.work.title}</a> at {journey.work.location}
+              </div>
+            }
+          </div>
+        )
+    }
+
     return (
       <div className="header-item scroll-mt-[8%]" header-label="Experience" id="experience">
         <HorizontalScroll>
-          <div className=" p-16 flex justify-center text-primary-50 ">
-            <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
+          <div className="h-[10%] top-[8%] left-0 right-0 absolute flex items-center justify-center">
+            <AnimatedOnScroll className="text-5xl font-bold text-primary-50">Experience</AnimatedOnScroll>
           </div>
-          <div>
-            <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
-          </div>
-          <div>
-            <AnimatedOnScroll className="text-5xl mb-6 font-bold">Experience</AnimatedOnScroll>
-          </div>
+            {config.journey_journeys.map((journey) => (
+              <div key={journey.title} className="slider-panel w-[500px] h-full">
+                {renderJourneyItem(journey)}
+              </div>
+            ))}
         </HorizontalScroll>
       </div>
     )
@@ -152,7 +180,7 @@ export default function Home() {
                 </FloatLabel>
 
                 <FloatLabel>
-                  <InputTextarea id="message" rows="6" className="w-full "></InputTextarea>
+                  <InputTextarea id="message" rows={6} className="w-full "></InputTextarea>
                   <label htmlFor="message">Message</label>
                 </FloatLabel>
 

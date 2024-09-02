@@ -1,4 +1,4 @@
-type Journey = {
+export type Journey = {
   title: string
   location: [
     {

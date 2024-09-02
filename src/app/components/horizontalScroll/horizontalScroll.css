@@ -1,13 +1,14 @@
 .slider-container {
-  width: 400vw;
+  width: 2000px;
+  position: relative;
   height: 100vh;
   display: flex;
   flex-wrap: wrap;
 }
 
 .slider-panel {
-  width: 100vw;
-  height: 100vh;
+  /*width: 100vw;*/
+  /*height: 100vh;*/
 }
 
 .slider-progressbar {
