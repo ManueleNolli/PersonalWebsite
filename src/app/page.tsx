@@ -10,20 +10,17 @@ import React from 'react'
 import PolygonMaskParticles from '@/app/components/particles/polygonMaskParticles'
 import AnimatedOnScroll from '@/app/components/animatedOnScroll/animatedOnScroll'
 import AnimatedText from '@/app/components/animatedText/animatedText'
-import HorizontalScroll from '@/app/components/horizontalScroll/horizontalScroll'
 import GithubRepositories from '@/app/components/githubRepositories/githubRepositories'
-import { config, Journey } from '@/app/constants/config'
-import { jsxParseElement } from 'sucrase/dist/types/parser/plugins/jsx'
+import Journeys from '@/app/components/journeys/journeys'
 
 export default function Home() {
   const renderHome = () => {
     return (
-      // <div id="Home" className="header-item" header-label="Home">
       <div>
         <Image src="/home.jpg" alt="Myself" imageClassName="h-svh w-screen object-cover object-[25%]" />
         <div className="absolute md:top-[40%] md:left-[60%] top-[60%] left-0 right-0 text-center">
-          <AnimatedText className=" font-bold leading-relaxed md:text-6xl text-4xl font-mono text-primary-650">Manuele Nolli</AnimatedText>
-          <AnimatedText className="md:text-4xl text-2xl font-mono text-primary-600">Software Engineer</AnimatedText>
+          <AnimatedText className=" font-bold leading-relaxed md:text-6xl text-4xl text-primary-650">Manuele Nolli</AnimatedText>
+          <AnimatedText className="md:text-4xl text-2xl text-primary-600">Software Engineer</AnimatedText>
         </div>
         <Link href={'#aboutme'}>
           <Image src="/arrow.png" alt="Scroll down" imageClassName="md:w-16 w-8 absolute animate-bounce bottom-10 mr-auto ml-auto left-0 right-0" />
@@ -53,44 +50,9 @@ export default function Home() {
 
   const renderExperience = () => {
 
-    const renderJourneyItem = (journey: Journey) => {
-      return (
-          <div>
-            <p>{journey.title}</p>
-            {journey.location.map((location) =>
-              <div key={location.name}>
-                📍 <a href={location.url}>{location.name}</a>
-              </div>
-            )}
-            {journey.goal &&
-                journey.goal.map((goal) =>
-                  <div key={goal.name}>
-                    🎯 <a href={goal.url}>{goal.name}</a>
-                  </div>
-                )
-            }
-
-            {journey.work &&
-              <div>
-                💼 <a href={journey.work.url}>{journey.work.title}</a> at {journey.work.location}
-              </div>
-            }
-          </div>
-        )
-    }
-
     return (
       <div className="header-item scroll-mt-[8%]" header-label="Experience" id="experience">
-        <HorizontalScroll>
-          <div className="h-[10%] top-[8%] left-0 right-0 absolute flex items-center justify-center">
-            <AnimatedOnScroll className="text-5xl font-bold text-primary-50">Experience</AnimatedOnScroll>
-          </div>
-            {config.journey_journeys.map((journey) => (
-              <div key={journey.title} className="slider-panel w-[500px] h-full">
-                {renderJourneyItem(journey)}
-              </div>
-            ))}
-        </HorizontalScroll>
+        <Journeys/>
       </div>
     )
   }
@@ -216,7 +178,7 @@ export default function Home() {
   }
 
   return (
-    <div className="max-w-max	overflow-hidden">
+    <div className="max-w-max	overflow-hidden font-mono">
       <div className="bg-primary-800">
         {/* HOME */}
         {renderHome()}

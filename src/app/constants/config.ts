@@ -32,10 +32,6 @@ export const config = {
       title: 'Apprenticeships',
       location: [
         {
-          name: 'Clinica Hildebrand',
-          url: 'https://www.clinica-hildebrand.ch/',
-        },
-        {
           name: 'SPAI (CPT) Locarno',
           url: 'https://www.spailocarno.ch/',
         },
@@ -46,6 +42,11 @@ export const config = {
           url: 'https://www.informatici.ch/web/formazione/',
         },
       ],
+      work: {
+        title: 'Apprenticeship',
+        location: 'Clinica Hildebrand',
+        url: 'https://www.clinica-hildebrand.ch/',
+      }
     },
     {
       title: 'Technical professional maturity',
