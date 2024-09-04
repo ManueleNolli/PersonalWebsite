@@ -4,7 +4,6 @@ import { config, Journey } from '@/app/constants/config'
 import React from 'react'
 import useJourneys from '@/app/components/journeys/useJourneys'
 
-import './journeys.css'
 import AnimatedOnScroll from '@/app/components/animatedOnScroll/animatedOnScroll'
 
 export default function Journeys() {
@@ -53,12 +52,12 @@ export default function Journeys() {
   }
 
   return (
-    <div className="journeysWrapper font-mono" ref={journeysWrapper}>
+    <div className="font-mono" ref={journeysWrapper}>
       {/* children must have className 'slider-panel' to be included in the scroll animation`*/}
       <div className="h-[10%] top-[8%] w-screen left-0 right-0 absolute flex items-center justify-center">
         <AnimatedOnScroll className="text-3xl md:text-5xl font-bold text-primary-50">Journey</AnimatedOnScroll>
       </div>
-      <div className="journeys" ref={journeys}>
+      <div className="w-fit	flex flex-nowrap" ref={journeys}>
         {config.journey_journeys.map((journey, index) => (
           <div key={index} className={`flex items-center justify-center h-screen md:w-screen w-[200vw]`}
           >
