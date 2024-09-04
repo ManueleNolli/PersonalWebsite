@@ -48,10 +48,10 @@ export default function Home() {
     )
   }
 
-  const renderExperience = () => {
+  const renderJourney = () => {
 
     return (
-      <div className="header-item scroll-mt-[8%]" header-label="Experience" id="experience">
+      <div className="header-item scroll-mt-[8%]" header-label="Journey" id="journey">
         <Journeys/>
       </div>
     )
@@ -188,8 +188,8 @@ export default function Home() {
 
         {renderDivider()}
 
-        {/* EXPERIENCE */}
-        {renderExperience()}
+        {/* JOURNEY */}
+        {renderJourney()}
 
         {renderDivider()}
 
