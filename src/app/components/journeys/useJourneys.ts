@@ -1,6 +1,6 @@
 'use client'
 
-import React, {  useLayoutEffect } from 'react'
+import React, { useLayoutEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -9,11 +9,28 @@ gsap.registerPlugin(ScrollTrigger)
 export default function useJourneys() {
   const slider = React.useRef<HTMLInputElement>(null)
 
+  const getContainer = () => {
+    return document.querySelector<HTMLElement>('.slider-container')
+  }
+
   const getPanels = () => {
-    return document.querySelectorAll('.slider-panel')
+    return document.querySelectorAll<HTMLElement>('.slider-panel')
+  }
+
+  const getProgressbar = () => {
+    return document.querySelector('.slider-progressbar')
+  }
+
+  const getJourneys = () => {
+    return document.querySelectorAll<HTMLElement>('.journey')
+  }
+
+  const getJourneyLines = () => {
+    return document.querySelectorAll<HTMLElement>('.journey-line')
   }
 
   const computeMaxWidth = () => {
+    console.log("COMPUTE MAX WIDTH")
     const panels = getPanels()
     let maxWidth = 0
     panels.forEach((panel) => {
@@ -25,106 +42,123 @@ export default function useJourneys() {
     return maxWidth
   }
 
-  useLayoutEffect(() => {
-    // calculate the height of the journey line
-    const sliderContainer = document.querySelector('.slider-container')
-    if (!sliderContainer) return
+  const updateJourneyLineHeights = () => {
+    console.log("UPDATE JOURNEY LINE HEIGHTS")
+    const sliderContainer = getContainer()
+    if (!sliderContainer)
+      throw new Error('Slider container not found')
 
     const sliderContainerHeight = sliderContainer.clientHeight
     const journeyPosition = sliderContainerHeight * 0.2
 
     const journeysHeight: number[] = []
-    const journeys = document.querySelectorAll('.journey')
+    const journeys = getJourneys()
     journeys.forEach((journey) => {
       journeysHeight.push(journey.clientHeight)
     })
 
-    const journeyLines = document.querySelectorAll('.journey-line')
+    const journeyLines = getJourneyLines()
     journeyLines.forEach((line, index) => {
-      // calculate the height of the line
       const journeyHeight = journeysHeight[index]
       const lineHeight = journeyPosition - journeyHeight / 2
       line.style.height = `${lineHeight}px`
     })
-  }, [])
+  }
+
+  const getScrollAmount = () => {
+    const maxWidth = computeMaxWidth()
+    return -(maxWidth - window.innerWidth)
+  }
+
+  const initializeAnimations = () => {
+    console.log("INITIALIZE ANIMATIONS")
+    const panels = getPanels()
+    const maxWidth = computeMaxWidth()
+
+    gsap.to(panels, {
+      x: () => getScrollAmount(),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: slider.current,
+        pin: true,
+        scrub: 1,
+        invalidateOnRefresh: true,
+        end: () => `+=${computeMaxWidth()}`,
+        markers: false,
+      },
+    })
+
+    const progressbar = getProgressbar()
+    if (!progressbar)
+      throw new Error('Progressbar not found')
+
+    gsap.fromTo(progressbar, { opacity: 0 }, { opacity: 1, duration: 0.5 }) // fix a flicker issue, without that the bar is show quickly when the page is loaded
+
+    gsap.from(progressbar, {
+      scrollTrigger: {
+        trigger: slider.current,
+        start: 'left top',
+        end: () => `+=${maxWidth}`,
+        scrub: true,
+        onUpdate: (self) => {
+          const progressBarWidth = progressbar.clientWidth * self.progress
+          const journeys = getJourneys()
+          journeys.forEach((journey) => {
+            const journeyRect = journey.getBoundingClientRect()
+            const journeyLeft = journeyRect.left
+            const journeyCenter = journeyRect.left + journeyRect.width / 2
+
+            const overlap = Math.max(0, Math.min(journeyCenter, progressBarWidth) - Math.max(journeyLeft, 0))
+            const opacity = (overlap / journeyRect.width) * 2
+            journey.style.opacity = String(opacity)
+          })
+        },
+      },
+      scaleX: 0,
+      transformOrigin: 'left top',
+      ease: 'none',
+    })
+  }
 
   useLayoutEffect(() => {
-    // IMPORTANT: set the width of the slider to the sum of the width of all panels
+    const handleResize = () => {
+      console.log("HANDLE RESIZE")
+      if (slider.current) {
+        console.log("SLIDER CURRENT")
+        // Recalculate maxWidth and set the new slider width
+        const maxWidth = computeMaxWidth()
+        slider.current.style.width = `${maxWidth}px`
+        console.log("MAX WIDTH", maxWidth)
+        console.log("SLIDER CURRENT", slider.current.style.width)
+      } else {
+        console.error('Slider ref not found')
+      }
+      // Update journey line heights
+      updateJourneyLineHeights()
+
+      // Reinitialize animations
+      ScrollTrigger.refresh() // Refresh ScrollTrigger on resize to recalculate positions
+      initializeAnimations()
+    }
+
+    // Initial calculations
+    updateJourneyLineHeights()
     if (slider.current) {
       const maxWidth = computeMaxWidth()
       slider.current.style.width = `${maxWidth}px`
-      console.log('maxWidth', maxWidth)
     } else {
-      console.log('no slider')
+      console.error('Slider ref not found on initial calculations')
+    }
+    initializeAnimations()
+
+    // Add resize event listener
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      // Clean up the event listener on component unmount
+      window.removeEventListener('resize', handleResize)
     }
   }, [slider.current])
-
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      //SLIDER
-      const panels = getPanels()
-      const maxWidth = computeMaxWidth()
-
-      gsap.to(panels, {
-        x: () => `-${maxWidth - window.innerWidth}`,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: slider.current,
-          pin: true,
-          scrub: 0.1,
-          // snap: 1 / (panels.length - 1),
-          end: () => `+=${maxWidth}`,
-          // markers: true,
-        },
-      })
-
-      // SLIDER BACKGROUND
-      const progressbar = document.querySelector('.slider-progressbar')
-      if (!progressbar) return
-      gsap.from(progressbar, {
-        scrollTrigger: {
-          trigger: slider.current,
-          start: 'left top',
-          end: () => `+=${maxWidth}`,
-          scrub: true,
-          // markers: true,
-          onUpdate: (self) => {
-            // Calculate the current width of the progress bar including scaling
-            const progressBarWidth = progressbar.clientWidth * self.progress
-            console.log("progressBarWidth", progressBarWidth)
-            console.log("self", self)
-            // Loop through each journey element
-            const journeys = document.querySelectorAll('.journey')
-            journeys.forEach((journey, index) => {
-              const journeyRect = journey.getBoundingClientRect()
-              const journeyLeft = journeyRect.left
-              console.log("journeyLeft", journeyLeft)
-              const journeyCenter = journeyRect.left + journeyRect.width / 2
-              console.log("journeyCenter", journeyCenter)
-
-              // Determine how much of the progress bar intersects with the journey element
-              const overlap = Math.max(0, Math.min(journeyCenter, progressBarWidth) - Math.max(journeyLeft, 0))
-              console.log(index, "overlap", overlap)
-              console.log(index, "width", journeyRect.width)
-
-              // Calculate opacity based on the overlap (increase the overlap amount to reduce opacity more aggressively)
-              const opacity = (overlap / journeyRect.width) * 2
-              console.log(index, "opacity", opacity)
-              console.log("*****************")
-              // Apply the calculated opacity
-              journey.style.opacity = opacity
-            })
-          },
-        },
-        scaleX: 0,
-        transformOrigin: 'left top',
-        ease: 'none',
-      })
-
-      // ANIMATION OF ELEMENTS WHEN THE PROGRESS BAR REACHES THEM
-    })
-    return () => ctx.revert()
-  })
 
   return {
     slider,

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import React, { Suspense } from 'react'
+import React from 'react'
 
 // STYLE
 import './global.css'
@@ -11,6 +11,8 @@ import AOSProvider from '@/app/providers/aosProvider'
 /*import "primereact/resources/themes/lara-light-cyan/theme.css";*/
 // import 'primereact/resources/themes/lara-dark-cyan/theme.css'
 // import 'primereact/resources/themes/lara-dark-teal/theme.css'
+
+
 
 export const metadata: Metadata = {
   title: 'Manuele Nolli',

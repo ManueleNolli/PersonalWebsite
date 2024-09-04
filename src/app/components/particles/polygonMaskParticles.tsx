@@ -20,5 +20,6 @@ export default function PolygonMaskParticles({ url, id }: ParticlesProps) {
     }
   }, [url])
 
+  // @ts-ignore
   return <TSParticles className="particlesNormal" init={init} options={options} id={id} />
 }

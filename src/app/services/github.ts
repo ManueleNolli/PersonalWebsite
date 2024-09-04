@@ -49,7 +49,7 @@ export const getRepositories = async (afterCursor: string | null): Promise<fetch
     viewer {
       login
     }
-  }`)
+  }`) as { viewer: { login: string } }
 
   const {
     viewer: {
@@ -73,7 +73,25 @@ export const getRepositories = async (afterCursor: string | null): Promise<fetch
       }
     }
   }
-}`)
+}`) as {
+    viewer: {
+      repositories: {
+        pageInfo: { hasNextPage: boolean; endCursor: string }
+        nodes: {
+          name: string
+          url: string
+          description: string
+          isArchived: boolean
+          isFork: boolean
+          updatedAt: string
+          owner: {
+            login: string
+            url: string
+          }
+        }[]
+      }
+    }
+  }
 
   // FILTER ARCHIVED
   const repos: Repository[] = nodes

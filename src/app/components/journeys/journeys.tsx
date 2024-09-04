@@ -13,20 +13,19 @@ export default function Journeys() {
       const renderJourneyItem = (journey: Journey, index:number) => {
       return (
         <div
-          className={`opacity-0 text-primary-50 journey max-w-[60%] w-[60%] relative 
-                 ${index % 2 == 0 ? ' bottom-[20%]' : 'top-[20%]'}
-        `}
+          className={`opacity-0 text-primary-50 journey  relative mx-auto md:max-w-[60%] max-w-[80%] bg-red-50/50
+                 ${index % 2 == 0 ? ' bottom-[20%]' : 'top-[20%]'}`}
         >
           <div
             className={`absolute left-[50%] w-1 rounded bg-primary-100 journey-line
           ${index % 2 == 0 ? ' top-[100%]' : 'bottom-[100%]'}`}
           />
-          <div className="text-2xl font-bold leading-relaxed">
+          <div className="text-2xl font-bold leading-relaxed text-justify">
             {journey.title}{' '}
-            {journey.active ? <span className="animate-ping absolute h-2 w-2 rounded-full bg-green-400 opacity-75 right-5 top-2"></span> : ''}
+            {journey.active ? <span className="animate-ping absolute h-2 w-2 rounded-full bg-green-400 opacity-75"></span> : ''}
           </div>
           {journey.location.map((location, index) => (
-            <div className="text-lg hover:text-primary-100 leading-relaxed" key={index}>
+            <div className="text-lg hover:text-primary-100 leading-relaxed text-justify" key={index}>
               📍 <a href={location.url}>{location.name}</a>
             </div>
           ))}
@@ -64,14 +63,14 @@ export default function Journeys() {
       </div>
       {config.journey_journeys.map((journey, index) => (
           <div key={index}
-               className={`slider-panel flex items-center justify-center
+               className={`slider-panel flex items-center justify-center bg-blue-50/50
                  ${index == config.journey_journeys.length - 1 ? 'slider-panel-last' : ''}
                  ${index == 0 ? 'slider-panel-first' : ''}
                  `}>
             {renderJourneyItem(journey, index)}
           </div>
       ))}
-      <div className="slider-progressbar bg-primary-100" />
+      <div className="slider-progressbar bg-primary-100 opacity-0" />
     </div>
   )
 }

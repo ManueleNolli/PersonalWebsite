@@ -15,6 +15,7 @@ export default function ParticlesBackground({ children, options, id }: Particles
 
   return (
     <div style={{ position: 'relative' }}>
+      {/*@ts-ignore*/}
       <Particles className="particlesBackground" init={init} options={options} id={id} />
       <div style={{ position: 'relative', zIndex: 1 }}>{children}</div>
     </div>

@@ -101,7 +101,7 @@ export default function useHeader() {
 
     // set header div
     const header = document.querySelector('header')
-    const headerChild = header?.firstElementChild.clientHeight ? header?.firstElementChild : header?.lastElementChild
+    const headerChild = header?.firstElementChild?.clientHeight ? header?.firstElementChild : header?.lastElementChild
     setHeaderDiv(headerChild as HTMLElement)
 
     if (isMobileOpen) return
