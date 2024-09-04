@@ -12,15 +12,29 @@ import AnimatedOnScroll from '@/app/components/animatedOnScroll/animatedOnScroll
 import AnimatedText from '@/app/components/animatedText/animatedText'
 import GithubRepositories from '@/app/components/githubRepositories/githubRepositories'
 import Journeys from '@/app/components/journeys/journeys'
+import { config } from '@/app/constants/config'
+import Dialog from '@/app/components/dialag/dialong'
 
 export default function Home() {
+  const {
+    home_name,
+    home_job,
+    aboutme_description,
+    contact_phrase,
+    contact_mail,
+    contact_linkedin,
+    contact_github,
+    contact_instagram,
+    attributions,
+  } = config
+
   const renderHome = () => {
     return (
       <div>
         <Image src="/home.jpg" alt="Myself" imageClassName="h-svh w-screen object-cover object-[25%]" />
         <div className="absolute md:top-[40%] md:left-[60%] top-[60%] left-0 right-0 text-center">
-          <AnimatedText className=" font-bold leading-relaxed md:text-6xl text-4xl text-primary-650">Manuele Nolli</AnimatedText>
-          <AnimatedText className="md:text-4xl text-2xl text-primary-600">Software Engineer</AnimatedText>
+          <AnimatedText className=" font-bold leading-relaxed md:text-6xl text-4xl text-primary-650">{home_name}</AnimatedText>
+          <AnimatedText className="md:text-4xl text-2xl text-primary-600">{home_job}</AnimatedText>
         </div>
         <Link href={'#aboutme'}>
           <Image src="/arrow.png" alt="Scroll down" imageClassName="md:w-16 w-8 absolute animate-bounce bottom-10 mr-auto ml-auto left-0 right-0" />
@@ -34,12 +48,7 @@ export default function Home() {
       <div className="header-item scroll-mt-[8%] text-primary-50 flex md:flex-row flex-col min-h-svh" id="aboutme" header-label="About Me">
         <div className="flex items-center justify-center flex-col w-full md:w-1/2 mt-8 md:mt-0">
           <AnimatedOnScroll className=" mb-6 font-bold text-3xl md:text-5xl">About Me</AnimatedOnScroll>
-          <AnimatedOnScroll className=" w-3/4 text-justify leading-relaxed text-lg md:text-2xl">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vel porttitor mauris. Donec mollis massa a libero mattis consequat.
-            Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce et massa quis nibh venenatis porta.
-            Curabitur vulputate urna ac ex maximus, vel placerat tortor rhoncus. Phasellus tincidunt nulla nec fringilla lacinia. Aliquam scelerisque
-            molestie arcu nec pellentesque.
-          </AnimatedOnScroll>
+          <AnimatedOnScroll className=" w-3/4 text-center md:text-justify leading-loose text-lg md:text-2xl ">{aboutme_description}</AnimatedOnScroll>
         </div>
         <div className="md:w-1/2 w-full h-[50vh] md:h-screen px-8 md:px-0">
           <PolygonMaskParticles url={'coding.svg'} id="particlesAboutMe" />
@@ -49,10 +58,22 @@ export default function Home() {
   }
 
   const renderJourney = () => {
-
     return (
       <div className="header-item scroll-mt-[8%]" header-label="Journey" id="journey">
-        <Journeys/>
+        <Journeys />
+      </div>
+    )
+  }
+
+  const renderProjects = () => {
+    return (
+      <div className="header-item scroll-mt-[8%]" header-label="Projects" id="projects">
+        <div className=" p-16 flex justify-center text-primary-50 ">
+          <AnimatedOnScroll className="text-5xl mb-6 font-bold">Projects</AnimatedOnScroll>
+        </div>
+        <div className={'pb-16'}>
+          <GithubRepositories />
+        </div>
       </div>
     )
   }
@@ -62,13 +83,11 @@ export default function Home() {
       <div className="header-item scroll-mt-[8%]" header-label="Contact Me" id="contactme">
         <ParticlesBackground options={parallaxParticles} id="particlesContactMe">
           <div className="py-24 opacity-90">
-            <div className="grid md:grid-cols-2 grid-cols-1 p-8 mx-auto md:max-w-[50%] max-w-[90%] bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
+            <div className="grid md:grid-cols-2 grid-cols-1 p-8 mx-auto md:max-w-[70%] max-w-[90%] bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
               <div className={'flex flex-col justify-between mr-4'}>
                 <div>
-                  <h1 className="text-primary-800 md:text-6xl text-4xl text-center md:text-left font-extrabold">Contact me!</h1>
-                  <p className="text-gray-500 mt-4 text-xl text-justify md:text-left">
-                    Would you like to ask me something or just say hello? Feel free to send me a message, I will be happy to answer you.
-                  </p>
+                  <h1 className="text-primary-800 text-3xl md:text-5xl text-center md:text-left font-extrabold">Contact me!</h1>
+                  <p className="text-gray-500 mt-4 text-xl text-justify md:text-left">{contact_phrase}</p>
                 </div>
 
                 <div className="mt-12">
@@ -76,48 +95,42 @@ export default function Home() {
                   <ul className="mt-4">
                     <li className="flex items-center flex-col md:flex-row space-y-4 md:space-y-0">
                       <div className="bg-primary-50 h-16 w-16 rounded-full flex items-center justify-center shrink-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="var(--primary-800)" viewBox="0 0 479.058 479.058">
-                          <path
-                            d="M434.146 59.882H44.912C20.146 59.882 0 80.028 0 104.794v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159L239.529 264.631 39.173 90.982a14.902 14.902 0 0 1 5.738-1.159zm0 299.411H44.912c-8.26 0-14.971-6.71-14.971-14.971V122.615l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z"
-                            data-original="#000000"
-                          />
-                        </svg>
+                        <a href={`mailto:${contact_mail}`}>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="var(--primary-800)" viewBox="0 0 32 32">
+                            <path d="M29 4H3a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3h26a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.72 2L16 14.77 3.72 6zM30 25a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.23l13.42 9.58a1 1 0 0 0 1.16 0L30 7.23z" />
+                          </svg>
+                        </a>
                       </div>
-                      <a href="aboutme" className="text-primary-800 text-lg ml-4">
-                        <strong>manuele.nolli.01@gmail.com</strong>
-                      </a>
                     </li>
                   </ul>
                 </div>
 
                 <div className="mt-12 ">
                   <h2 className="text-gray-800 text-xl font-bold">Socials</h2>
-
                   <ul className="flex mt-4 space-x-4">
                     <li className="bg-primary-50 h-16 w-16 rounded-full flex items-center justify-center shrink-0">
-                      <a href="aboutme">
+                      {/*GITHUB*/}
+                      <a href={contact_github} target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="var(--primary-800)" viewBox="0 0 24 24">
                           <path
-                            d="M6.812 13.937H9.33v9.312c0 .414.335.75.75.75l4.007.001a.75.75 0 0 0 .75-.75v-9.312h2.387a.75.75 0 0 0 .744-.657l.498-4a.75.75 0 0 0-.744-.843h-2.885c.113-2.471-.435-3.202 1.172-3.202 1.088-.13 2.804.421 2.804-.75V.909a.75.75 0 0 0-.648-.743A26.926 26.926 0 0 0 15.071 0c-7.01 0-5.567 7.772-5.74 8.437H6.812a.75.75 0 0 0-.75.75v4c0 .414.336.75.75.75zm.75-3.999h2.518a.75.75 0 0 0 .75-.75V6.037c0-2.883 1.545-4.536 4.24-4.536.878 0 1.686.043 2.242.087v2.149c-.402.205-3.976-.884-3.976 2.697v2.755c0 .414.336.75.75.75h2.786l-.312 2.5h-2.474a.75.75 0 0 0-.75.75V22.5h-2.505v-9.312a.75.75 0 0 0-.75-.75H7.562z"
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
                             data-original="#000000"
                           />
                         </svg>
                       </a>
                     </li>
+                    {/*LINKEDIN*/}
                     <li className="bg-primary-50 h-16 w-16 rounded-full flex items-center justify-center shrink-0">
-                      <a href="aboutme">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="var(--primary-800)" viewBox="0 0 511 512">
-                          <path
-                            d="M111.898 160.664H15.5c-8.285 0-15 6.719-15 15V497c0 8.285 6.715 15 15 15h96.398c8.286 0 15-6.715 15-15V175.664c0-8.281-6.714-15-15-15zM96.898 482H30.5V190.664h66.398zM63.703 0C28.852 0 .5 28.352.5 63.195c0 34.852 28.352 63.2 63.203 63.2 34.848 0 63.195-28.352 63.195-63.2C126.898 28.352 98.551 0 63.703 0zm0 96.395c-18.308 0-33.203-14.891-33.203-33.2C30.5 44.891 45.395 30 63.703 30c18.305 0 33.195 14.89 33.195 33.195 0 18.309-14.89 33.2-33.195 33.2zm289.207 62.148c-22.8 0-45.273 5.496-65.398 15.777-.684-7.652-7.11-13.656-14.942-13.656h-96.406c-8.281 0-15 6.719-15 15V497c0 8.285 6.719 15 15 15h96.406c8.285 0 15-6.715 15-15V320.266c0-22.735 18.5-41.23 41.235-41.23 22.734 0 41.226 18.495 41.226 41.23V497c0 8.285 6.719 15 15 15h96.403c8.285 0 15-6.715 15-15V302.066c0-79.14-64.383-143.523-143.524-143.523zM466.434 482h-66.399V320.266c0-39.278-31.953-71.23-71.226-71.23-39.282 0-71.239 31.952-71.239 71.23V482h-66.402V190.664h66.402v11.082c0 5.77 3.309 11.027 8.512 13.524a15.01 15.01 0 0 0 15.875-1.82c20.313-16.294 44.852-24.907 70.953-24.907 62.598 0 113.524 50.926 113.524 113.523zm0 0"
-                            data-original="#000000"
-                          />
+                      <a href={contact_linkedin} target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="var(--primary-800)" viewBox="0 0 24 24">
+                          <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
                         </svg>
                       </a>
                     </li>
                     <li className="bg-primary-50 h-16 w-16 rounded-full flex items-center justify-center shrink-0">
-                      <a href="aboutme">
+                      <a href={contact_instagram} target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="var(--primary-800)" viewBox="0 0 24 24">
-                          <path d="M12 9.3a2.7 2.7 0 1 0 0 5.4 2.7 2.7 0 0 0 0-5.4Zm0-1.8a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm5.85-.225a1.125 1.125 0 1 1-2.25 0 1.125 1.125 0 0 1 2.25 0ZM12 4.8c-2.227 0-2.59.006-3.626.052-.706.034-1.18.128-1.618.299a2.59 2.59 0 0 0-.972.633 2.601 2.601 0 0 0-.634.972c-.17.44-.265.913-.298 1.618C4.805 9.367 4.8 9.714 4.8 12c0 2.227.006 2.59.052 3.626.034.705.128 1.18.298 1.617.153.392.333.674.632.972.303.303.585.484.972.633.445.172.918.267 1.62.3.993.047 1.34.052 3.626.052 2.227 0 2.59-.006 3.626-.052.704-.034 1.178-.128 1.617-.298.39-.152.674-.333.972-.632.304-.303.485-.585.634-.972.171-.444.266-.918.299-1.62.047-.993.052-1.34.052-3.626 0-2.227-.006-2.59-.052-3.626-.034-.704-.128-1.18-.299-1.618a2.619 2.619 0 0 0-.633-.972 2.595 2.595 0 0 0-.972-.634c-.44-.17-.914-.265-1.618-.298-.993-.047-1.34-.052-3.626-.052ZM12 3c2.445 0 2.75.009 3.71.054.958.045 1.61.195 2.185.419A4.388 4.388 0 0 1 19.49 4.51c.457.45.812.994 1.038 1.595.222.573.373 1.227.418 2.185.042.96.054 1.265.054 3.71 0 2.445-.009 2.75-.054 3.71-.045.958-.196 1.61-.419 2.185a4.395 4.395 0 0 1-1.037 1.595 4.44 4.44 0 0 1-1.595 1.038c-.573.222-1.227.373-2.185.418-.96.042-1.265.054-3.71.054-2.445 0-2.75-.009-3.71-.054-.958-.045-1.61-.196-2.185-.419A4.402 4.402 0 0 1 4.51 19.49a4.414 4.414 0 0 1-1.037-1.595c-.224-.573-.374-1.227-.419-2.185C3.012 14.75 3 14.445 3 12c0-2.445.009-2.75.054-3.71s.195-1.61.419-2.185A4.392 4.392 0 0 1 4.51 4.51c.45-.458.994-.812 1.595-1.037.574-.224 1.226-.374 2.185-.419C9.25 3.012 9.555 3 12 3Z"></path>
+                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                         </svg>
                       </a>
                     </li>
@@ -155,21 +168,26 @@ export default function Home() {
               </form>
             </div>
           </div>
+
+          <div className="absolute right-0 bottom-0">
+            {renderAttributions()}
+          </div>
         </ParticlesBackground>
       </div>
     )
   }
 
-  const renderProjects = () => {
+  const renderAttributions = () => {
     return (
-      <div className="header-item scroll-mt-[8%]" header-label="Projects" id="projects">
-        <div className=" p-16 flex justify-center text-primary-50 ">
-          <AnimatedOnScroll className="text-5xl mb-6 font-bold">Projects</AnimatedOnScroll>
+      <Dialog label={'Attributions'}>
+        <div className="flex flex-col">
+          {attributions.map((attribution, index) => (
+            <a key={index} href={attribution.url} target={'_blank'} className="text-primary-600 hover:text-primary-800">
+              {attribution.title}
+            </a>
+          ))}
         </div>
-        <div className={'pb-16'}>
-          <GithubRepositories />
-        </div>
-      </div>
+      </Dialog>
     )
   }
 
@@ -200,18 +218,6 @@ export default function Home() {
       {/*CONTACT ME*/}
       {renderContactMe()}
 
-      <a href="https://www.flaticon.com/free-icons/south-arrow" title="south-arrow icons">
-        South-arrow icons created by Mohamed Mbarki - Flaticon
-      </a>
-      <a href="https://www.flaticon.com/free-icons/food-and-restaurant" title="food and restaurant icons">
-        Food and restaurant icons created by agus raharjo - Flaticon
-      </a>
-      <a href="https://www.flaticon.com/free-icons/collaboration" title="collaboration icons">
-        Collaboration icons created by Freepik - Flaticon
-      </a>
-      <a href="https://www.flaticon.com/free-icons/error" title="error icons">
-        Error icons created by Freepik - Flaticon
-      </a>
     </div>
   )
 }
