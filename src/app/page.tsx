@@ -63,7 +63,7 @@ export default function Home() {
         <ParticlesBackground options={parallaxParticles} id="particlesContactMe">
           <div className="py-24 opacity-90">
             <div className="grid md:grid-cols-2 grid-cols-1 p-8 mx-auto md:max-w-[50%] max-w-[90%] bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
-              <div className={'flex flex-col justify-between '}>
+              <div className={'flex flex-col justify-between mr-4'}>
                 <div>
                   <h1 className="text-primary-800 md:text-6xl text-4xl text-center md:text-left font-extrabold">Contact me!</h1>
                   <p className="text-gray-500 mt-4 text-xl text-justify md:text-left">

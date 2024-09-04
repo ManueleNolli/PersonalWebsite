@@ -12,13 +12,22 @@ export default function Journeys() {
 
       const renderJourneyItem = (journey: Journey, index:number) => {
       return (
-        <AnimatedOnScroll className={`text-primary-50 journey max-w-[60%] w-[60%] relative
+        <div
+          className={`opacity-0 text-primary-50 journey max-w-[60%] w-[60%] relative 
                  ${index % 2 == 0 ? ' bottom-[20%]' : 'top-[20%]'}
-        `}>
-          <div className="text-2xl font-bold leading-relaxed">{journey.title}</div>
+        `}
+        >
+          <div
+            className={`absolute left-[50%] w-1 rounded bg-primary-100 journey-line
+          ${index % 2 == 0 ? ' top-[100%]' : 'bottom-[100%]'}`}
+          />
+          <div className="text-2xl font-bold leading-relaxed">
+            {journey.title}{' '}
+            {journey.active ? <span className="animate-ping absolute h-2 w-2 rounded-full bg-green-400 opacity-75 right-5 top-2"></span> : ''}
+          </div>
           {journey.location.map((location, index) => (
             <div className="text-lg hover:text-primary-100 leading-relaxed" key={index}>
-              📍 <a  href={location.url}>{location.name}</a>
+              📍 <a href={location.url}>{location.name}</a>
             </div>
           ))}
           {journey.goal &&
@@ -30,10 +39,19 @@ export default function Journeys() {
 
           {journey.work && (
             <div className="text-lg hover:text-primary-100 leading-relaxed">
-              💼 <a href={journey.work.url}>{journey.work.title}</a> at {journey.work.location}
+              💼{' '}
+              <a href={journey.work.url}>
+                {journey.work.title} at {journey.work.location}
+              </a>
             </div>
           )}
-        </AnimatedOnScroll>
+          {journey.news &&
+            journey.news.map((news, index) => (
+              <div className="text-lg hover:text-primary-100 leading-relaxed" key={index}>
+                🗞️ <a href={news.url}>{news.name}</a>
+              </div>
+            ))}
+        </div>
       )
     }
 
@@ -46,7 +64,7 @@ export default function Journeys() {
       </div>
       {config.journey_journeys.map((journey, index) => (
           <div key={index}
-               className={`slider-panel flex items-center justify-center 
+               className={`slider-panel flex items-center justify-center
                  ${index == config.journey_journeys.length - 1 ? 'slider-panel-last' : ''}
                  ${index == 0 ? 'slider-panel-first' : ''}
                  `}>

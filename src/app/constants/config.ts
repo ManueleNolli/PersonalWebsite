@@ -1,5 +1,6 @@
 export type Journey = {
   title: string
+  active?: boolean
   location: [
     {
       name: string
@@ -7,6 +8,12 @@ export type Journey = {
     },
   ]
   goal?: [
+    {
+      name: string
+      url?: string
+    },
+  ]
+  news?: [
     {
       name: string
       url?: string
@@ -61,7 +68,7 @@ export const config = {
       title: 'Bachelor degree in Computer Science',
       location: [
         {
-          name: 'SUPSI - University of Applied Sciences and Arts of Southern Switzerland',
+          name: 'SUPSI',
           url: 'https://www.supsi.ch/',
         },
       ],
@@ -71,38 +78,55 @@ export const config = {
           url: 'https://www.supsi.ch/en/bachelor-computer-science-engineering',
         },
       ],
+      news: [
+        {
+          name: 'SUPSI Interview',
+          url: 'https://www.linkedin.com/posts/supsi_la-tua-formazione-lesperienza-di-manuele-activity-7010639377055850497-6sAh?utm_source=share&utm_medium=member_desktop',
+        },
+      ],
     },
     {
       title: 'Master degree in Computer Science',
+      active: true,
       location: [
         {
-          name: 'SUPSI - University of Applied Sciences and Arts of Southern Switzerland',
+          name: 'SUPSI',
           url: 'https://www.supsi.ch/',
         },
         {
-          name: 'USI - Università della Svizzera italiana',
+          name: 'USI',
           url: 'https://www.usi.ch/',
         },
         {
-          name: 'ZHAW - Zurich University of Applied Sciences',
+          name: 'ZHAW',
           url: 'https://www.zhaw.ch/',
         },
       ],
       goal: [
-        {
-          name: 'Experience in the field of computer science and engineering, with a focus on software engineering, distributed systems, and cloud computing',
-          url: '',
-        },
+        // {
+        //   name: 'Experience in state of the art technologies',
+        //   url: '',
+        // },
         {
           name: 'Master of Science in Engineering - Computer Science',
           url: 'https://www.msengineering.ch/profiles/engineering-and-it/computer-science',
         },
       ],
       work: {
-        title: "Assistant with Bachelor's degree in Master's education",
-        location: 'ISIN - Institute of Information Systems and Networking',
+        title: "Assistant",
+        location: 'ISIN',
         url: 'https://www.supsi.ch/en/isin',
       },
+      news: [
+        {
+          name: 'Salesforce workshop',
+          url: 'https://www.linkedin.com/posts/andreacannata_supsi-salesforce-technology-activity-7165702577341296641-WZjC?utm_source=share&utm_medium=member_desktop'
+        },
+        {
+          name: 'Interview about my journey',
+          url: 'https://www.supsi.ch/it/il-mio-percorso-verso-la-tecnologia-del-futuro'
+        }
+        ]
     },
   ] as Journey[],
   projects_repositories_length: 4,
