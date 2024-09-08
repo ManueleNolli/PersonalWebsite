@@ -44,6 +44,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: static-folder
+          path: .next/standalone
       - run: ls -la
       - run: cd .next/standalone && ls -la
       - name: Upload static files to S3
