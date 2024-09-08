@@ -53,7 +53,9 @@ jobs:
         run: echo "NEXT_PUBLIC_GITHUB_API_KEY=${{ secrets.NEXT_PUBLIC_GITHUB_API_KEY }}" > .env
 
       - run: yarn install --frozen-lockfile
-      - run: yarn build
+      - run: next build
+      - run: ls -la .next
+      - run: ls -la .next/static
 
       - name: Share static build files
         uses: actions/upload-artifact@v4
