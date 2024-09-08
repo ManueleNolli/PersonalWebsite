@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: static-folder
-          path: .next/standalone
+          path: .next/static
 
   upload_static:
     name: Upload static files to S3
@@ -58,7 +58,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: static-folder
-          path: .next/standalone
+          path: .next/static
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -68,7 +68,7 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Upload static built files to S3
-        run: aws s3 sync --delete .next/standalone s3://${{ secrets.AWS_BUCKET_NAME }}
+        run: aws s3 sync --delete .next/static s3://${{ secrets.AWS_BUCKET_NAME }}/.next/static
 
       - name: Upload static media files to S3
         run: aws s3 sync --delete public s3://${{ secrets.AWS_BUCKET_NAME }}/public
