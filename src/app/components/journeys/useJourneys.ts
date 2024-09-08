@@ -64,7 +64,7 @@ export default function useJourneys() {
       animation: tween,
       scrub: 0.01,
       invalidateOnRefresh: true,
-      markers: true,
+      markers: false,
     })
 
     // PROGRESS BAR
