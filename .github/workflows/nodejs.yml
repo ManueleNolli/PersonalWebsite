@@ -20,6 +20,7 @@ jobs:
 
   build:
     name: Build
+    needs: tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -33,6 +34,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Fill .env file
+        run: echo "NEXT_PUBLIC_GITHUB_API_KEY=${{ secrets.NEXT_PUBLIC_GITHUB_API_KEY }}" > .env
 
       - run: yarn install --frozen-lockfile
       - run: yarn build
@@ -53,11 +57,18 @@ jobs:
         with:
           name: static-folder
           path: .next/standalone
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
-      - name: Upload static files to S3
+
+      - name: Upload static built files to S3
         run: aws s3 sync --delete .next/standalone s3://${{ secrets.AWS_BUCKET_NAME }}
+
+      - name: Upload static media files to S3
+        run: aws s3 sync --delete public s3://${{ secrets.AWS_BUCKET_NAME }}/public
+
+
