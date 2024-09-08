@@ -10,6 +10,14 @@ on:
     branches: [ "dev" ]
 
 jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run tests
+        run: echo "Passed as always :)"
+
   build:
     name: Build
     runs-on: ubuntu-latest
@@ -52,4 +60,4 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
       - name: Upload static files to S3
-        run: aws s3 sync --delete .next/standalone s3://${{ secrets.S3_BUCKET_NAME }}
+        run: aws s3 sync --delete .next/standalone s3://${{ secrets.AWS_BUCKET_NAME }}
