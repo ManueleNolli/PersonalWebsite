@@ -109,7 +109,7 @@ jobs:
           path: .next/standalone
 
       - name: Zip standalone files
-        run: cd .next/standalone && zip -r code.zip .
+        run: cd .next/standalone && zip -r code.zip . && mv code.zip /code.zip
 
       - run: ls -la .next/standalone
       - run: ls -la /
@@ -122,4 +122,4 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Upload standalone built files to S3
-        run: aws s3 sync --delete code.zip s3://${{ secrets.AWS_S3_STATIC_FILES_NAME }}/code.zip
+        run: ls -la && aws s3 sync --delete code.zip s3://${{ secrets.AWS_S3_STATIC_FILES_NAME }}/code.zip
