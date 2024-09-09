@@ -109,6 +109,9 @@ jobs:
           name: standalone-folder
           path: .next/standalone
 
+      - name: Substitute the server start script
+        run: mv lambda-handler.ts .next/standalone/lambda-handler.ts
+
       - name: Zip standalone files
         run: cd .next/standalone && zip -r code.zip .
 
