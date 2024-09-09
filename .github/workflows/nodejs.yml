@@ -109,10 +109,7 @@ jobs:
           path: .next/standalone
 
       - name: Zip standalone files
-        run: cd .next/standalone && zip -r code.zip . && mv .next/standalone/code.zip /code.zip
-
-      - run: ls -la .next/standalone
-      - run: ls -la /
+        run: cd .next/standalone && zip -r code.zip .
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -122,4 +119,4 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Upload standalone built files to S3
-        run: aws s3 sync --delete code.zip s3://${{ secrets.AWS_S3_STATIC_FILES_NAME }}/code.zip
+        run: aws s3 sync --delete .next/standalone/code.zip s3://${{ secrets.AWS_S3_STATIC_FILES_NAME }}/code.zip
