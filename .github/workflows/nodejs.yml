@@ -106,9 +106,10 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: standalone-folder
+          path: .next/standalone
 
       - name: Zip standalone files
-        run: zip -r code.zip .next/standalone
+        run: cd .next/standalone && zip -r code.zip .
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
