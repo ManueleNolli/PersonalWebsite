@@ -1,9 +1,13 @@
 /* eslint-disable */
+
 // ! This is needed for nextjs to correctly resolve.
 process.chdir(__dirname)
+
+// @ts-ignore
 process.env.NODE_ENV = 'production'
 
 import NextServer, { Options } from 'next/dist/server/next-server'
+// @ts-ignore
 import slsHttp from 'serverless-http'
 import path from 'path'
 import { ServerResponse } from 'http'
@@ -28,6 +32,7 @@ type Handler = (event: Object, context: Object) => Promise<Object>
 
 const server = slsHttp(
 	async (req: any, res: ServerResponse) => {
+		// @ts-ignore
 		await nextHandler(req, res).catch((e) => {
 			// Log into Cloudwatch for easier debugging.
 			console.error(`NextJS request failed due to:`)
