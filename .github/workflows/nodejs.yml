@@ -120,4 +120,4 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Upload standalone built files to S3
-        run: aws s3 cp .next/standalone/code.zip s3://${{ secrets.AWS_S3_STATIC_FILES_NAME }}/code.zip
+        run: aws s3 cp .next/standalone/code.zip s3://${{ secrets.AWS_S3_CODE_FILES_NAME }}/code.zip
