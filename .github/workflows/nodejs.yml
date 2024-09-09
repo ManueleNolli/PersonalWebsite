@@ -109,7 +109,7 @@ jobs:
           path: .next/standalone
 
       - name: Zip standalone files
-        run: cd .next/standalone && zip -r code.zip .
+        run: cd .next/standalone && zip -r code.zip . && mv code.zip ../../code.zip
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
