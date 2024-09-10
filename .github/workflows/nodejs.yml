@@ -109,14 +109,14 @@ jobs:
           name: standalone-folder
           path: .next/standalone
 
-      - name: Substitute the server start script
-        run: mv lambda_handler/index.ts .next/standalone/index.ts
+#      - name: Substitute the server start script
+#        run: mv lambda_handler/index.ts .next/standalone/index.ts
 
       - name: Substitute the server start script
         run: mv lambda_handler/hello.js .next/standalone/hello.js
 
       - name: Zip standalone files
-        run: cd .next/standalone && zip -r code.zip .
+        run: cd .next/standalone && zip -r nextjs_code.zip .
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -126,4 +126,4 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Upload standalone built files to S3
-        run: aws s3 cp .next/standalone/code.zip s3://${{ secrets.AWS_S3_CODE_FILES_NAME }}/code.zip
+        run: aws s3 cp .next/standalone/nextjs_code.zip s3://${{ secrets.AWS_S3_CODE_FILES_NAME }}/nextjs_code.zip
