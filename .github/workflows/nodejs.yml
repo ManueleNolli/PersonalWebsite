@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "dev" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "dev" ]
 
 jobs:
   tests:
@@ -59,15 +59,24 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: static-folder
+          include-hidden-files: true
           path: .next/static
 
       - name: Share standalone build files
         uses: actions/upload-artifact@v4
         with:
           name: standalone-folder
-          include-hidden-files: 'true'
-          path: .next/standalone
+          include-hidden-files: true
+          path: |
+            .next/standalone
+            !.next/standalone/node_modules
 
+      - name: Share node_modules
+        uses: actions/upload-artifact@v4
+        with:
+          name: node_modules
+          include-hidden-files: true
+          path: node_modules
 
   upload_static:
     name: Upload static files to S3
@@ -82,6 +91,9 @@ jobs:
           name: static-folder
           path: .next/static
 
+      - name: Compress static and public files
+        run: mkdir -p assets && mv .next/ assets/_next && mv public assets/public && zip -r assets.zip assets
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
@@ -90,11 +102,7 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Upload static built files to S3
-        run: aws s3 sync --delete .next/static s3://${{ secrets.AWS_S3_STATIC_FILES_NAME }}/.next/static
-
-      - name: Upload static media files to S3
-        run: aws s3 sync --delete public s3://${{ secrets.AWS_S3_STATIC_FILES_NAME }}/public
-
+        run: aws s3 cp assets.zip s3://${{ secrets.AWS_S3_STATIC_FILES_NAME }}/assets.zip
 
   upload_standalone:
     name: Zip standalone files and upload to S3
@@ -109,14 +117,11 @@ jobs:
           name: standalone-folder
           path: .next/standalone
 
-#      - name: Substitute the server start script
-#        run: mv lambda_handler/index.ts .next/standalone/index.ts
-
       - name: Substitute the server start script
-        run: mv lambda_handler/hello.js .next/standalone/hello.js
+        run: mv lambda_handler/index.js .next/standalone/index.js
 
       - name: Zip standalone files
-        run: cd .next/standalone && zip -r nextjs_code.zip .
+        run: cd .next/standalone && zip -r code.zip .
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -126,4 +131,31 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Upload standalone built files to S3
-        run: aws s3 cp .next/standalone/nextjs_code.zip s3://${{ secrets.AWS_S3_CODE_FILES_NAME }}/nextjs_code.zip
+        run: aws s3 cp .next/standalone/code.zip s3://${{ secrets.AWS_S3_CODE_FILES_NAME }}/code.zip
+
+
+  upload_dependencies:
+    name: Zip dependencies files and upload to S3
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download dependencies files from previous job
+        uses: actions/download-artifact@v4
+        with:
+          name: node_modules
+          path: nodejs/node_modules
+
+      - name: Zip node_modules files
+        run: zip -r dependencies.zip nodejs
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Upload standalone built files to S3
+        run: aws s3 cp dependencies.zip s3://${{ secrets.AWS_S3_CODE_FILES_NAME }}/dependencies.zip
