@@ -76,7 +76,7 @@ jobs:
         with:
           name: node_modules
           include-hidden-files: true
-          path: node_modules
+          path: .next/standalone/node_modules
 
   upload_static:
     name: Upload static files to S3
