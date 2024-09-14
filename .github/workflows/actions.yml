@@ -180,7 +180,7 @@ jobs:
             run: aws lambda update-function-code --function-name ${{ secrets.AWS_LAMBDA_FUNCTION_NAME }} --s3-bucket ${{ secrets.AWS_S3_BUCKET_CODE_NAME }} --s3-key code.zip
 
           - name: Dependencies step 2 - Fetch new layer version
-            run: echo "::set-env name=AWS_LAMBDA_LAYER_VERSION::$(aws lambda list-layer-versions --layer-name ${{ secrets.AWS_LAMBDA_LAYER_NAME }} --query 'LayerVersions[0].Version' --output text)"
+            run: LAYER_VERSION=$(aws lambda list-layer-versions --layer-name ${{ secrets.AWS_LAMBDA_LAYER_NAME }} --query 'LayerVersions[0].Version' --output text)
 
           - name: Dependencies step 3 - Update Lambda with new layer
-            run: aws lambda update-function-configuration --function-name ${{ secrets.AWS_LAMBDA_FUNCTION_NAME }} --layers arn:aws:lambda:${{ vars.AWS_REGION }}:${{ secrets.AWS_ACCOUNT_ID }}:layer:${{ secrets.AWS_LAMBDA_LAYER_NAME }}:${{ env.AWS_LAMBDA_LAYER_VERSION }}
+            run: aws lambda update-function-configuration --function-name ${{ secrets.AWS_LAMBDA_FUNCTION_NAME }} --layers arn:aws:lambda:${{ vars.AWS_REGION }}:${{ secrets.AWS_ACCOUNT_ID }}:layer:${{ secrets.AWS_LAMBDA_LAYER_NAME }}:${{ LAYER_VERSION }}
