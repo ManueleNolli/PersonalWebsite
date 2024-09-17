@@ -100,10 +100,10 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Sync static built files to S3
-        run: aws s3 sync --delete .next/static s3://${{ secrets.AWS_S3_BUCKET_STATIC_NAME }}/_next/static
+        run: aws s3 sync --delete .next/static s3://${{ secrets.AWS_S3_BUCKET_ASSETS_NAME }}/_next/static
 
       - name: Sync public assets to S3
-        run: aws s3 sync --delete public s3://${{ secrets.AWS_S3_BUCKET_STATIC_NAME }}/assets
+        run: aws s3 sync --delete public s3://${{ secrets.AWS_S3_BUCKET_ASSETS_NAME }}/assets
 
   upload_code:
     name: Upload code to S3
