@@ -31,13 +31,13 @@ export default function Home() {
   const renderHome = () => {
     return (
       <div>
-        <Image src="/home.jpg" alt="Myself" imageClassName="h-svh w-screen object-cover object-[25%]" />
+        <Image src="/assets/home.jpg" alt="Myself" imageClassName="h-svh w-screen object-cover object-[25%]" />
         <div className="absolute md:top-[40%] md:left-[60%] top-[60%] left-0 right-0 text-center">
           <AnimatedText className=" font-bold leading-relaxed md:text-6xl text-4xl text-primary-650">{home_name}</AnimatedText>
           <AnimatedText className="md:text-4xl text-2xl text-primary-600">{home_job}</AnimatedText>
         </div>
         <Link href={'#aboutme'}>
-          <Image src="/arrow.png" alt="Scroll down" imageClassName="md:w-16 w-8 absolute animate-bounce bottom-10 mr-auto ml-auto left-0 right-0" />
+          <Image src="/assets/arrow.png" alt="Scroll down" imageClassName="md:w-16 w-8 absolute animate-bounce bottom-10 mr-auto ml-auto left-0 right-0" />
         </Link>
       </div>
     )
@@ -51,7 +51,7 @@ export default function Home() {
           <AnimatedOnScroll className=" w-3/4 text-center md:text-justify leading-loose text-lg md:text-2xl ">{aboutme_description}</AnimatedOnScroll>
         </div>
         <div className="md:w-1/2 w-full h-[50vh] md:h-screen px-8 md:px-0">
-          <PolygonMaskParticles url={'coding.svg'} id="particlesAboutMe" />
+          <PolygonMaskParticles url={'/assets/coding.svg'} id="particlesAboutMe" />
         </div>
       </div>
     )

@@ -92,9 +92,6 @@ jobs:
           name: static-folder
           path: .next/static
 
-      - name: Compress static and public files
-        run: mkdir -p assets && mv .next/ assets/_next && mv public assets/public && zip -r assets.zip assets
-
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
@@ -102,8 +99,11 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
 
-      - name: Upload static built files to S3
-        run: aws s3 cp assets.zip s3://${{ secrets.AWS_S3_BUCKET_ASSETS_NAME }}/assets.zip
+      - name: Sync static built files to S3
+        run: aws s3 sync --delete .next/static s3://${{ secrets.AWS_S3_BUCKET_STATIC_NAME }}/_next/static
+
+      - name: Sync public assets to S3
+        run: aws s3 sync --delete public s3://${{ secrets.AWS_S3_BUCKET_STATIC_NAME }}/assets
 
   upload_code:
     name: Upload code to S3

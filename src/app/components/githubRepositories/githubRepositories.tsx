@@ -19,13 +19,13 @@ export default function GithubRepositories() {
       if (repo.isFork) {
         return (
           <div className={'relative'}>
-            <Image src="/fork.png" alt="Fork" imageClassName="w-4 absolute right-2 top-2" />
+            <Image src="/assets/fork.png" alt="Fork" imageClassName="w-4 absolute right-2 top-2" />
           </div>
         )
       } else if (!repo.owned) {
         return (
           <div className={'relative'}>
-            <Image src="/collaboration.png" alt="Collaboration" imageClassName="w-8 absolute right-2 top-2" />
+            <Image src="/assets/collaboration.png" alt="Collaboration" imageClassName="w-8 absolute right-2 top-2" />
           </div>
         )
       }
