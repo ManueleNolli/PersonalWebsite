@@ -4,15 +4,9 @@
 process.chdir(__dirname)
 process.env.NODE_ENV = 'production'
 
-console.log('1')
 const { default: NextServer } = require('next/dist/server/next-server')
-console.log('2')
 const serverless = require('serverless-http')
-console.log('3')
-const { ServerResponse } = require('http')
-console.log('4')
 const path = require('path')
-console.log('5')
 
 // This will be loaded from custom config parsed via CLI.
 const nextConf = {
@@ -188,14 +182,9 @@ const nextHandler = new NextServer(config).getRequestHandler()
 exports.handler = serverless(
   async (req, res) => {
     try {
-      console.log('serverless handler')
-      console.log('Request:', req)
       await nextHandler(req, res) // it will automatically respond
-      console.log('Response:', res)
     } catch (error) {
-      console.error('Error handling request:', error)
       res.statusCode = 500
-      res.end('Internal Server Error')
     }
   },
   {
@@ -203,9 +192,7 @@ exports.handler = serverless(
     provider: 'aws',
     basePath: '/_server',
     request: (request) => {
-      console.log('Original Request Body:', request.body)
       delete request.body
-      console.log('Modified Request:', request)
     },
   }
 )

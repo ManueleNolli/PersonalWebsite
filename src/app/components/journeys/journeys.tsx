@@ -58,12 +58,12 @@ export default function Journeys() {
         <AnimatedOnScroll className="text-3xl md:text-5xl font-bold text-primary-50">Journey</AnimatedOnScroll>
       </div>
       <div className="w-fit	flex flex-nowrap" ref={journeys}>
+        <div className="h-full w-[60vw] md:w-[20vw]" />
         {config.journey_journeys.map((journey, index) => (
-          <div key={index} className={`flex items-center justify-center h-screen md:w-screen w-[200vw]`}
-          >
-        {renderJourneyItem(journey, index)}
+          <div key={index} className={`flex items-center justify-center h-screen md:w-screen w-[200vw]`}>
+            {renderJourneyItem(journey, index)}
           </div>
-          ))}
+        ))}
       </div>
       <div className="w-screen h-[10px] fixed top-[50%] translate-y-[-5px] bg-primary-100 opacity-0" ref={progressBar} />
     </div>
