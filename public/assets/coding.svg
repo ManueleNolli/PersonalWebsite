@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+	 style="isolation:isolate"
+width="500" height="500" viewBox="250">
+	<g>
+	<path fill="none" fill-rule="evenodd" stroke="#000" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="3" stroke-width="1" d="M0,260.908l174.648-81.136v38.568l-132.08,57.848v0.728l132.08,57.848v38.568L0,292.204V260.908z"/>
+	<path fill="none" fill-rule="evenodd" stroke="#000" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="3" stroke-width="1" d="M201.616,387.9l77.864-263.8h36.752l-77.864,263.8H201.616z"/>
+	<path fill="none" fill-rule="evenodd" stroke="#000" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="3" stroke-width="1" d="M512,293.284L337.352,373.34v-38.568l134.992-57.848v-0.728l-134.992-57.848V179.78L512,259.82
+		V293.284z"/>
+</g>
+</svg>
