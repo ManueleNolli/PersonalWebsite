@@ -44,15 +44,14 @@ This section provides an overview of the estimated costs for hosting a personal 
 
 Those resources are not included into the project, I configured them manually on AWS console.
 
-| **Service**                   | **Cost**                                        | **Sources**                                                                        |
-|-------------------------------|-------------------------------------------------|------------------------------------------------------------------------------------|
-| **Route 53**                  | $0.50 per month for domain name management      | [Route 53 Pricing](https://aws.amazon.com/route53/pricing/)                        |
-| **Budgets**                   | $0.01 per report to monitor costs and usage     | [Budgets Pricing](https://aws.amazon.com/aws-cost-management/aws-budgets/pricing/) |
-| **Certificate Manager (SSL)** | Free SSL certificates for use with AWS services | [Certificate Manager Pricing](https://aws.amazon.com/certificate-manager/pricing/) |
+| **Service**                        | **Cost**                                        | **Sources**                                                                        |
+|------------------------------------|-------------------------------------------------|------------------------------------------------------------------------------------|
+| **Route 53**                       | $0.50 per month for domain name management      | [Route 53 Pricing](https://aws.amazon.com/route53/pricing/)                        |
+| **Budgets**                        | $0.01 per report to monitor costs and usage     | [Budgets Pricing](https://aws.amazon.com/aws-cost-management/aws-budgets/pricing/) |
+| **Certificate Manager (SSL)**      | Free SSL certificates for use with AWS services | [Certificate Manager Pricing](https://aws.amazon.com/certificate-manager/pricing/) |
+| **WAF (Web Application Firewall)** | $5.00 per month for web security protection     | [WAF Pricing](https://aws.amazon.com/waf/pricing/)                                 |
 
-### Total Monthly Cost
-
-The total monthly cost for the AWS infrastructure is estimated to be less than **$5.00** per month, considering the resources used and the free tier limits.
+The total monthly cost for the AWS infrastructure is estimated to be less than **\$5.00** per month (plus **\$5.00** for security), considering the resources used and the free tier limits.
 
 Not bad for a personal website! 🚀
 
