@@ -32,7 +32,7 @@ export default function Home() {
     return (
       <div>
         <Image src="/assets/home.jpg" alt="Myself" imageClassName="h-svh w-screen object-cover object-[25%]" />
-        <div className="absolute md:top-[40%] md:left-[60%] top-[60%] left-0 right-0 text-center">
+        <div className="absolute md:top-[40%] md:left-[40%] top-[60%] left-0 right-0 text-center">
           <AnimatedText className=" font-bold leading-relaxed md:text-6xl text-4xl text-primary-650">{home_name}</AnimatedText>
           <AnimatedText className="md:text-4xl text-2xl text-primary-600">{home_job}</AnimatedText>
         </div>
