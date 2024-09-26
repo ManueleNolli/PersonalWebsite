@@ -1,37 +1,68 @@
 # Personal Website
 
-## Versions
+My personal website visitable at [https://www.manuelenolli.ch](https://www.manuelenolli.ch) 🚀
+
+The base framework is [Next.js](https://nextjs.org/) written in Typescript, additional libraries are:
+* [PrimeReact](https://primereact.org/): UI components
+* [Tailwind CSS](https://tailwindcss.com/): CSS framework for styling
+* [tsparticles](https://particles.js.org/): Particles animation
+* [gsap](https://gsap.com/): Animation library
+* [AOS](https://michalsnik.github.io/aos/): Animate on scroll library
+* [Octokit](https://github.com/octokit): GitHub API client via GraphQL
+
+## Requirements
 
 * node: 20.16.0
 * yarn: 1.22.22
 
-## Run
+## Installation and Usage
+
+```bash
+yarn install
+```
 
 ```bash
 yarn dev
 ```
 
+## Folder Structure
 
-## Structure
-
-```
+```bash
 src/ # All source code
     app/ # pages and components
-        layout.tsx # Header and Footer
+        layout.tsx # Header and Providers
         page.tsx # Home Page
         error.tsx # Error Page
-        not-found.tsx # Not Found Page
         components/ # Components
-            header/ # Header Component
-                header.tsx
+        constants/ # Constants
+        context/ # Contexts
+        providers/ # Providers
+        services/ # Services
 public/ # static assets
+    assets/ # images, icons, etc.
 ```
 
-## AWS Infrastructure Costs
+## Deployment
+
+The website is hosted on AWS using the following services:
+* [Amazon S3](https://aws.amazon.com/s3/): Static website hosting
+* [AWS Lambda](https://aws.amazon.com/lambda/): Serverless functions (Yes, NextJs Server Side Rendering on AWS Lambda 😄)
+* [Amazon API Gateway](https://aws.amazon.com/api-gateway/): API management
+* [Amazon CloudFront](https://aws.amazon.com/cloudfront/): Content delivery network
+* [Amazon Route 53](https://aws.amazon.com/route53/): Domain name management
+* [Amazon Certificate Manager](https://aws.amazon.com/certificate-manager/): SSL certificates
+* [Amazon WAF](https://aws.amazon.com/waf/): Web application firewall
+
+The AWS Infrastructure can be seen in the following diagram:
+![AWS Infrastructure](./.github/assets/aws_diagram.png)
+
+A more detailed explanation of the AWS Infrastructure can be found in the project [PersonalWebsiteAWS](https://github.com/ManueleNolli/PersonalWebsiteAws), where the *Infrastructure as Code* is implemented using the [AWS CDK](https://aws.amazon.com/cdk/).
+
+### AWS Infrastructure Costs
 
 This section provides an overview of the estimated costs for hosting a personal website on AWS.
 
-### Free Tier Resources
+##### Free Tier Resources
 
 | **Service**                            | **Free Tier Limit**                                                                                                                                                | **Sources**                                                        |
 |----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------|
@@ -40,7 +71,7 @@ This section provides an overview of the estimated costs for hosting a personal 
 | **Lambda**                             | 1,000,000 free requests per month                                                                                                                                  | [Lambda Pricing](https://aws.amazon.com/lambda/pricing/)           |
 | **S3 (Amazon Simple Storage Service)** | 5GB of standard storage, 20,000 GET requests, and 2,000 PUT requests for the first 12 months. For a personal website, the cost would be less than $3.00 per month. | [S3 Pricing](https://aws.amazon.com/s3/pricing/)                   |
 
-### Additional Resources 
+#### Additional Resources 
 
 Those resources are not included into the project, I configured them manually on AWS console.
 
@@ -55,10 +86,7 @@ The total monthly cost for the AWS infrastructure is estimated to be less than *
 
 Not bad for a personal website! 🚀
 
-### Additional Information
+#### Additional Information
 
 - [AWS Free Tier Overview](https://aws.amazon.com/free/)
 - [S3 Cost Calculator for Personal Websites](https://calculator.aws/#/createCalculator/S3)
-
-## GraphQL
-https://docs.github.com/en/graphql/reference/interfaces#repositoryinfo
