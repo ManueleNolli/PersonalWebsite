@@ -90,3 +90,16 @@ Not bad for a personal website! 🚀
 
 - [AWS Free Tier Overview](https://aws.amazon.com/free/)
 - [S3 Cost Calculator for Personal Websites](https://calculator.aws/#/createCalculator/S3)
+
+## CI/CD
+
+The CI/CD pipeline is implemented using GitHub Actions, the workflow is defined in the file [main.yml](./.github/workflows/actions.yml).
+
+There are four steps:
+1. **Tests**: Run the tests (Never failed a test 😎)
+2. **Build**: Build the Next.js application with cache and divide the output into `static`, `dependencies` and `code` files.
+3. **Upload**: 
+    - Upload the `static` files to the S3 bucket.
+    - Upload the `dependencies` files to the Lambda Layer.
+    - Upload the `code` files to the Lambda function.
+4. **Refresh Lambda**: Refresh the Lambda function to apply the changes.
