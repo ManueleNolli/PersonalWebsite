@@ -103,7 +103,13 @@ jobs:
         run: aws s3 sync --delete .next/static s3://${{ secrets.AWS_S3_BUCKET_ASSETS_NAME }}/_next/static
 
       - name: Sync public assets to S3
-        run: aws s3 sync --delete public s3://${{ secrets.AWS_S3_BUCKET_ASSETS_NAME }}
+        run: aws s3 sync --delete public/assets s3://${{ secrets.AWS_S3_BUCKET_ASSETS_NAME }}/assets
+
+      - name: Sync robots.txt
+        run: aws s3 sync public/robots.txt s3://${{ secrets.AWS_S3_BUCKET_ASSETS_NAME }}
+
+      - name: Sync sitemap.xml
+        run: aws s3 sync public/sitemap.xml s3://${{ secrets.AWS_S3_BUCKET_ASSETS_NAME }}
 
   upload_code:
     name: Upload code to S3
