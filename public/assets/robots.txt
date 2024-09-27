@@ -1,0 +1,6 @@
+User-Agent: *
+Allow: /
+Disallow: /search?q=
+Disallow: /mail
+
+Sitemap: https://manuelenolli.ch/sitemap.xml
