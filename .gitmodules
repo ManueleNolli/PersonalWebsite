@@ -1,3 +1,4 @@
 [submodule "cdk"]
 	path = cdk
 	url = https://github.com/ManueleNolli/PersonalWebsiteAws
+	branch = main
