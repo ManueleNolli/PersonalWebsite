@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { getRepositories, Repository } from '@/app/services/github'
+import {  Repository } from '@/app/services/github'
 
 export default function useGithubRepositories() {
   const [repos, setRepos] = useState<Repository[]>([])
@@ -27,13 +27,29 @@ export default function useGithubRepositories() {
   }
 
   const fetchGithubRepositories = async () => {
-    const repositoriesResponse = await getRepositories(nextFetchCursor)
+
+    const url = nextFetchCursor ? `/api/github?nextFetchCursor=${nextFetchCursor}` : '/api/github'
+
+    const repositoriesResponse = await fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
     if (!repositoriesResponse.ok) {
       throw new Error('Error fetching repositories')
     }
 
-    setRepos((repos) => [...repos, ...repositoriesResponse.repos])
-    setNextFetchCursor(repositoriesResponse.afterCursor)
+    const repositoriesResponseJson = await repositoriesResponse.json() as { repos: Repository[], afterCursor: string | null }
+
+    // Fix date
+    repositoriesResponseJson.repos.forEach((repo) => {
+      repo.updatedAt = new Date(repo.updatedAt)
+    })
+
+    setRepos((repos) => [...repos, ...repositoriesResponseJson.repos])
+    setNextFetchCursor(repositoriesResponseJson.afterCursor)
   }
 
   const fetchNextRepositories = async () => {

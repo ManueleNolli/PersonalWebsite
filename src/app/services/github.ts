@@ -19,7 +19,7 @@ type fetchRepositoriesResult = {
 }
 
 const getAPIKey = (): string => {
-  const api_key = process.env.NEXT_PUBLIC_GITHUB_API_KEY
+  const api_key = process.env.GITHUB_API_KEY
 
   if (api_key == undefined) throw new Error('GITHUB API Key not found')
 

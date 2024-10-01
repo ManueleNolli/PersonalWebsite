@@ -1,10 +1,6 @@
 import { Image } from 'primereact/image'
 import Link from 'next/link'
 import ParticlesBackground from '@/app/components/particles/particlesBackground'
-import { Button } from 'primereact/button'
-import { FloatLabel } from 'primereact/floatlabel'
-import { InputText } from 'primereact/inputtext'
-import { InputTextarea } from 'primereact/inputtextarea'
 import { parallaxParticles } from '@/app/constants/parallaxParticles'
 import React from 'react'
 import PolygonMaskParticles from '@/app/components/particles/polygonMaskParticles'
@@ -14,6 +10,7 @@ import GithubRepositories from '@/app/components/githubRepositories/githubReposi
 import Journeys from '@/app/components/journeys/journeys'
 import { config } from '@/app/constants/config'
 import Dialog from '@/app/components/dialag/dialong'
+import ContactMe from '@/app/components/contactMe/contactMe'
 
 export default function Home() {
   const {
@@ -87,7 +84,7 @@ export default function Home() {
               <div className={'flex flex-col justify-between mr-4'}>
                 <div>
                   <h1 className="text-primary-800 text-3xl md:text-5xl text-center md:text-left font-extrabold">Contact me!</h1>
-                  <p className="text-gray-500 mt-4 text-xl text-justify md:text-left">{contact_phrase}</p>
+                  <p className="text-gray-500 mt-4 text-lg text-justify md:text-left">{contact_phrase}</p>
                 </div>
 
                 <div className="mt-12">
@@ -97,7 +94,8 @@ export default function Home() {
                       <div className="bg-primary-50 h-16 w-16 rounded-full flex items-center justify-center shrink-0">
                         <a href={`mailto:${contact_mail}`}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="var(--primary-800)" viewBox="0 0 32 32">
-                            <path d="M29 4H3a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3h26a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.72 2L16 14.77 3.72 6zM30 25a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.23l13.42 9.58a1 1 0 0 0 1.16 0L30 7.23z" />
+                            <path
+                              d="M29 4H3a3 3 0 0 0-3 3v18a3 3 0 0 0 3 3h26a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-.72 2L16 14.77 3.72 6zM30 25a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.23l13.42 9.58a1 1 0 0 0 1.16 0L30 7.23z" />
                           </svg>
                         </a>
                       </div>
@@ -123,49 +121,23 @@ export default function Home() {
                     <li className="bg-primary-50 h-16 w-16 rounded-full flex items-center justify-center shrink-0">
                       <a href={contact_linkedin} target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="var(--primary-800)" viewBox="0 0 24 24">
-                          <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                          <path
+                            d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
                         </svg>
                       </a>
                     </li>
                     <li className="bg-primary-50 h-16 w-16 rounded-full flex items-center justify-center shrink-0">
                       <a href={contact_instagram} target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px" fill="var(--primary-800)" viewBox="0 0 24 24">
-                          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                          <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                         </svg>
                       </a>
                     </li>
                   </ul>
                 </div>
               </div>
-
-              <form className="space-y-8 pt-5">
-                <FloatLabel>
-                  <InputText id="name" className="w-full p-inputtext-lg" />
-                  <label htmlFor="name">Name</label>
-                </FloatLabel>
-
-                <FloatLabel>
-                  <InputText id="email" className="w-full p-inputtext-lg" />
-                  <label htmlFor="email">Email</label>
-                </FloatLabel>
-
-                <FloatLabel>
-                  <InputText id="subject" className="w-full p-inputtext-lg" />
-                  <label htmlFor="subject">Subject</label>
-                </FloatLabel>
-
-                <FloatLabel>
-                  <InputTextarea id="message" rows={6} className="w-full "></InputTextarea>
-                  <label htmlFor="message">Message</label>
-                </FloatLabel>
-
-                <Button
-                  className="text-white bg-primary-600 hover:bg-transparent hover:text-black rounded-md text-lg px-4 py-3 w-full !mt-6"
-                  size="large"
-                >
-                  <div className="flex items-center justify-center w-full">Send</div>
-                </Button>
-              </form>
+              <ContactMe />
             </div>
           </div>
 
