@@ -51,8 +51,7 @@ jobs:
 
       - name: Fill .env file
         run: |
-          echo "GITHUB_API_KEY=${{ secrets.NEXT_PUBLIC_GITHUB_API_KEY }}" > .env &&
-            echo "SES_REGION=${{ vars.AWS_REGION }}" >> .env &&
+          echo "GITHUB_API_KEY=${{ secrets.NEXT_PUBLIC_GITHUB_API_KEY }}" > .env  && echo "SES_REGION=${{ vars.AWS_REGION }}" >> .env
 
       - run: yarn install --frozen-lockfile
       - run: yarn build
