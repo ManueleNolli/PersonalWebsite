@@ -151,7 +151,7 @@ jobs:
           path: nodejs/node_modules
 
       - name: Zip node_modules files
-        run: zip -r dependencies.zip nodejs
+        run: zip -r ${{ vars.DEPENDENCIES_ZIP_NAME }}.zip nodejs
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
