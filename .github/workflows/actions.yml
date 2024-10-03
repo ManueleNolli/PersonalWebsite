@@ -125,7 +125,7 @@ jobs:
         run: mv lambda_handler/index.js .next/standalone/index.js
 
       - name: Zip standalone files
-        run: cd .next/standalone && zip -r {{ vars.CODE_ZIP_NAME }}.zip .
+        run: cd .next/standalone && zip -r ${{ vars.CODE_ZIP_NAME }}.zip .
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v3
@@ -135,7 +135,7 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Upload standalone built files to S3
-        run: aws s3 cp .next/standalone/{{ vars.CODE_ZIP_NAME }}.zip s3://${{ secrets.AWS_S3_BUCKET_CODE_NAME }}/{{ vars.CODE_ZIP_NAME }}.zip
+        run: aws s3 cp .next/standalone/${{ vars.CODE_ZIP_NAME }}.zip s3://${{ secrets.AWS_S3_BUCKET_CODE_NAME }}/${{ vars.CODE_ZIP_NAME }}.zip
 
   upload_dependencies:
     name: Upload dependencies to S3
@@ -161,7 +161,7 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Upload standalone built files to S3
-        run: aws s3 cp {{ vars.DEPENDENCIES_ZIP_NAME }}.zip s3://${{ secrets.AWS_S3_BUCKET_CODE_NAME }}/{{ vars.DEPENDENCIES_ZIP_NAME }}.zip
+        run: aws s3 cp ${{ vars.DEPENDENCIES_ZIP_NAME }}.zip s3://${{ secrets.AWS_S3_BUCKET_CODE_NAME }}/${{ vars.DEPENDENCIES_ZIP_NAME }}.zip
 
   update_lambda:
     name: Update Lambda function with new zip(s)
@@ -177,10 +177,10 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
 
       - name: Dependencies step 1 - Publish new version
-        run: aws lambda publish-layer-version --layer-name ${{ secrets.AWS_LAMBDA_LAYER_NAME }} --content S3Bucket=${{ secrets.AWS_S3_BUCKET_CODE_NAME }},S3Key={{ vars.DEPENDENCIES_ZIP_NAME }}.zip
+        run: aws lambda publish-layer-version --layer-name ${{ secrets.AWS_LAMBDA_LAYER_NAME }} --content S3Bucket=${{ secrets.AWS_S3_BUCKET_CODE_NAME }},S3Key=${{ vars.DEPENDENCIES_ZIP_NAME }}.zip
 
       - name: Upload code to Lambda
-        run: aws lambda update-function-code --function-name ${{ secrets.AWS_LAMBDA_FUNCTION_NAME }} --s3-bucket ${{ secrets.AWS_S3_BUCKET_CODE_NAME }} --s3-key {{ vars.CODE_ZIP_NAME }}.zip
+        run: aws lambda update-function-code --function-name ${{ secrets.AWS_LAMBDA_FUNCTION_NAME }} --s3-bucket ${{ secrets.AWS_S3_BUCKET_CODE_NAME }} --s3-key ${{ vars.CODE_ZIP_NAME }}.zip
 
       - name: Dependencies step 2 - Fetch new layer version
         run: echo "AWS_LAMBDA_LAYER_VERSION=$(aws lambda list-layer-versions --layer-name ${{ secrets.AWS_LAMBDA_LAYER_NAME }} --query 'LayerVersions[0].Version' --output text)" >> $GITHUB_ENV
