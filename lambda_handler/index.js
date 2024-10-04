@@ -190,7 +190,6 @@ exports.handler = serverless(
   {
     binary: ['*/*'],
     provider: 'aws',
-    basePath: '/_server',
     request: (request) => {
       delete request.body
     },
