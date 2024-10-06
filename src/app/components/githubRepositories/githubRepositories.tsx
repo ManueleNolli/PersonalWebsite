@@ -30,6 +30,14 @@ export default function GithubRepositories() {
       }
     }
 
+    const repoName = () => {
+      if (repo.name.length > 15)
+        return repo.name.substring(0, 15) + '...'
+
+      return repo.name
+
+    }
+
     return (
       <div
         key={repo.name}
@@ -40,7 +48,7 @@ export default function GithubRepositories() {
         {renderHeader()}
 
         {/*TITLE*/}
-        <div className={'p-0 m-2 hover:text-primary-900 text-primary-800 text-2xl font-semibold'}>{repo.name}</div>
+        <div className={'p-0 m-2 hover:text-primary-900 text-primary-800 text-2xl font-semibold'}>{repoName()}</div>
 
         {/*SUBTITLE*/}
         <Button

@@ -40,7 +40,7 @@ export default function useGithubRepositories() {
   }
 
   const fetchGithubRepositories = async () => {
-    const url = nextFetchCursor ? `/github?afterCursor=${nextFetchCursor}&projectRepositoriesLength=${projects_repositories_length}` : '/github'
+    const url = nextFetchCursor ? `/github?afterCursor=${nextFetchCursor}&projectRepositoriesLength=${projects_repositories_length}` : `/github?projectRepositoriesLength=${projects_repositories_length}`
 
     const repositoriesResponse = await fetch(url, {
       method: 'GET',
@@ -48,6 +48,7 @@ export default function useGithubRepositories() {
         'Content-Type': 'application/json',
       },
     })
+    console.log("repositoriesResponse", repositoriesResponse)
 
     if (!repositoriesResponse.ok) {
       throw new Error('Error fetching repositories')
@@ -61,6 +62,8 @@ export default function useGithubRepositories() {
     })
 
     setRepos((repos) => [...repos, ...repositoriesResponseJson.repos])
+    console.log("repositoriesResponseJson", repositoriesResponseJson)
+    console.log("repositoriesResponseJson.afterCursor", repositoriesResponseJson.afterCursor)
     setNextFetchCursor(repositoriesResponseJson.afterCursor)
   }
 
