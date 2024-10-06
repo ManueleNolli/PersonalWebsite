@@ -77,15 +77,18 @@ export default function GithubRepositories() {
             md:grid-cols-2 md:gap-x-2 md:gap-y-6
             xl:grid-cols-3 xl:gap-x-4 xl:gap-y-8
             2xl:grid-cols-4 2xl:gap-x-4 2xl:gap-y-8
-       justify-items-center mx-[5%] py-4 "
+            justify-items-center mx-[5%] py-4 "
       >
         {Array.from({ length: projects_repositories_length }).map((_, index) => (
-          <Skeleton key={index} className="md:max-w-96 max-w-[90%] max-h-96 min-h-80 bg-white/95 flex flex-col p-4 rounded animate-pulse">
-            <div className={'p-0 m-2 bg-gray-200 min-h-10 w-[80%] rounded '} />
-            <div className={'p-0 m-2 bg-gray-200 min-h-8 w-1/2 rounded'} />
-            <div className={'p-0 m-2 bg-gray-200 min-h-32 w-[90%] rounded'} />
-            <div className={'p-0 m-2 bg-gray-200 min-h-8 w-1/4 rounded'} />
-          </Skeleton>
+
+          <div key={index}
+                              className="w-96 max-w-[90%] md:w-full max-h-96 min-h-80 bg-white/95 flex flex-col p-4 rounded "
+          >
+            <Skeleton className={'p-0 m-2 bg-gray-200 min-h-10  rounded animate-pulse'} width={"80%"}/>
+            <Skeleton className={'p-0 m-2 bg-gray-200 min-h-8  rounded'} width={"50%"}/>
+            <Skeleton className={'p-0 m-2 bg-gray-200 min-h-32  rounded'} width={"90%"}/>
+            <Skeleton className={'p-0 m-2 bg-gray-200 min-h-8  rounded'} width={"25%"}/>
+          </div>
         ))}
       </div>
     )
@@ -108,7 +111,6 @@ export default function GithubRepositories() {
             md:grid-cols-2 md:gap-x-2 md:gap-y-6
             xl:grid-cols-3 xl:gap-x-4 xl:gap-y-8
             2xl:grid-cols-4 2xl:gap-x-4 2xl:gap-y-8
-
             justify-items-center mx-[5%]"
         >
           {repos.map((repo) => renderCard(repo))}
