@@ -1,9 +1,22 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import {  Repository } from '@/app/services/github'
+import { config } from '@/app/constants/config'
+
+type Repository = {
+  name: string
+  url: string
+  description: string
+  owned: boolean // If I own the repository
+  isFork: string
+  updatedAt: Date
+  ownerName: string
+  ownerUrl: string
+}
 
 export default function useGithubRepositories() {
+    const { projects_repositories_length } = config
+
   const [repos, setRepos] = useState<Repository[]>([])
   const [nextFetchCursor, setNextFetchCursor] = useState<string | null>(null)
   const [loadingStart, setLoadingStart] = useState<boolean>(true)
@@ -27,8 +40,7 @@ export default function useGithubRepositories() {
   }
 
   const fetchGithubRepositories = async () => {
-
-    const url = nextFetchCursor ? `/api/github?nextFetchCursor=${nextFetchCursor}` : '/api/github'
+    const url = nextFetchCursor ? `/github?nextFetchCursor=${nextFetchCursor}&projectRepositoriesLength=${projects_repositories_length}` : '/github'
 
     const repositoriesResponse = await fetch(url, {
       method: 'GET',
