@@ -1,4 +1,12 @@
-[submodule "cdk"]
-	path = cdk
-	url = https://github.com/ManueleNolli/PersonalWebsiteAws
+[submodule "emailService"]
+	path = emailService
+	url = https://github.com/ManueleNolli/AwsLambdaSimpleEmailService.git
+	branch = main
+[submodule "githubService"]
+	path = githubService
+	url = https://github.com/ManueleNolli/AwsLambdaGithubRepositoriesService.git
+	branch = main
+[submodule "iacCdk"]
+	path = iacCdk
+	url = https://github.com/ManueleNolli/PersonalWebsiteAws.git
 	branch = main

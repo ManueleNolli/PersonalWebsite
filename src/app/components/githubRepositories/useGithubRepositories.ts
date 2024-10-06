@@ -48,7 +48,6 @@ export default function useGithubRepositories() {
         'Content-Type': 'application/json',
       },
     })
-    console.log("repositoriesResponse", repositoriesResponse)
 
     if (!repositoriesResponse.ok) {
       throw new Error('Error fetching repositories')
@@ -62,8 +61,6 @@ export default function useGithubRepositories() {
     })
 
     setRepos((repos) => [...repos, ...repositoriesResponseJson.repos])
-    console.log("repositoriesResponseJson", repositoriesResponseJson)
-    console.log("repositoriesResponseJson.afterCursor", repositoriesResponseJson.afterCursor)
     setNextFetchCursor(repositoriesResponseJson.afterCursor)
   }
 
