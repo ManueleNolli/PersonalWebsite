@@ -1,7 +1,6 @@
 'use client'
 
-import useGithubRepositories from '@/app/components/githubRepositories/useGithubRepositories'
-import { Repository } from '@/app/services/github'
+import useGithubRepositories, { Repository } from '@/app/components/githubRepositories/useGithubRepositories'
 import { Button } from 'primereact/button'
 import { Image } from 'primereact/image'
 import React from 'react'

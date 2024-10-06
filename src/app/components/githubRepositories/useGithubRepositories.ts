@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { config } from '@/app/constants/config'
 
-type Repository = {
+export type Repository = {
   name: string
   url: string
   description: string
