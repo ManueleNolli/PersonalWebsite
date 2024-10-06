@@ -2,8 +2,10 @@
 
 import React, { useRef, useState } from 'react'
 import { Toast } from 'primereact/toast'
+import { config } from '@/app/constants/config'
 
 export default function UseContactMe() {
+  const { contact_mail, sender_mail } = config
   const toast = useRef<Toast>(null)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -52,12 +54,20 @@ export default function UseContactMe() {
 
   const onFormSubmit = async () => {
     setIsLoading(true)
-    const response = await fetch('/api/mail', {
+
+    const data = {
+      source: sender_mail,
+      to: contact_mail,
+      subject: `New message from ${name} - ${email} - ${new Date().toLocaleString()} by manuelenolli.ch`,
+      message: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\nMessage: ${message}`,
+    }
+
+    const response = await fetch('/mail', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ name, email, subject, message }),
+      body: JSON.stringify(data),
     })
 
     setIsLoading(false)
