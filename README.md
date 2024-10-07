@@ -54,6 +54,7 @@ The website is hosted on AWS using the following services:
 - [Amazon Route 53](https://aws.amazon.com/route53/): Domain name management
 - [Amazon Certificate Manager](https://aws.amazon.com/certificate-manager/): SSL certificates
 - [Amazon WAF](https://aws.amazon.com/waf/): Web application firewall
+- [Amazon Simple Email Service](https://aws.amazon.com/ses/): Manage email
 
 The AWS Infrastructure can be seen in the following diagram:
 ![AWS Infrastructure](./.github/assets/aws_diagram.png)
@@ -76,6 +77,7 @@ This section provides an overview of the estimated costs for hosting a personal 
 | **API Gateway**                        | First 1,000,000 HTTP API calls per month                                                                                                                           | [API Gateway Pricing](https://aws.amazon.com/api-gateway/pricing/) |
 | **Lambda**                             | 1,000,000 free requests per month                                                                                                                                  | [Lambda Pricing](https://aws.amazon.com/lambda/pricing/)           |
 | **S3 (Amazon Simple Storage Service)** | 5GB of standard storage, 20,000 GET requests, and 2,000 PUT requests for the first 12 months. For a personal website, the cost would be less than $3.00 per month. | [S3 Pricing](https://aws.amazon.com/s3/pricing/)                   |
+| **Simple Email Service**               | 3,000 messages per year                                                                                                                                            | [SES Pricing](https://aws.amazon.com/ses/pricing/)                 |
 
 #### Additional Resources
 
