@@ -128,6 +128,7 @@ export const config = {
   projects_repositories_length: 4,
   contact_phrase: 'Would you like to ask me something or just say hello? Feel free to send me a message, I will be happy to answer you.',
   contact_mail: 'manuele.nolli.01@gmail.com',
+  contact_mail2: 'me@manuelenolli.ch',
   sender_mail: 'info@manuelenolli.ch',
   contact_linkedin: 'https://www.linkedin.com/in/manuele-nolli',
   contact_github: 'https://github.com/ManueleNolli',
