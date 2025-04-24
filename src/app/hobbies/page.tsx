@@ -12,7 +12,7 @@ export default function Hobbies() {
 
   const renderIntroduction = () => {
     return (
-      <div className="header-item scroll-mt-[8%] text-primary-50 flex md:flex-row flex-col min-h-svh " id="introduction" header-label="Introduction">
+      <div className="header-item scroll-mt-[8%] text-primary-50 flex md:flex-row flex-col min-h-svh " id="introduction" header-label="Introduction" >
         <div className="flex items-center justify-center flex-col w-full">
           <AnimatedOnScroll className=" mb-6 font-bold text-3xl md:text-5xl">Hobbies Introduction</AnimatedOnScroll>
           <AnimatedOnScroll className=" w-3/4 text-center md:text-justify leading-loose text-lg md:text-2xl ">
@@ -29,7 +29,7 @@ export default function Hobbies() {
 
   const renderMixology = () => {
     return (
-      <div className="header-item scroll-mt-[8%] text-primary-50 flex md:flex-row flex-col min-h-svh" id="mixology" header-label="Mixology">
+      <div className="header-item scroll-mt-[8%] text-primary-50 flex md:flex-row flex-col min-h-svh" id="mixology" header-label="Mixology" >
         <div className="md:w-1/2 w-full h-[50vh] md:h-screen px-8 md:px-0">
           <PolygonMaskParticles url={'/assets/cocktail.svg'} id="particlesCocktail" />
         </div>
@@ -41,7 +41,7 @@ export default function Hobbies() {
           </AnimatedOnScroll>
 
           <AnimatedOnScroll className=" w-3/4 text-center md:text-justify leading-loose text-lg md:text-2xl mt-8">
-            Here you can find my <Link className={'font-extrabold hover:text-primary-600'} href={'hobbies/mixology'}>calculator</Link> with all the recipes to make your own home-made liqueurs. 🥃
+            Here you can find my <a className={'font-extrabold hover:text-primary-600'} href={'hobbies/mixology'}>calculator</a> with all the recipes to make your own home-made liqueurs. 🥃
           </AnimatedOnScroll>
         </div>
 

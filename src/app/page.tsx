@@ -33,7 +33,7 @@ export default function Home() {
           <AnimatedText className=" font-bold leading-relaxed md:text-6xl text-4xl text-primary-650">{home_name}</AnimatedText>
           <AnimatedText className="md:text-4xl text-2xl text-primary-600">{home_job}</AnimatedText>
         </div>
-        <Link href={'aboutme'}>
+        <Link href={'#aboutme'}>
           <Image src="/assets/arrow.png" alt="Scroll down" imageClassName="md:w-16 w-8 absolute animate-bounce bottom-10 mr-auto ml-auto left-0 right-0" />
         </Link>
       </div>
@@ -166,9 +166,9 @@ export default function Home() {
   const renderHobbies = () => {
     return (
       <div className="header-item scroll-mt-[8%]" header-label="Hobbies" id="hobbies">
-        <Link href={'hobbies'} className="text-primary-600 hover:text-primary-800">
+        <a href={'hobbies'} className="text-primary-600 hover:text-primary-800">
           Hobbies
-        </Link>
+        </a>
       </div>
     )
   }

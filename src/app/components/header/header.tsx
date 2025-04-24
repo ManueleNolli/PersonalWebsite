@@ -6,6 +6,7 @@ import { config } from '@/app/constants/config'
 import React from 'react'
 import { Divide as Hamburger } from 'hamburger-react'
 
+
 export default function Header() {
   const { menuList, isMobileOpen, setIsMobileOpen } = useHeader()
   const { home_name } = config
@@ -21,7 +22,9 @@ export default function Header() {
           <div id="Home" className="header-title flex max-w-[25%] flex-grow justify-between">
             <div
               className={`w-full text-primary-650 hover:text-primary-750 text-2xl font-bold leading-relaxed font-mono text-center content-center cursor-pointer`}
-              onClick={() => (window.location.href = '#')}
+              onClick={() => {
+                window.location.href = '#'
+              }}
             >
               {home_name}
             </div>
