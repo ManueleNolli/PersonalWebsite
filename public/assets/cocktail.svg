@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" style="isolation:isolate" width="500" height="500" viewBox="0 0 500 500">
+  <g fill="none" fill-rule="evenodd" stroke="#000" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="3" stroke-width="1">
+    <!-- Glass bowl -->
+    <path fill="none" fill-rule="evenodd" stroke="#000" stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="3" stroke-width="1" d="M120,60 L380,60 L250,220 Z"/>
+    <!-- Stem -->
+    <path d="M250,220 L250,360"/>
+    <!-- Base -->
+    <path d="M190,360 L310,360"/>
+  </g>
+</svg>
