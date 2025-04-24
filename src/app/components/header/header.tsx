@@ -3,13 +3,33 @@
 import useHeader, { MenuLabel } from '@/app/components/header/useHeader'
 import { Button } from 'primereact/button'
 import { config } from '@/app/constants/config'
-import React from 'react'
+import React, { useState } from 'react'
 import { Divide as Hamburger } from 'hamburger-react'
 
 
 export default function Header() {
-  const { menuList, isMobileOpen, setIsMobileOpen } = useHeader()
+  const {
+    menuList, isMobileOpen, setIsMobileOpen, isHomePage, goBack,
+  } = useHeader()
   const { home_name } = config
+
+
+  const renderBackIcon = () => {
+    return (
+      <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <g>
+            <g>
+              <rect width="24" height="24" transform="rotate(90 12 12)" opacity="0"></rect>
+              <path d="M13.83 19a1 1 0 0 1-.78-.37l-4.83-6a1 1 0 0 1 0-1.27l5-6a1 1 0 0 1 1.54 1.28L10.29 12l4.32 5.36a1 1 0 0 1-.78 1.64z"></path>
+            </g>
+          </g>
+        </g>
+      </svg>
+    )
+  }
 
   return (
     <header>
@@ -19,7 +39,16 @@ export default function Header() {
         style={{ transition: 'top 0.5s ease-in-out' }}
       >
         <div className="flex w-full h-full">
-          <div id="Home" className="header-title flex max-w-[25%] flex-grow justify-between">
+          <div id="Home" className={`header-title flex flex-grow  ${isHomePage ? 'max-w-[25%]' : 'max-w-[30%]'}`}>
+            {
+              !isHomePage && (
+                <div
+                  onClick={goBack}
+                  className={`hover:text-primary-750 text-primary-650 w-16 flex justify-center items-center cursor-pointer`}
+                >
+                  {renderBackIcon()}
+                </div>
+              )}
             <div
               className={`w-full text-primary-650 hover:text-primary-750 text-2xl font-bold leading-relaxed font-mono text-center content-center cursor-pointer`}
               onClick={() => {

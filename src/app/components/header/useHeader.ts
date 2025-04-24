@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 export type MenuLabel = {
   label: string
@@ -9,11 +10,15 @@ export type MenuLabel = {
 }
 
 export default function useHeader() {
+  const pathname = usePathname()
+
   const [menuList, setMenuList] = useState<MenuLabel[]>([])
   const [prevoiusScrollPosition, setPrevoiusScrollPosition] = useState(0)
   const [headerDiv, setHeaderDiv] = useState<HTMLElement | null>()
   const [isMobile, setIsMobile] = useState(false)
   const [isMobileOpen, setIsMobileOpen] = useState(false)
+  const [isHomePage, setIsHomePage] = useState(true)
+  const [nextBackPage, setNextBackPage] = useState<string | null>(null)
 
   useEffect(() => {
     // helper to find header items
@@ -62,7 +67,7 @@ export default function useHeader() {
           prevMenuList.map((menu) => ({
             ...menu,
             isCurrent: menu.url === currentSection,
-          }))
+          })),
         )
       }
     }
@@ -128,10 +133,44 @@ export default function useHeader() {
     }
   }, [])
 
+
+  useEffect(() => {
+
+    const isHomePage = () => {
+      console.log('pathname', pathname)
+      if (pathname !== '/') {
+        setIsHomePage(false)
+      }
+    }
+
+    const computeNextBackPage = () => {
+      if (pathname === '/') {
+        setNextBackPage(null)
+      } else {
+        // Check if last char is '/'
+        const fixedPath = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
+        const splittedPathname = fixedPath.split('/')
+        console.log('splittedPathname', splittedPathname)
+        setNextBackPage(splittedPathname[splittedPathname.length - 2])
+      }
+    }
+
+    isHomePage()
+    computeNextBackPage()
+  }, [pathname])
+
+  const goBack = () => {
+    console.log('going back to', nextBackPage)
+    window.location.href = `/${nextBackPage}`
+  }
+
+
   return {
     menuList,
     isMobileOpen,
     setIsMobileOpen,
     isMobile,
+    isHomePage,
+    goBack,
   }
 }
