@@ -150,7 +150,6 @@ export default function useHeader() {
         // Check if last char is '/'
         const fixedPath = pathname.endsWith('/') ? pathname.slice(0, -1) : pathname
         const splittedPathname = fixedPath.split('/')
-        console.log('splittedPathname', splittedPathname)
         setNextBackPage(splittedPathname[splittedPathname.length - 2])
       }
     }
@@ -160,7 +159,6 @@ export default function useHeader() {
   }, [pathname])
 
   const goBack = () => {
-    console.log('going back to', nextBackPage)
     window.location.href = `/${nextBackPage}`
   }
 

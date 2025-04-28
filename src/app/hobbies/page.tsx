@@ -1,7 +1,6 @@
 import React from 'react'
 import AnimatedOnScroll from '@/app/components/animatedOnScroll/animatedOnScroll'
 import PolygonMaskParticles from '@/app/components/particles/polygonMaskParticles'
-import Link from 'next/link'
 
 
 export default function Hobbies() {
