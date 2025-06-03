@@ -16,12 +16,8 @@ export type SliderProps = {
 
 export default function Slider({ label, unit, value, onChange, min, max, step }: SliderProps) {
 
-  const handleSliderChange = (e: SliderChangeEvent) => {
-    onChange(e.value as number)
-  }
-
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log('Slider input change:', e.target.value)
     const newValue = parseFloat(e.target.value)
     if (newValue >= min && newValue <= max) {
       onChange(newValue)
@@ -31,10 +27,12 @@ export default function Slider({ label, unit, value, onChange, min, max, step }:
   return (
     <div className="flex flex-col w-full ">
       <label htmlFor={label} className="text-primary-600 text-sm font-bold text-center">{label}</label>
-      <div className="flex w-full items-center">
-        <SliderPrimeReact id={label} value={value} min={min} max={max} step={step} onChange={handleSliderChange} className={'flex-grow'}
+      <div className="flex w-full items-center ">
+        <input type="range" id={label} value={value} min={min} max={max} step={step}
+               className="flex-grow h-[5px] rounded-lg cursor-pointer appearance-none accent-primary-400 bg-gray-200"
+               onChange={handleInputChange}
         />
-        <input type="number" id={label} value={value} min={min} max={max} onChange={handleInputChange} className={'ml-4 p-1 min-w-[4rem] bg-primary-50 rounded-md focus:outline-none text-right'} />
+        <input type="number" id={label} value={value} min={min} max={max} onChange={handleInputChange} className={'ml-4 p-1 min-w-[4rem] bg-primary-50 rounded-md focus:outline-none text-right '} />
         <span className="text-primary-600 text-sm font-bold ml-1 text-left min-w-[3rem]">{unit}</span>
       </div>
     </div>
