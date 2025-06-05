@@ -3,7 +3,7 @@
 import React from 'react'
 import AnimatedOnScroll from '@/app/components/animatedOnScroll/animatedOnScroll'
 import Slider from '@/app/components/slider/slider'
-import usePage from '@/app/hobbies/mixology/usePage'
+import usePage, { Flavour, Intensity, MacerationTime } from '@/app/hobbies/mixology/usePage'
 import RadioGroup from '@/app/components/radioGroup/radioGroup'
 
 const castValue = (value: number, step: number) => {
@@ -15,26 +15,37 @@ const castValue = (value: number, step: number) => {
 export default function Page() {
   const {
     alcohol,
+    alcoholMetadata,
     handleAlcoholChange,
-    water,
-    handleWaterChange,
     finalPercentage,
+    finalPercentageMetadata,
     handleFinalPercentageChange,
+    sugarContent,
+    sugarContentMetadata,
+    handleSugarContentChange,
     zest,
+    zestMetadata,
     handleZestChange,
     sugar,
-    handleSugarChange,
-    sugarContent,
-    handleSugarContentChange,
+    water,
     totalVolume,
-    handleTotalVolumeChange,
     intensity,
-    handleIntensityChange,
+    intensityOptions,
     macerationTime,
+    macerationTimeOptions,
     handleMacerationTimeChange,
     flavour,
-    handleFlavourChange,
+    flavourOptions,
   } = usePage()
+
+  function renderDependentValue(name: string, unit: string, value: number, step: number) {
+    return (
+      <div className="flex flex-col w-full justify-center items-center">
+        <label className="text-primary-600 text-sm font-bold text-center">{name}</label>
+        <span>{castValue(value, step)} {unit}</span>
+      </div>
+    )
+  }
 
   return (
     <div className="	overflow-hidden font-mono bg-primary-50 flex pt-[8vh] min-h-screen ">
@@ -46,28 +57,31 @@ export default function Page() {
 
         <div className="w-full h-full flex md:flex-row flex-col gap-4 p-4">
           <div className="order-1 md:order-1 flex-grow-[2] basis-0 h-full space-y-8">
-            <Slider label="Alcohol 96%" unit={'mL'} value={castValue(alcohol.value, alcohol.step)} onChange={handleAlcoholChange} min={castValue(alcohol.min, alcohol.step)}
-                    max={castValue(alcohol.max, alcohol.step)} step={alcohol.step} />
-            <Slider label="Water" unit={'mL'} value={castValue(water.value, water.step)} onChange={handleWaterChange} min={castValue(water.min, water.step)} max={castValue(water.max, water.step)}
-                    step={water.step} />
-            <Slider label="Sugar" unit={'g'} value={castValue(sugar.value, sugar.step)} onChange={handleSugarChange} min={castValue(sugar.min, sugar.step)} max={castValue(sugar.max, sugar.step)}
-                    step={sugar.step} />
-            <Slider label="Zest" unit={'g'} value={castValue(zest.value, zest.step)} onChange={handleZestChange} min={castValue(zest.min, zest.step)} max={castValue(zest.max, zest.step)}
-                    step={zest.step} />
-            <RadioGroup label={'Maceration Time'} value={macerationTime.value} options={macerationTime.options} onChange={handleMacerationTimeChange} />
+            <Slider label="Alcohol 96%" unit={'mL'} value={castValue(alcohol, alcoholMetadata.step)} onChange={handleAlcoholChange} min={castValue(alcoholMetadata.min, alcoholMetadata.step)}
+                    max={castValue(alcoholMetadata.max, alcoholMetadata.step)} step={alcoholMetadata.step} />
+            <Slider label="Liqueur alcohol" unit={'%'} value={castValue(finalPercentage, finalPercentageMetadata.step)} onChange={handleFinalPercentageChange}
+                    min={castValue(finalPercentageMetadata.min, finalPercentageMetadata.step)} max={castValue(finalPercentageMetadata.max, finalPercentageMetadata.step)}
+                    step={finalPercentageMetadata.step} />
+
+            <Slider label="Sugar content" unit={'g/L'} value={castValue(sugarContent, sugarContentMetadata.step)} onChange={handleSugarContentChange} min={castValue(sugarContentMetadata.min, sugarContentMetadata.step)}
+                    max={castValue(sugarContentMetadata.max, sugarContentMetadata.step)} step={sugarContentMetadata.step} />
+
+            <Slider label="Zest" unit={'g'} value={castValue(zest, zestMetadata.step)} onChange={handleZestChange} min={castValue(zestMetadata.min, zestMetadata.step)}
+                    max={castValue(zestMetadata.max, zestMetadata.step)}
+                    step={zestMetadata.step} />
+            <RadioGroup<MacerationTime> label={'Maceration Time'} value={macerationTime} options={macerationTimeOptions} onChange={handleMacerationTimeChange} />
           </div>
           <div className="order-3 md:order-2 flex-grow-[1] basis-0 bg-green-500 h-full">
             BOTTLE
           </div>
           <div className="order-2 md:order-3 flex-grow-[2] basis-0  h-full space-y-4">
-            <Slider label="Liqueur alcohol" unit={'%'} value={castValue(finalPercentage.value, finalPercentage.step)} onChange={handleFinalPercentageChange}
-                    min={castValue(finalPercentage.min, finalPercentage.step)} max={castValue(finalPercentage.max, finalPercentage.step)} step={alcohol.step} />
-            <Slider label="Sugar content" unit={'g/L'} value={castValue(sugarContent.value, sugarContent.step)} onChange={handleSugarContentChange} min={castValue(sugarContent.min, sugarContent.step)}
-                    max={castValue(sugarContent.max, sugarContent.step)} step={sugarContent.step} />
-            <Slider label="Total Volume" unit={'mL'} value={castValue(totalVolume.value, totalVolume.step)} onChange={handleTotalVolumeChange} min={castValue(totalVolume.min, totalVolume.step)}
-                    max={castValue(totalVolume.max, totalVolume.step)} step={totalVolume.step} />
-            <RadioGroup label={'Intensity'} value={intensity.value} options={intensity.options} onChange={handleIntensityChange} />
-            <RadioGroup label={'Flavour'} value={flavour.value} options={flavour.options} onChange={handleFlavourChange} />
+            {renderDependentValue('Water', 'mL', water, 1)}
+            {renderDependentValue('Sugar', 'g', sugar, 1)}
+            {renderDependentValue('Total Volume', 'mL', totalVolume, 1)}
+            <RadioGroup<Intensity> label={'Intensity'} value={intensity} options={intensityOptions} onChange={() => {
+            }} disabled />
+            <RadioGroup<Flavour> label={'Flavour'} value={flavour} options={flavourOptions} onChange={() => {
+            }} disabled />
           </div>
         </div>
 
