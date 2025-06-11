@@ -147,5 +147,17 @@ export const config = {
       title: 'Error icons created by Freepik - Flaticon',
       url: 'https://www.flaticon.com/free-icons/error',
     },
+    {
+      title: 'Lemon icons created by designbydai - Flaticon',
+      url: 'https://www.flaticon.com/free-icons/lemon',
+    },
+    {
+      title: 'Leaves icons created by Freepik - Flaticon',
+      url: 'https://www.flaticon.com/free-icons/leaves',
+    },
+        {
+      title: 'Peppermint icons created by Freepik - Flaticon',
+      url: 'https://www.flaticon.com/free-icons/peppermint',
+    },
   ],
 }
