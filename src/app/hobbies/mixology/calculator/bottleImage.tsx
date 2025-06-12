@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useId, useMemo, useRef, useState } from 'react'
+import React, { useEffect,  useMemo, useRef, useState } from 'react'
 import Wave from 'react-wavify'
 import { parseToHsl, hsl } from 'polished'
 
@@ -54,8 +54,6 @@ function computeFinalColor(
   macerationPercentage: number,
 ): string {
   const dilutedHex = diluteColor(baseHex, sugar, maxSugar)
-
-  const hex = dilutedHex.replace('#', '')
 
   const desaturatedHex = desaturateByMacerationPercentage(dilutedHex, macerationPercentage)
   return `${desaturatedHex}`

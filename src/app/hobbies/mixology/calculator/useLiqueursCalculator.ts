@@ -86,24 +86,20 @@ export default function useLiqueursCalculator({ liqueur }: useLiqueursCalculator
   }
 
   const computeTotalVolume = (alcohol: number, ingredient: number, finalPercentage: number) => {
-    const result = ((alcoholPercentage * (IngredientConstants.MACERATION_PERCENTAGE / 100) * alcohol * alcohol) / (finalPercentage * (alcohol + computeWaterInIngredient(ingredient))))
-    return result
+    return ((alcoholPercentage * (IngredientConstants.MACERATION_PERCENTAGE / 100) * alcohol * alcohol) / (finalPercentage * (alcohol + computeWaterInIngredient(ingredient))))
   }
 
   const computeSugar = (totalVolume: number, sugarContent: number) => {
-    const result = totalVolume * (sugarContent / 1000)
-    return result
+    return totalVolume * (sugarContent / 1000)
   }
 
   const computeWater = (alcohol: number, totalVolume: number, sugar: number) => {
-    const result = totalVolume - computeMaceratedVolume(alcohol) - computeSugarVolume(sugar)
-    return result
+    return totalVolume - computeMaceratedVolume(alcohol) - computeSugarVolume(sugar)
   }
 
   const computeIngredient = (alcohol: number, actualRatioPer100ml: number) => {
     const alcohol100mlMultiplier = alcohol / 100
-    const ingredient = actualRatioPer100ml * alcohol100mlMultiplier
-    return ingredient
+    return actualRatioPer100ml * alcohol100mlMultiplier
   }
 
   const computeIntensity = (alcohol: number, ingredient: number) => {
