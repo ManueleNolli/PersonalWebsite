@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Flavour, Liqueur } from '@/app/constants/liqueursIngredients'
 
-const stepConstant = 1
 
-const AlcoholConstants = {
+export const AlcoholConstants = {
   MIN_VOLUME: 10, // ml
   MAX_VOLUME: 1000,
   PERCENTAGE: 96,
+  MIN_ALCOHOL_PERCENTAGE: 70,
+  MAX_ALCOHOL_PERCENTAGE: 100,
 }
 
 const SugarConstants = {
@@ -21,6 +22,14 @@ const LiqueurConstants = {
   MAX_PERCENTAGE: 45, // 45% of alcohol
 }
 
+export type StepValue = {
+  value: number
+  label: string
+}
+export const stepOptions: StepValue[] = [
+  { value: 0.1, label: 'Decimal (0.1)' },
+  { value: 1, label: 'Integer (1)' },
+]
 
 export enum Intensity {
   LIGHT = 'Light',
@@ -28,14 +37,9 @@ export enum Intensity {
   STRONG = 'Strong',
 }
 
-const intensityOptions = Object.values(Intensity).map((value) => value as Intensity)
+export const intensityOptions = Object.values(Intensity).map((value) => value as Intensity)
 
-// const IntensityThresholds = {
-//   LIGHT: 0.17,
-//   MEDIUM: 0.24,
-// }
-
-const IntensityThresholdsPercentage = {
+export const IntensityThresholdsPercentage = {
   LIGHT: 33,
   MEDIUM: 67,
 }
@@ -51,7 +55,14 @@ type useLiqueursCalculatorProps = {
   liqueur: Liqueur
 }
 
+
 export default function useLiqueursCalculator({ liqueur }: useLiqueursCalculatorProps) {
+  // Advanced settings
+  const [step, setStep] = useState<StepValue>(stepOptions[1]) // Initial step is 1 (Integer)
+  const [maxAlcohol, setMaxAlcohol] = useState<number>(AlcoholConstants.MAX_VOLUME)
+  const [alcoholPercentage, setAlcoholPercentage] = useState<number>(AlcoholConstants.PERCENTAGE)
+  const [maxSugarContent, setMaxSugarContent] = useState<number>(SugarConstants.MAX_CONTENT)
+
   // Metadata
   const macerationTimeOptions = liqueur.property.macerationTime
   const IngredientConstants = { // TODO: Actual for alcohol 96%
@@ -75,7 +86,7 @@ export default function useLiqueursCalculator({ liqueur }: useLiqueursCalculator
   }
 
   const computeTotalVolume = (alcohol: number, ingredient: number, finalPercentage: number) => {
-    const result = ((AlcoholConstants.PERCENTAGE * (IngredientConstants.MACERATION_PERCENTAGE / 100) * alcohol * alcohol) / (finalPercentage * (alcohol + computeWaterInIngredient(ingredient))))
+    const result = ((alcoholPercentage * (IngredientConstants.MACERATION_PERCENTAGE / 100) * alcohol * alcohol) / (finalPercentage * (alcohol + computeWaterInIngredient(ingredient))))
     return result
   }
 
@@ -113,11 +124,10 @@ export default function useLiqueursCalculator({ liqueur }: useLiqueursCalculator
     const minIngredient = computeIngredient(alcohol, IngredientConstants.MIN_PER_100ML)
     const maxIngredient = computeIngredient(alcohol, IngredientConstants.MAX_PER_100ML)
 
-    const step = stepConstant
     return {
       min: minIngredient,
       max: maxIngredient,
-      step,
+      step: step.value,
     }
   }
 
@@ -125,23 +135,23 @@ export default function useLiqueursCalculator({ liqueur }: useLiqueursCalculator
   const [alcohol, setAlcohol] = useState<number>(liqueur.preset.alcohol)
   const [alcoholMetadata, setAlcoholMetadata] = useState<MixologyNumberMetadata>({
     min: AlcoholConstants.MIN_VOLUME,
-    max: AlcoholConstants.MAX_VOLUME,
-    step: stepConstant,
+    max: maxAlcohol,
+    step: step.value,
   })
 
   const [finalPercentage, setFinalPercentage] = useState<number>(liqueur.preset.finalPercentage)
   const [finalPercentageMetadata, setFinalPercentageMetadata] = useState<MixologyNumberMetadata>({
     min: LiqueurConstants.MIN_PERCENTAGE,
     max: LiqueurConstants.MAX_PERCENTAGE,
-    step: 0.1,
+    step: step.value,
   })
 
 
   const [sugarContent, setSugarContent] = useState<number>(liqueur.preset.sugarContent)
   const [sugarContentMetadata, setSugarContentMetadata] = useState<MixologyNumberMetadata>({
     min: SugarConstants.MIN_CONTENT,
-    max: SugarConstants.MAX_CONTENT,
-    step: stepConstant,
+    max: maxSugarContent,
+    step: step.value,
   })
 
   const [macerationTime, setMacerationTime] = useState<string>(liqueur.preset.macerationTime)
@@ -224,6 +234,98 @@ export default function useLiqueursCalculator({ liqueur }: useLiqueursCalculator
   }
 
   // ADVANCED SETTINGS
+  const handleStepChange = (value: string) => {
+    const selectedStep = stepOptions.find((s) => s.label === value)
+    if (selectedStep) {
+      setStep(selectedStep)
+
+      // Update metadata based on the new step
+      setAlcoholMetadata({
+        ...alcoholMetadata,
+        step: selectedStep.value,
+      })
+
+      setFinalPercentageMetadata({
+        ...finalPercentageMetadata,
+        step: selectedStep.value,
+      })
+
+      setSugarContentMetadata({
+        ...sugarContentMetadata,
+        step: selectedStep.value,
+      })
+
+      setIngredientMetadata({
+        ...ingredientMetadata,
+        step: selectedStep.value,
+      })
+    }
+
+
+  }
+
+  const handleMaxAlcoholChange = (value: number) => {
+    if (value < alcoholMetadata.min){
+      console.warn(`Max alcohol cannot be less than the minimum value of ${alcoholMetadata.min} ml.`)
+      return
+    }
+
+    setMaxAlcohol(value)
+
+    // Update alcohol metadata to reflect the new max value
+    setAlcoholMetadata({
+      ...alcoholMetadata,
+      max: value,
+    })
+
+    // If current alcohol exceeds new max, adjust it
+    if (alcohol > value) {
+      handleAlcoholChange(value)
+    }
+  }
+
+  const handleAlcoholPercentageChange = (value: number) => {
+    if (value < AlcoholConstants.MIN_ALCOHOL_PERCENTAGE || value > AlcoholConstants.MAX_ALCOHOL_PERCENTAGE) {
+      console.warn(`Alcohol percentage must be between 0 and 100.`)
+      return
+    }
+
+    setAlcoholPercentage(value)
+
+    // Update final percentage metadata to reflect the new alcohol percentage
+    setFinalPercentageMetadata({
+      ...finalPercentageMetadata,
+      step: value,
+    })
+
+    // If current final percentage exceeds new alcohol percentage, adjust it
+    if (finalPercentage > value) {
+      handleFinalPercentageChange(value)
+    }
+
+    handleAlcoholChange(alcohol) // Recalculate alcohol based on the new percentage
+
+  }
+
+  const handleMaxSugarContentChange = (value: number) => {
+    if (value < sugarContentMetadata.min) {
+      console.warn(`Max sugar content cannot be less than the minimum value of ${sugarContentMetadata.min} g/L.`)
+      return
+    }
+
+    setMaxSugarContent(value)
+
+    // Update sugar content metadata to reflect the new max value
+    setSugarContentMetadata({
+      ...sugarContentMetadata,
+      max: value,
+    })
+
+    // If current sugar content exceeds new max, adjust it
+    if (sugarContent > value) {
+      handleSugarContentChange(value)
+    }
+  }
 
   return {
     alcohol,
@@ -242,11 +344,19 @@ export default function useLiqueursCalculator({ liqueur }: useLiqueursCalculator
     water,
     totalVolume,
     intensity,
-    intensityOptions,
     macerationTime,
     macerationTimeOptions,
     handleMacerationTimeChange,
     flavour,
+    step,
+    handleStepChange,
+    maxAlcohol,
+    handleMaxAlcoholChange,
+    alcoholPercentage,
+    handleAlcoholPercentageChange,
+    maxSugarContent,
+    handleMaxSugarContentChange,
+    computeTotalVolume
   }
 
 }

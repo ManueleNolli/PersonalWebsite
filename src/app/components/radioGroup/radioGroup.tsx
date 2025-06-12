@@ -22,7 +22,7 @@ export default function RadioGroup<T extends string | number>({ label, value, op
   return (
     <div className="flex flex-col w-full justify-center items-center">
       <label htmlFor={label} className="text-primary-600 text-sm font-bold text-center">{label}</label>
-      <div className="inline-flex rounded-lg overflow-hidden mt-2  border border-gray-200">
+      <div className="inline-flex rounded-lg overflow-hidden mt-2 border border-gray-200">
         {options.map((option, index) => {
           const isSelected = value === option
 

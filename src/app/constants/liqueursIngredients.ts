@@ -16,6 +16,11 @@ type LiqueurProperty = {
   maxIngredientPer100ml: number
   ingredientWaterPercentage: number
   macerationTime: string[]
+  colors: {
+    light: string
+    medium: string
+    strong: string
+  },
   computeFlavour: (macerationTime: string) => Flavour
 }
 
@@ -45,6 +50,11 @@ export const liqueurs: Liqueur[] = [
       maxIngredientPer100ml: 30,
       ingredientWaterPercentage: 70,
       macerationTime: ['1 day', '2 days', '3 days'],
+      colors: {
+        light: '#FFF9C4',
+        medium: '#FFEB3B',
+        strong: '#FBC02D',
+      },
       computeFlavour: (macerationTime: string) => {
         switch (macerationTime) {
           case '1 day':
@@ -77,6 +87,11 @@ export const liqueurs: Liqueur[] = [
       maxIngredientPer100ml: 30,
       ingredientWaterPercentage: 70,
       macerationTime: ['12 hours', '24 hours', '36 hours'],
+      colors: {
+        light: '#A8D5BA',
+        medium: '#6B8E23',
+        strong: '#556B2F',
+      },
       computeFlavour: (macerationTime: string) => {
         switch (macerationTime) {
           case '12 hours':
@@ -110,6 +125,11 @@ export const liqueurs: Liqueur[] = [
       maxIngredientPer100ml: 100,
       ingredientWaterPercentage: 70,
       macerationTime: ['12 hours', '24 hours', '36 hours'],
+      colors: {
+        light: '#A8D5BA',
+        medium: '#6B8E23',
+        strong: '#556B2F',
+      },
       computeFlavour: (macerationTime: string) => {
         switch (macerationTime) {
           case '12 hours':
