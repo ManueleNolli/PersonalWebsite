@@ -166,9 +166,30 @@ export default function Home() {
   const renderHobbies = () => {
     return (
       <div className="header-item scroll-mt-[8%]" header-label="Hobbies" id="hobbies">
-        <a href={'hobbies'} className="text-primary-600 hover:text-primary-800">
-          Hobbies
-        </a>
+        <div className="flex items-center justify-center flex-col w-full text-primary-50 p-16">
+          <AnimatedOnScroll className=" mb-6 font-bold text-3xl md:text-5xl">
+            <a className={'hover:text-primary-600 mb-6 font-bold text-3xl md:text-5xl'} href={'hobbies'}>
+              Hobbies
+            </a>
+          </AnimatedOnScroll>
+          <AnimatedOnScroll className=" w-3/4 text-center md:text-justify leading-loose text-lg md:text-2xl max-w-[40%]">
+            <a className={'hover:text-primary-600'} href={'hobbies'}>
+            A space where I share some of my favorite passions. From the creativity of mixology to the art and detail of photography.
+            </a>
+          </AnimatedOnScroll>
+
+          <div className={'mt-24'}>
+            <AnimatedOnScroll className=" mb-6 font-bold text-xl md:text-3xl text-center">
+              Highlights
+            </AnimatedOnScroll>
+            <AnimatedOnScroll>
+              <a className={'hover:text-primary-600 text-lg'} href={'hobbies/mixology'}>
+                1. Liqueurs Calculator
+              </a>
+            </AnimatedOnScroll>
+
+          </div>
+        </div>
       </div>
     )
   }
