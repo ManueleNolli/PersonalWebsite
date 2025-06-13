@@ -20,6 +20,6 @@ export default function PolygonMaskParticles({ url, id }: ParticlesProps) {
     }
   }, [url])
 
-  // @ts-ignore
+  // @ts-expect-error options type do not match but it works
   return <TSParticles className="particlesNormal" init={init} options={options} id={id} />
 }

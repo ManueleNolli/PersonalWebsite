@@ -9,9 +9,10 @@ export type ButtonGroupProps<T> = {
   options: T[]
   // eslint-disable-next-line no-unused-vars
   onChange: (value: T) => void
+  disabled?: boolean
 }
 
-export default function RadioGroup<T extends string | number>({ label, value, options, onChange }: ButtonGroupProps<T>) {
+export default function RadioGroup<T extends string | number>({ label, value, options, onChange, disabled }: ButtonGroupProps<T>) {
 
   const handleButtonChange = (e: RadioButtonChangeEvent) => {
     const option = e.value as T
@@ -21,7 +22,7 @@ export default function RadioGroup<T extends string | number>({ label, value, op
   return (
     <div className="flex flex-col w-full justify-center items-center">
       <label htmlFor={label} className="text-primary-600 text-sm font-bold text-center">{label}</label>
-      <div className="inline-flex rounded-lg overflow-hidden mt-2  border border-gray-200">
+      <div className="inline-flex rounded-lg overflow-hidden mt-2 border border-gray-200">
         {options.map((option, index) => {
           const isSelected = value === option
 
@@ -30,12 +31,13 @@ export default function RadioGroup<T extends string | number>({ label, value, op
               key={option}
               className={`
               flex items-center px-4 py-2 cursor-pointer font-bold text-sm
-              ${isSelected ? 'bg-primary-400 text-primary-50' : 'text-primary-400'}
+              ${isSelected ? disabled ? 'bg-primary-200 text-primary-50' : 'bg-primary-400 text-primary-50' : disabled ? 'text-primary-300': 'text-primary-400'}
               ${index !== options.length - 1 ? 'border-r' : ''}
               transition-colors
             `}
             >
               <RadioButton
+                disabled={disabled}
                 inputId={String(option)}
                 name="group"
                 value={option}
