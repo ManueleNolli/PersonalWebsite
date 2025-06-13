@@ -2,7 +2,6 @@
 
 import dynamic from 'next/dynamic'
 import { useState } from 'react'
-// import ForceGraph2D from 'react-force-graph-2d'
 const ForceGraph2D = dynamic(() => import('react-force-graph-2d'), { ssr: false })
 
 
@@ -11,6 +10,7 @@ type LiqueurNodeProps = {
 }
 
 export default function LiqueurGraph({ partToBeMacerated }: LiqueurNodeProps) {
+/* eslint-disable-next-line  @typescript-eslint/no-explicit-any */
   const [hoveredNode, setHoveredNode] = useState<any>(null)
   const [data] = useState({
     nodes: [

@@ -137,7 +137,6 @@ export default function useHeader() {
   useEffect(() => {
 
     const isHomePage = () => {
-      console.log('pathname', pathname)
       if (pathname !== '/') {
         setIsHomePage(false)
       }

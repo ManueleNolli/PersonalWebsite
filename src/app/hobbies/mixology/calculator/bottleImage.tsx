@@ -67,9 +67,10 @@ export default function BottleImage({
                                       macerationPercentage,
                                     }: BottleImageProps) {
   const [height, setHeight] = useState(0)
-  const refWave = useRef(null)
+  const refWave = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
+    if (!refWave.current) return
     setHeight(refWave.current.clientHeight)
   })
 

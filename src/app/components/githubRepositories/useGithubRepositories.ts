@@ -85,7 +85,7 @@ export default function useGithubRepositories() {
         console.log('Error useEffect', e)
         setError(e)
       })
-  }, [])
+  }, [  ])
 
   return {
     repos,

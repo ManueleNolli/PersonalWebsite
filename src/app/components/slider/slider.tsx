@@ -27,11 +27,11 @@ export default function Slider({ label, unit, value, onChange, min, max, step }:
       <div className="flex w-full items-center ">
         <SliderPrimeReact value={value} onChange={handleSliderChange} max={max} min={min} step={step}
                           pt={{
-                            range: 'bg-primary-300',
-                            handle: 'border-primary-400 hover:bg-primary-400',
+                            range: { className: 'bg-primary-300' },
+                            handle: { className: 'border-primary-400 hover:bg-primary-400' },
                           }}
                           className="flex-grow" />
-        <InputNumber label={label} value={value} min={min} max={max} step={step} onChange={onChange} additionalStyle={"ml-4"} />
+        <InputNumber label={label} value={value} min={min} max={max} step={step} onChange={onChange} additionalStyle={'ml-4'} />
         <span className="text-primary-600 text-sm font-bold ml-1 text-left min-w-[3rem]">{unit}</span>
       </div>
     </div>

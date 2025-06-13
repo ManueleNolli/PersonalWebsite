@@ -12,7 +12,7 @@ type InputNumberProps = {
 }
 
 export default function InputNumber({ label, value, min, max, step, onChange, additionalStyle }: InputNumberProps) {
-  const toast = useRef(null)
+const toast = useRef<Toast | null>(null);
 
   const [inputValue, setInputValue] = useState<string>(value.toString())
 
@@ -57,7 +57,7 @@ export default function InputNumber({ label, value, min, max, step, onChange, ad
     }
 
     if (errorMessage) {
-      toast.current.show({
+      toast.current?.show({
         severity: 'error',
         summary: 'Invalid input',
         detail: errorMessage,
