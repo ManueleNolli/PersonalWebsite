@@ -172,7 +172,7 @@ export default function Home() {
               Hobbies
             </a>
           </AnimatedOnScroll>
-          <AnimatedOnScroll className=" w-3/4 text-center md:text-justify leading-loose text-lg md:text-2xl max-w-[40%]">
+          <AnimatedOnScroll className=" w-3/4 text-center md:text-justify leading-loose text-lg md:text-2xl md:max-w-[40%]">
             <a className={'hover:text-primary-600'} href={'hobbies'}>
             A space where I share some of my favorite passions. From the creativity of mixology to the art and detail of photography.
             </a>

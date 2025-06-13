@@ -14,7 +14,7 @@ export default function Hobbies() {
       <div className="header-item scroll-mt-[8%] text-primary-50 flex md:flex-row flex-col min-h-svh " id="introduction" header-label="Introduction">
         <div className="flex items-center justify-center flex-col w-full">
           <AnimatedOnScroll className=" mb-6 font-bold text-3xl md:text-5xl">Hobbies Introduction</AnimatedOnScroll>
-          <AnimatedOnScroll className=" w-3/4 text-center md:text-justify leading-loose text-lg md:text-2xl max-w-[40%]">
+          <AnimatedOnScroll className=" w-3/4 text-center md:text-justify leading-loose text-lg md:text-2xl md:max-w-[40%]">
             A space where I share some of my favorite passions. From the creativity of mixology to the art and detail of photography.
           </AnimatedOnScroll>
 
