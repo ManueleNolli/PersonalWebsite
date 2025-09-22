@@ -39,7 +39,7 @@ export default function Page() {
         </AnimatedOnScroll>
 
         <div key={selectedLiqueur.ingredient.name} className="flex w-full">
-          <AnimatedOnScroll className="flex w-full">
+          <AnimatedOnScroll className="flex w-full" animationStart={"top-bottom"}>
             <LiqueursCalculator liqueur={selectedLiqueur} />
           </AnimatedOnScroll>
         </div>

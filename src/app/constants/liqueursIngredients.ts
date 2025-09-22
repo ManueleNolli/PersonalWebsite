@@ -69,10 +69,10 @@ export const liqueurs: Liqueur[] = [
       },
     },
     preset: {
-      alcohol: 500,
+      alcohol: 250,
       finalPercentage: 25,
       sugarContent: 200,
-      macerationTime: '1 day',
+      macerationTime: '2 days',
     },
   },
   {
@@ -83,8 +83,8 @@ export const liqueurs: Liqueur[] = [
     property: {
       partToBeMacerated: 'Leaves',
       afterMacerationPercentage: 95,
-      minIngredientPer100ml: 10,
-      maxIngredientPer100ml: 30,
+      minIngredientPer100ml: 5,
+      maxIngredientPer100ml: 15,
       ingredientWaterPercentage: 70,
       macerationTime: ['12 hours', '24 hours', '36 hours'],
       colors: {
@@ -107,9 +107,9 @@ export const liqueurs: Liqueur[] = [
 
     },
     preset: {
-      alcohol: 100,
-      finalPercentage: 35,
-      sugarContent: 150,
+      alcohol: 150,
+      finalPercentage: 25,
+      sugarContent: 200,
       macerationTime: '24 hours',
     },
   },
@@ -121,8 +121,8 @@ export const liqueurs: Liqueur[] = [
     property: {
       partToBeMacerated: 'Leaves',
       afterMacerationPercentage: 95,
-      minIngredientPer100ml: 0,
-      maxIngredientPer100ml: 100,
+      minIngredientPer100ml: 10,
+      maxIngredientPer100ml: 20,
       ingredientWaterPercentage: 70,
       macerationTime: ['12 hours', '24 hours', '36 hours'],
       colors: {
@@ -144,9 +144,9 @@ export const liqueurs: Liqueur[] = [
       },
     },
     preset: {
-      alcohol: 400,
-      finalPercentage: 20,
-      sugarContent: 150,
+      alcohol: 150,
+      finalPercentage: 25,
+      sugarContent: 200,
       macerationTime: '24 hours',
     },
   },

@@ -65,7 +65,7 @@ export default function useLiqueursCalculator({ liqueur }: useLiqueursCalculator
 
   // Metadata
   const macerationTimeOptions = liqueur.property.macerationTime
-  const IngredientConstants = { // TODO: Actual for alcohol 96%
+  const IngredientConstants = {
     MIN_PER_100ML: liqueur.property.minIngredientPer100ml,
     MAX_PER_100ML: liqueur.property.maxIngredientPer100ml,
     WATER_PERCENTAGE: liqueur.property.ingredientWaterPercentage,
