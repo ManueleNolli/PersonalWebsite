@@ -35,7 +35,7 @@ export default function Page() {
         </AnimatedOnScroll>
 
         <AnimatedOnScroll>
-          <div className="w-48 h-1 mx-auto md:my-4 border-0 rounded dark:bg-primary-100" />
+          <div className="w-48 h-1 mx-auto md:my-4 my-8 border-0 rounded dark:bg-primary-100" />
         </AnimatedOnScroll>
 
         <div key={selectedLiqueur.ingredient.name} className="flex w-full">
