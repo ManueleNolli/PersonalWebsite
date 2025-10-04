@@ -150,4 +150,41 @@ export const liqueurs: Liqueur[] = [
       macerationTime: '24 hours',
     },
   },
+  {
+    ingredient: {
+      name: 'Peach',
+      imagePath: '/assets/mixology/peach.png',
+    },
+    property: {
+      partToBeMacerated: 'Fruit',
+      afterMacerationPercentage: 100,
+      minIngredientPer100ml: 50,
+      maxIngredientPer100ml: 150,
+      ingredientWaterPercentage: 88,
+      macerationTime: ['3 days', '1 week', '2 weeks'],
+      colors: {
+        light: '#faeed9',
+        medium: '#FFE5B4',
+        strong: '#d2c186',
+      },
+      computeFlavour: (macerationTime: string) => {
+        switch (macerationTime) {
+          case '3 days':
+            return Flavour.FRESH_AND_DELICATE
+          case '1 week':
+            return Flavour.BALANCED
+          case '2 weeks':
+            return Flavour.RICH_AND_FULL
+          default:
+            return Flavour.FRESH_AND_DELICATE
+        }
+      },
+    },
+    preset: {
+      alcohol: 300,
+      finalPercentage: 25,
+      sugarContent: 200,
+      macerationTime: '1 week',
+    },
+  },
 ]

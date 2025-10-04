@@ -261,7 +261,7 @@ export default function useLiqueursCalculator({ liqueur }: useLiqueursCalculator
   }
 
   const handleMaxAlcoholChange = (value: number) => {
-    if (value < alcoholMetadata.min){
+    if (value < alcoholMetadata.min) {
       console.warn(`Max alcohol cannot be less than the minimum value of ${alcoholMetadata.min} ml.`)
       return
     }
@@ -352,7 +352,7 @@ export default function useLiqueursCalculator({ liqueur }: useLiqueursCalculator
     handleAlcoholPercentageChange,
     maxSugarContent,
     handleMaxSugarContentChange,
-    computeTotalVolume
+    computeTotalVolume,
   }
 
 }
