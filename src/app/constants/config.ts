@@ -122,6 +122,10 @@ export const config = {
           name: 'Interview about my journey',
           url: 'https://www.supsi.ch/it/il-mio-percorso-verso-la-tecnologia-del-futuro',
         },
+        {
+          name: 'Hackathon Victory with Var Group - Italo Treno!',
+          url: 'https://www.supsi.ch/it/destinazione-primo-posto-team-supsi-trionfa-all-hackathon-var-group-con-la-sfida-di-italo-treno',
+        }
       ],
     },
   ] as Journey[],
